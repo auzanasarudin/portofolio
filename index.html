@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Auzan Asarudin | Manufacturing Engineering &amp; Digitalisasi</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f8fa;--ink:#1f2328;--mute:#59636e;--line:#d1d9e0;--card:#fff;--acc:#1a7f37;--accbg:#dafbe1;--m:'JetBrains Mono',ui-monospace,Menlo,monospace;--s:'Inter',system-ui,sans-serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1117;--ink:#e6edf3;--mute:#8b98a8;--line:#2d3744;--card:#151b23;--acc:#7ee787;--accbg:#12301c}}
+:root[data-theme="dark"]{--bg:#0d1117;--ink:#e6edf3;--mute:#8b98a8;--line:#2d3744;--card:#151b23;--acc:#7ee787;--accbg:#12301c}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.65 var(--s)}
+a{color:inherit}button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+.w{max-width:1040px;margin:0 auto;padding:0 22px}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:6}
+.bar .w{display:flex;align-items:center;justify-content:space-between;gap:14px;height:60px}
+.logo{font:800 20px var(--m);text-decoration:none}
+.logo i{color:var(--acc);font-style:normal}
+.nl{display:flex;gap:22px;align-items:center;font-size:15px;font-weight:500}
+.nl a{text-decoration:none;color:var(--mute)}.nl a:hover{color:var(--ink)}
+.cm{font:600 13px var(--m);border:1px solid var(--line);background:var(--card);padding:6px 12px;border-radius:6px;white-space:nowrap}
+.cm b{color:var(--acc)}
+.hero{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center;padding:72px 0 64px}
+.pr{font:600 15px var(--m);color:var(--mute);margin:0 0 10px}
+h1{font:800 clamp(40px,6.5vw,76px)/1.05 var(--m);letter-spacing:-.03em;margin:0 0 18px;min-height:2.2em}
+.cur{color:var(--acc);animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+.role{font:600 clamp(20px,2.4vw,26px)/1.3 var(--s);margin:0 0 8px}
+.lead{color:var(--mute);max-width:32em;margin:0 0 22px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 24px;padding:0;list-style:none}
+.chips li{font:600 13px var(--m);border:1px solid var(--line);background:var(--card);padding:5px 11px;border-radius:6px}
+.btn{display:inline-block;padding:12px 20px;border:2px solid var(--acc);background:var(--acc);color:var(--bg);font:700 14px var(--m);text-decoration:none;border-radius:6px}
+.btn.o{background:transparent;color:var(--ink);border-color:var(--line);margin-left:8px}
+.pv{position:relative}
+.ph{display:grid;place-items:center;text-align:center;border:2px dashed var(--line);background:var(--card);color:var(--mute);font-size:14px;padding:14px;aspect-ratio:4/3;width:100%;overflow:hidden;border-radius:10px}
+.ph img{width:100%;height:100%;object-fit:cover}
+.pv .ph{aspect-ratio:1}
+.bd{position:absolute;right:-8px;top:-12px;background:var(--acc);color:var(--bg);font:800 13px var(--m);padding:6px 12px;border-radius:6px}
+.st{margin-top:16px;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:12px 16px;font:400 14px var(--m)}
+.st span{color:var(--acc)}
+section{padding:72px 0 0}
+h2{font:800 clamp(26px,3.6vw,38px)/1.15 var(--m);letter-spacing:-.02em;margin:0 0 10px}
+h2::before{content:"## ";color:var(--acc)}
+.sub{color:var(--mute);margin:0 0 30px;max-width:38em}
+.skl{display:flex;flex-wrap:wrap;gap:10px}
+.skl span{border:1px solid var(--line);background:var(--card);padding:8px 14px;border-radius:8px;font-weight:500;font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{border:1px solid var(--line);background:var(--card);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.card .ph{border-radius:0;border:0;border-bottom:2px dashed var(--line);aspect-ratio:16/10}
+.cb{padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.card h3{font:700 20px/1.25 var(--s);margin:0}
+.card p{margin:0;color:var(--mute);font-size:15.5px}
+.tech{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.tech li{font:600 12px var(--m);background:var(--accbg);color:var(--ink);padding:3px 9px;border-radius:5px}
+.card a.l{margin-top:auto;font:700 14px var(--m);color:var(--acc);text-decoration:none}
+.card a.l:hover{text-decoration:underline}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.tabs button{font:600 14px var(--m);border:1px solid var(--line);background:var(--card);padding:8px 14px;border-radius:6px}
+.tabs button[aria-selected="true"]{background:var(--acc);color:var(--bg);border-color:var(--acc)}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.box{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:22px}
+.box h3{font:700 19px var(--m);margin:0 0 8px}
+.box h4{font:700 16px var(--m);margin:0 0 8px;color:var(--acc)}
+.box p{margin:0 0 12px;color:var(--mute)}
+.box ul{margin:0;padding-left:20px;color:var(--mute)}
+.ms{margin-top:20px;border-left:2px solid var(--line);margin-left:6px}
+.ms div{padding:0 0 18px 22px;position:relative}
+.ms div::before{content:"";position:absolute;left:-7px;top:8px;width:12px;height:12px;background:var(--acc);border-radius:50%}
+.ms h3{font:700 17px var(--s);margin:0 0 2px}.ms p{margin:0;color:var(--mute);font-size:15.5px}
+.xp{border-top:1px solid var(--line)}
+.xp div{display:grid;grid-template-columns:160px 1fr;gap:20px;padding:20px 0;border-bottom:1px solid var(--line)}
+.xp time{font:600 15px var(--m);color:var(--acc)}
+.xp h3{font:700 19px var(--s);margin:0 0 4px}.xp p{margin:0;color:var(--mute)}
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.gal figure{margin:0}.gal figcaption{font:600 15px var(--s);margin-top:8px}
+.gal figcaption small{display:block;font-weight:400;color:var(--mute)}
+form{display:grid;gap:14px;max-width:560px}
+label{display:grid;gap:4px;font:600 13px var(--m)}
+label span{color:var(--mute);font-weight:400;text-align:right}
+input,textarea{font:400 16px var(--s);color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:11px 13px;width:100%}
+.dl{display:block;margin-top:56px;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:18px 22px;font:600 16px var(--m);text-decoration:none}
+.dl small{display:block;color:var(--mute);font-weight:400;margin-top:2px}
+footer{padding:28px 0 44px;font-size:14px;color:var(--mute)}
+.nm .cur{animation:none}
+@media(prefers-reduced-motion:reduce){.cur{animation:none}}
+@media(max-width:860px){.hero,.pn{grid-template-columns:1fr}.grid,.gal{grid-template-columns:1fr 1fr}.xp div{grid-template-columns:1fr;gap:4px}.nl a{display:none}}
+@media(max-width:540px){.grid,.gal{grid-template-columns:1fr}.btn.o{margin:10px 0 0}}
+</style>
+</head>
+<body>
+<div class="bar"><div class="w"><a class="logo" href="#top">az<i>_</i></a>
+<nav class="nl"><a href="#keahlian">Keahlian</a><a href="#karya">Karya</a><a href="#pengalaman">Pengalaman</a><a href="#kontak">Kontak</a><button class="cm" id="cm" aria-pressed="false">Mode Klien: <b>Off</b></button></nav></div></div>
+
+<div class="w" id="top">
+<header class="hero">
+<div>
+<p class="pr">$ whoami</p>
+<h1 aria-label="Halo, saya Auzan"><span id="ty">Halo, saya Auzan</span><span class="cur">_</span></h1>
+<p class="role">Manufacturing Engineer | Cost Engineering | Digitalisasi</p>
+<p class="lead">Saya mengubah data pabrik menjadi estimasi biaya, dashboard, dan alat kerja yang benar-benar dipakai. Berbasis di Bekasi, menerima proyek freelance.</p>
+<ul class="chips"><li>Cost Estimation</li><li>OEE</li><li>Robot Welding</li><li>Monday.com</li><li>IoT</li><li>Web App AI</li></ul>
+<a class="btn" href="#kontak">Mulai diskusi</a><a class="btn o" href="#karya">Lihat karya</a>
+</div>
+<div class="pv"><button class="ph" data-ph aria-label="Muat foto profil">Foto profil<br>(klik untuk memuat)</button><span class="bd">USD 301.812/thn</span>
+<div class="st"><span>●</span> Sedang dibangun: Employee Simulator, simulator kantor Production Engineering</div></div>
+</header>
+
+<section id="keahlian">
+<h2>Keahlian</h2>
+<p class="sub">Bidang yang saya kerjakan, dari lantai produksi sampai layar dashboard.</p>
+<div class="skl" id="skl"></div>
+</section>
+
+<section id="karya">
+<h2>Karya saya</h2>
+<p class="sub">Enam studi kasus utama. Angka yang tertulis adalah hasil yang saya laporkan dari pekerjaan nyata.</p>
+<div class="grid" id="cards"></div>
+</section>
+
+<section id="timeline">
+<h2>Linimasa pengerjaan</h2>
+<p class="sub">Pilih proyek untuk melihat ringkasan dampak, tahapan kerja, dan apa yang bisa saya tambahkan untuk Anda.</p>
+<div class="tabs" role="tablist" id="tabs"></div>
+<div id="tp"></div>
+</section>
+
+<section id="pengalaman">
+<h2>Pengalaman</h2>
+<p class="sub">Urutan fokus kerja dari terbaru. Tahun bertanda “20xx” akan diisi sesuai riwayat Anda.</p>
+<div class="xp">
+<div><time>2026</time><div><h3>Freelance: Digitalisasi dan aplikasi berbasis AI</h3><p>Employee Simulator, dashboard monitoring robot welding, alat internal untuk logbook, workflow, dan analisis data.</p></div></div>
+<div><time>20xx – 20xx</time><div><h3>Production Engineering</h3><p>Restrukturisasi MBOM 180 menjadi 49 struktur, pengurangan biaya proses, analisa robot welding dan OEE.</p></div></div>
+<div><time>20xx – 20xx</time><div><h3>Manufacturing Cost Engineering</h3><p>Estimasi biaya proyek baru, welding, machining, painting, dan assembly.</p></div></div>
+<div><time>20xx – 20xx</time><div><h3>Mutu dan dokumentasi ISO di PT Kawamura</h3><p>Dukungan dokumentasi ISO dan checksheet inspeksi quality control.</p></div></div>
+<div><time>20xx – 20xx</time><div><h3>Gambar teknik dan koordinasi proyek</h3><p>Drafting CAD dan CNC, perencanaan dan pemantauan tugas lintas tim.</p></div></div>
+</div>
+</section>
+
+<section id="dokumentasi">
+<h2>Foto dokumentasi</h2>
+<p class="sub">Klik kotak untuk memuat foto atau screenshot dari perangkat Anda sebagai pratinjau.</p>
+<div class="gal" id="gal"></div>
+</section>
+
+<section id="kontak">
+<h2>Hubungi saya</h2>
+<p class="sub">Ceritakan singkat kebutuhannya. Saya balas dengan gambaran pendekatan dan estimasi waktu.</p>
+<form id="f">
+<label>Nama<input id="n" maxlength="50" required></label>
+<label>Email<input id="e" type="email" maxlength="50" required></label>
+<label>Pesan<textarea id="m" rows="5" maxlength="500" required></textarea><span id="cnt">0/500</span></label>
+<div><button class="btn" type="submit">Kirim lewat email</button></div>
+</form>
+<a class="dl" href="mailto:auzanasar@gmail.com?subject=Minta%20CV">$ ./minta_cv.sh<small>Klik untuk meminta CV lengkap lewat email</small></a>
+<p style="margin-top:22px"><a href="mailto:auzanasar@gmail.com">auzanasar@gmail.com</a> · <a href="https://id.linkedin.com/in/auzan-asarudin-261585411">LinkedIn</a> · Bekasi, Indonesia</p>
+</section>
+<footer>© 2026 Auzan Asarudin</footer>
+</div>
+
+<script>
+var $=function(i){return document.getElementById(i)};
+var SK=['Manufacturing & Production Engineering','Estimasi biaya (welding, machining, painting, assembly)','Dokumentasi mutu & ISO','CAD & CNC drafting','Analisa robot welding','OEE & performa produksi','Data analytics & laporan','Dashboard & workflow proyek','Otomasi proses & IoT','Web app dengan bantuan AI','Manajemen proyek','SQL & spreadsheet'];
+$('skl').innerHTML=SK.map(function(s){return '<span>'+s+'</span>'}).join('');
+var CS=[
+['Employee Simulator','Simulator kantor Production Engineering bergaya game: karyawan berekspresi, jam istirahat berjalan, quest ber-XP E sampai A, KPI berbobot per tim, jadwal, jurnal, dan laporan yang bisa dicetak atau diekspor ke Excel.',['HTML/JS','Gemini','Google Drive','Excel'],'mailto:auzanasar@gmail.com?subject=Demo%20Employee%20Simulator','Minta demo'],
+['Monitoring Robot Welding','Dashboard operator untuk memantau sistem robot welding secara real time dari data peralatan.',['Dashboard','IoT','SQL Server','Realtime'],'https://auzanasarudin.github.io/monitoring-robot-1/','Buka demo'],
+['Estimasi Biaya Manufaktur','Worksheet biaya proyek baru serta proses welding, machining, painting, dan assembly dengan asumsi terdokumentasi.',['Cost Engineering','Waktu standar','Excel'],'#kontak','Diskusikan'],
+['MBOM dan Pengurangan Biaya','180 MBOM disusun menjadi 49 struktur siap produksi. Penghapusan primer cat pada barang setengah jadi tertentu dilaporkan menghemat USD 301.812,70 per tahun.',['MBOM','Process improvement'],'#kontak','Diskusikan'],
+['Workflow dan Otomasi','Alur tugas proyek di Monday.com, dashboard progres, serta otomasi notifikasi dan laporan.',['Monday.com','Otomasi','Dashboard'],'#kontak','Diskusikan'],
+['Mutu dan Dokumen Teknik','Dokumentasi ISO di PT Kawamura, checksheet inspeksi QC, logbook gudang, serta gambar CAD dan CNC.',['ISO','Checksheet QC','CAD','CNC'],'#kontak','Diskusikan']];
+$('cards').innerHTML=CS.map(function(c,i){return '<article class="card"><button class="ph" data-ph aria-label="Muat foto '+c[0]+'">Foto '+c[0]+'<br>(klik untuk memuat)</button><div class="cb"><h3>'+c[0]+'</h3><p>'+c[1]+'</p><ul class="tech">'+c[2].map(function(t){return '<li>'+t+'</li>'}).join('')+'</ul><a class="l" href="'+c[3]+'">'+c[4]+' ↗</a></div></article>'}).join('');
+var TL=[
+['Employee Simulator','Simulator yang membuat KPI dan beban kerja tim terlihat seperti permainan.',['Quest ber-XP E sampai A','KPI berbobot per tim','Cetak dan ekspor Excel'],['Sinkron Google Drive dan Calendar','Jurnal harian dengan pendamping AI','Jadwal harian sampai 3 tahun'],[['Simulator kantor','Karyawan berekspresi, jam istirahat berjalan, status kerja terlihat.'],['Quest dan KPI','Bobot per tim dan aturan XP agar penilaian tidak mudah dimanipulasi.'],['Laporan','Cetak dan ekspor Excel dengan grafik.']]],
+['Monitoring Robot Welding','Dashboard operator yang menampilkan kondisi robot welding sekilas pandang.',['Arus dan kecepatan las','Waktu berhenti robot','Perbandingan parameter'],['Riwayat alarm per robot','Tren penyelesaian pekerjaan','Ekspor laporan shift'],[['Analisa parameter','Arus, kecepatan las, dan waktu berhenti dibandingkan untuk mencari waktu tanpa nilai tambah.'],['Dashboard operator','Tampilan status dan indikator utama.'],['Pemantauan realtime','Alur dari database ke backend ke tampilan langsung.']]],
+['Estimasi Biaya Manufaktur','Biaya proses manufaktur diperhitungkan terstruktur dan mudah dibandingkan antarskenario.',['Welding','Machining','Painting','Assembly'],['Perbandingan skenario proses','Template biaya yang bisa dipakai ulang','Laporan ringkas untuk keputusan'],[['Susun input','Komponen biaya dan parameter proses dirapikan.'],['Dokumentasikan asumsi','Setiap angka bisa ditelusuri asalnya.'],['Review dan bandingkan','Hasil siap ditinjau bersama tim.']]],
+['MBOM dan Pengurangan Biaya','Data struktur produk yang rapi dan proses yang disederhanakan.',['180 → 49 struktur','±24 bulan','USD 301.812,70/tahun'],['Audit struktur MBOM Anda','Cek peluang proses yang bisa dihapus','Dokumentasi revisi'],[['Tinjau MBOM','Struktur yang ada dikaji ulang.'],['Susun ulang','Produk dan komponen disatukan menjadi struktur siap produksi.'],['Hemat proses','Primer cat pada barang setengah jadi tertentu dihapus sesuai persyaratan manufaktur.']]]];
+function tab(i){var t=TL[i];[].forEach.call($('tabs').children,function(b,j){b.setAttribute('aria-selected',j===i)});
+$('tp').innerHTML='<div class="pn"><div class="box"><h3>Ringkasan dampak</h3><p>'+t[1]+'</p><ul class="tech">'+t[2].map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul></div><div class="box"><h4>Bisa saya tambahkan untuk Anda</h4><ul>'+t[3].map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul></div></div><div class="ms">'+t[4].map(function(m){return '<div><h3>'+m[0]+'</h3><p>'+m[1]+'</p></div>'}).join('')+'</div>'}
+$('tabs').innerHTML=TL.map(function(t,i){return '<button role="tab" aria-selected="false" data-i="'+i+'">'+t[0]+'</button>'}).join('');
+$('tabs').onclick=function(e){var b=e.target.closest('button');if(b)tab(+b.dataset.i)};tab(0);
+var G=[['Dashboard robot welding','Tangkapan layar'],['Employee Simulator','Tangkapan layar'],['Worksheet estimasi biaya','Contoh hitungan'],['Workflow Monday.com','Tangkapan layar'],['Checksheet QC','Dokumen'],['Gambar CAD dan CNC','Gambar teknik']];
+$('gal').innerHTML=G.map(function(g){return '<figure><button class="ph" data-ph aria-label="Muat foto '+g[0]+'">Tempat foto<br>(klik untuk memuat)</button><figcaption>'+g[0]+'<small>'+g[1]+'</small></figcaption></figure>'}).join('');
+var inp=document.createElement('input');inp.type='file';inp.accept='image/*';var cur;
+document.addEventListener('click',function(e){var p=e.target.closest('[data-ph]');if(p){cur=p;inp.click()}});
+inp.onchange=function(){var f=inp.files[0];if(!f||!cur)return;var r=new FileReader();r.onload=function(){cur.innerHTML='<img alt="" src="'+r.result+'">'};r.readAsDataURL(f);inp.value=''};
+var R=document.documentElement,cm=$('cm'),reduce=matchMedia('(prefers-reduced-motion:reduce)').matches,txt='Halo, saya Auzan',timer;
+function type(){clearInterval(timer);var el=$('ty');if(reduce||R.classList.contains('nm')){el.textContent=txt;return}var i=0;el.textContent='';timer=setInterval(function(){el.textContent=txt.slice(0,++i);if(i>=txt.length)clearInterval(timer)},70)}
+cm.onclick=function(){var on=cm.getAttribute('aria-pressed')!=='true';cm.setAttribute('aria-pressed',on);cm.querySelector('b').textContent=on?'On':'Off';R.classList.toggle('nm',on);R.dataset.theme=on?'light':'dark';type()};
+type();
+$('m').oninput=function(){$('cnt').textContent=this.value.length+'/500'};
+$('f').onsubmit=function(e){e.preventDefault();location.href='mailto:auzanasar@gmail.com?subject='+encodeURIComponent('Proyek freelance dari '+$('n').value)+'&body='+encodeURIComponent($('m').value+'\n\n'+$('n').value+' ('+$('e').value+')')};
+</script>
+</body>
+</html>
