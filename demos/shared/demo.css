@@ -218,3 +218,4 @@ pre.mail{margin:0;white-space:pre-wrap;font-family:var(--f-mono);font-size:12px;
 .opt{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--rule);border-radius:8px;background:var(--surface);cursor:pointer}
 .opt input{margin-top:3px;accent-color:var(--accent)}
 .opt b{display:block}.opt span{font-size:12px;color:var(--fg-2)}
+@media (max-width:620px){.kpi .spark{display:none}}

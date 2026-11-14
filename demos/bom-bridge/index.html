@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BOM Bridge — CBOM to EBOM to MBOM generator demo</title>
+<meta name="description" content="Interactive demo by Auzan Asarudin: turn a customer configuration into an engineering BOM and a manufacturing BOM with editable make/buy/phantom rules. Runs in the browser; all data is synthetic.">
+<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/css/tokens.css">
+<link rel="stylesheet" href="../shared/demo.css">
+</head>
+<body>
+<div class="app">
+  <div class="demo-note">
+    <span>DEMO · fictional product “CDU-300 conveyor drive unit” · rules are examples, not any company’s rules</span>
+    <span><a href="../../index.html#karya">← Back to portfolio</a> · <a href="../../index.html#kontak">Want this for your BOM?</a></span>
+  </div>
+  <aside class="side">
+    <div class="brand"><span id="logo"></span><div><b>BOM Bridge</b><small>CBOM → EBOM → MBOM</small></div></div>
+    <nav class="nav" id="nav" aria-label="Steps"></nav>
+    <div class="foot">
+      <button class="btn sm ghost" data-skin-toggle type="button">Mat skin</button>
+      <span>Everything runs in your browser. No file leaves this page.</span>
+    </div>
+  </aside>
+  <main class="main">
+    <header class="top">
+      <div><h1 id="title">Configure</h1><div class="sub" id="sub"></div></div>
+      <div class="filters" id="filters"></div>
+    </header>
+    <div class="view" id="view"></div>
+  </main>
+</div>
+<script src="../../assets/js/labo-sprite.js"></script>
+<script src="../shared/util.js"></script>
+<script src="../shared/charts.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
