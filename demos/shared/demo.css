@@ -90,7 +90,7 @@ table.t{border-collapse:collapse;width:100%;font-size:13px}
 }
 :root[data-skin="mat"]{
   --s1:#3987e5;--s2:#d95926;--s3:#199e70;--s4:#c98500;--s5:#d55181;--s6:#0ca30c;--s7:#9085e9;--s8:#e66767;
-  --s1l:#1c5cab;
+  --s1l:#b7d3f6;
   --q0:var(--surface-2);--q1:#104281;--q2:#1c5cab;--q3:#2a78d6;--q4:#5598e7;--q5:#86b6ef;--q6:#cde2fb;
   --de:#5d7366;
 }
@@ -174,3 +174,47 @@ details.tv .tw{margin-top:6px;max-height:260px}
 .rb .rn small{font-weight:500;font-size:11px;color:var(--fg-2)}
 .rb .rv b{color:var(--fg)}
 .mrow{display:flex;justify-content:space-between;gap:8px;font-size:12px;margin-bottom:5px;align-items:center;white-space:nowrap}
+
+/* ---- flow dots, gantt, agenda (Change Board) ---- */
+.flow{display:inline-flex;align-items:center;gap:3px}
+.flow i{display:inline-block;width:16px;height:6px;border-radius:3px;background:var(--surface-2);border:1px solid var(--rule)}
+.flow i.dn{background:var(--fg-2);border-color:var(--fg-2)}
+.flow i.on{background:var(--s1);border-color:var(--s1)}
+.flow i.lt{background:var(--st-critical);border-color:var(--st-critical)}
+.urg{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:12.5px;white-space:nowrap}
+.urg b{display:inline-block;width:9px;height:9px;border-radius:2px;background:var(--de)}
+.urg.u-Critical b{background:var(--st-critical)}.urg.u-High b{background:var(--st-serious)}.urg.u-Medium b{background:var(--st-warning)}
+.agenda{display:flex;flex-direction:column;gap:10px}
+.ag{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;padding:12px 14px;border:1px solid var(--rule);border-radius:8px;background:var(--surface)}
+.ag input[type=checkbox]{width:18px;height:18px;margin-top:2px;accent-color:var(--accent)}
+.ag h4{font-family:var(--f-body);font-size:14px;font-weight:700;letter-spacing:0}
+.ag .meta{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;font-size:12px;color:var(--fg-2);margin-top:4px}
+.ag .last{font-size:12.5px;color:var(--fg-2);margin-top:6px}
+.ag .add{display:flex;gap:6px;margin-top:8px}
+.ag .add input{flex:1}
+pre.mail{margin:0;white-space:pre-wrap;font-family:var(--f-mono);font-size:12px;line-height:1.55;padding:12px 14px;border:1px solid var(--rule);border-radius:8px;background:var(--surface-2);max-height:560px;overflow:auto}
+.steps{display:flex;flex-direction:column;gap:8px}
+.stp{display:grid;grid-template-columns:130px minmax(0,1fr) auto;gap:10px;align-items:center;font-size:12.5px}
+.stp .bar{position:relative;height:8px;border-radius:999px;background:var(--surface-2)}
+.stp .bar i{position:absolute;inset:0 auto 0 0;border-radius:999px;background:var(--s1)}
+.stp .bar i.lt{background:var(--st-critical)}
+.stp .bar b{position:absolute;top:-3px;width:2px;height:14px;background:var(--fg)}
+.notes{display:flex;flex-direction:column;gap:8px;font-size:12.5px}
+.notes div{padding:8px 10px;border-left:2px solid var(--rule);background:var(--surface-2);border-radius:0 6px 6px 0}
+.notes small{display:block;font-family:var(--f-mono);font-size:10.5px;color:var(--fg-2);margin-bottom:2px}
+/* ---- BOM tree (BOM Bridge) ---- */
+.tree{font-family:var(--f-mono);font-size:12px;line-height:1.9}
+.tree .n{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.tree .n .c{color:var(--fg-2)}
+.cls{display:inline-block;min-width:66px;text-align:center;padding:1px 7px;border-radius:4px;font-family:var(--f-mono);font-size:10.5px;font-weight:500;letter-spacing:.04em;color:#fff}
+.cls.dk{color:#0b0b0b}
+.stepper{display:flex;flex-wrap:wrap;gap:8px}
+.stepper button{display:flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid var(--rule);border-radius:8px;background:var(--surface);cursor:pointer;text-align:left;flex:1 1 180px;color:var(--fg-2)}
+.stepper button b{display:block;color:var(--fg);font-size:14px}
+.stepper button i{font-family:var(--f-display);font-style:normal;font-size:26px;font-weight:600;color:var(--fg-2);line-height:1}
+.stepper button[aria-current="step"]{border-color:var(--fg);box-shadow:inset 0 -3px 0 var(--hl)}
+.stepper button[aria-current="step"] i{color:var(--fg)}
+.opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--rule);border-radius:8px;background:var(--surface);cursor:pointer}
+.opt input{margin-top:3px;accent-color:var(--accent)}
+.opt b{display:block}.opt span{font-size:12px;color:var(--fg-2)}

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Change Board — engineering change meeting tracker demo</title>
+<meta name="description" content="Interactive demo by Auzan Asarudin: track engineering changes from Design to Warehouse, see who holds each case, run the weekly meeting and send the recap. All data is synthetic.">
+<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/css/tokens.css">
+<link rel="stylesheet" href="../shared/demo.css">
+</head>
+<body>
+<div class="app">
+  <div class="demo-note">
+    <span>DEMO · synthetic cases, parts and drawings · not from any company · demo date 12 Nov 2026</span>
+    <span><a href="../../index.html#karya">← Back to portfolio</a> · <a href="../../index.html#kontak">Want this for your plant?</a></span>
+  </div>
+  <aside class="side">
+    <div class="brand"><span id="logo"></span><div><b>Change Board</b><small>Engineering change meetings</small></div></div>
+    <nav class="nav" id="nav" aria-label="Views"></nav>
+    <div class="foot">
+      <button class="btn sm ghost" data-skin-toggle type="button">Mat skin</button>
+      <span>Edits are saved in this browser only. Reset them in Settings.</span>
+    </div>
+  </aside>
+  <main class="main">
+    <header class="top">
+      <div><h1 id="title">Board</h1><div class="sub" id="sub"></div></div>
+      <div class="filters" id="filters"></div>
+    </header>
+    <div class="view" id="view"></div>
+  </main>
+</div>
+<div id="layer"></div>
+<script src="../../assets/js/labo-sprite.js"></script>
+<script src="../shared/util.js"></script>
+<script src="../shared/charts.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

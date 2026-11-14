@@ -15,7 +15,7 @@
     ['E-701', 'Operator stop / door open', 'Operator', 8, 5]
   ];
   var CATS = ['Wire & feeder', 'Arc & torch', 'Gas & cooling', 'Sensing', 'Motion', 'Fixture & part', 'Operator'];
-  var DEF = { oee: 65, stop: 15, avail: 85, ef: 0.85, tipLife: 40, nozzleLife: 120, linerLife: 600, calibDays: 30, asfLimit: 3 };
+  var DEF = { oee: 78, stop: 15, avail: 85, ef: 0.85, tipLife: 40, nozzleLife: 120, linerLife: 600, calibDays: 30, feedLimit: 15 };
   var CFG = Object.assign({}, DEF, U.get('ri_cfg', {}));
   var CM = [
     { id: 'CM-01', robot: 'A-02', title: 'Feeder roller and liner replaced on a fixed arc-hour schedule', cat: 'Wire & feeder', date: '2026-09-21', status: 'Done', owner: 'Maintenance', cut: 0.45 },
@@ -35,8 +35,8 @@
         var focus = U.pick(r, CATS.slice(0, 6));
         robots.push({
           id: c.id + '-0' + k, cell: c.id, cellName: c.name, alarmRate: 0.04 + r() * 0.08, waitRate: 0.03 + r() * 0.05, stdCycle: 0.7 + r() * 1.5,
-          perf: 0.87 + r() * 0.10, rework: 0.006 + r() * 0.028, arcRatio: 0.56 + r() * 0.14, wireRate: 3.4 + r() * 1.8, kW: 9 + r() * 5, focus: focus,
-          tip: r() * 20, nozzle: r() * 90, liner: r() * 400, tipStretch: 0.85 + r() * 0.3, calib: U.add(TODAY, -U.int(r, 3, 36))
+          perf: 0.87 + r() * 0.10, rework: 0.01 + r() * 0.035, arcRatio: 0.56 + r() * 0.14, wireRate: 3.4 + r() * 1.8, kW: 9 + r() * 5, focus: focus,
+          tip: r() * 20, nozzle: r() * 90, liner: r() * 420, tipStretch: 0.85 + r() * 0.3, linerStretch: 0.92 + r() * 0.2, calib: U.add(TODAY, -U.int(r, 3, 36))
         });
       }
     });
@@ -45,7 +45,7 @@
     byId['B-01'].alarmRate = 0.19; byId['B-01'].focus = 'Arc & torch';
     byId['C-03'].alarmRate = 0.20; byId['C-03'].focus = 'Fixture & part';
     byId['D-01'].waitRate = 0.19; byId['B-03'].focus = 'Gas & cooling'; byId['B-03'].alarmRate = 0.15;
-    byId['C-01'].tipStretch = 1.32; byId['C-01'].tip = 16;
+    byId['B-02'].liner = 250; byId['B-02'].linerStretch = 9; byId['B-02'].forceLiner = 30;
     var hourW = [7, 9, 5, 4, 5, 6, 4, 3, 8, 9, 5, 4, 5, 6, 4, 3]; // 07:00..22:00, peaks at shift starts
     var hourTot = U.sum(hourW);
     for (var i = 0; i < DAYS; i++) {
@@ -58,21 +58,21 @@
         ar *= U.clamp(1 + 0.32 * U.gauss(r), 0.35, 2.1); wr *= U.clamp(1 + 0.28 * U.gauss(r), 0.4, 1.9);
         var alarmH = planned * ar, waitH = planned * wr, oper = Math.max(0, planned - alarmH - waitH);
         var perf = U.clamp(rb.perf * (1 + 0.03 * U.gauss(r)), 0.7, 1), cycles = Math.max(0, Math.round(oper * perf / rb.stdCycle));
-        var rework = U.clamp(Math.round(cycles * rb.rework * (1 + 0.6 * U.gauss(r))), 0, cycles);
+        var rework = 0; for (var q = 0; q < cycles; q++) if (r() < rb.rework) rework++;
         var arc = oper * rb.arcRatio * perf, wire = arc * rb.wireRate, kwh = arc * rb.kW + (oper - arc) * 2.2 + (alarmH + waitH) * 1.3;
         // consumable counters
         rb.tip += arc; rb.nozzle += arc; rb.liner += arc;
-        var tipChanged = false;
-        if (rb.tip > CFG.tipLife * rb.tipStretch && rb.id !== 'C-01') { rb.tip = arc * r(); tipChanged = true; }
+        var linerChanged = false;
+        if (rb.tip > 40 * rb.tipStretch) rb.tip = arc * r();
         if (rb.nozzle > 120 * (0.9 + r() * 0.2)) rb.nozzle = 0;
-        if (rb.liner > 600 * (0.9 + r() * 0.2)) rb.liner = 0;
-        var wear = rb.tip / CFG.tipLife, asf = Math.max(0.1, 0.45 + 2.3 * wear * wear + 0.16 * U.gauss(r));
-        recs.push({ date: date, i: i, robot: rb.id, cell: rb.cell, planned: planned, alarm: alarmH, wait: waitH, oper: oper, cycles: cycles, rework: rework, std: cycles * rb.stdCycle, arc: arc, wire: wire, kwh: kwh, asf: asf, tip: rb.tip, tipChanged: tipChanged });
+        if (rb.liner > 600 * rb.linerStretch || rb.forceLiner === i) { rb.liner = arc * r(); linerChanged = true; }
+        var wear = rb.tip / 40, lw = rb.liner / 600, feed = Math.max(0.3, 2 + 18 * lw * lw + 0.75 * U.gauss(r));
+        recs.push({ date: date, i: i, robot: rb.id, cell: rb.cell, planned: planned, alarm: alarmH, wait: waitH, oper: oper, cycles: cycles, rework: rework, std: cycles * rb.stdCycle, arc: arc, wire: wire, kwh: kwh, feed: feed, liner: rb.liner, linerChanged: linerChanged });
         // alarm events that add up to alarmH
         var mins = alarmH * 60, n = Math.max(1, Math.round(mins / (5 + r() * 9))), cuts = [], tot = 0;
         for (var e = 0; e < n; e++) { var w = 0.25 + r() * r() * 3; cuts.push(w); tot += w; }
         for (e = 0; e < n; e++) {
-          var pool = ALARMS.map(function (a) { var wt = a[3]; if (a[2] === rb.focus) wt *= 3.2; if (cm && !cm.wait && a[2] === cm.cat) wt *= 0.35; if (a[0] === 'E-221' || a[0] === 'E-210') wt *= 1 + wear; return wt; });
+          var pool = ALARMS.map(function (a) { var wt = a[3]; if (a[2] === rb.focus) wt *= 3.2; if (cm && !cm.wait && a[2] === cm.cat) wt *= 0.35; if (a[0] === 'E-221' || a[0] === 'E-210') wt *= 1 + wear; if (a[0] === 'E-101' || a[0] === 'E-104') wt *= 1 + lw; return wt; });
           var pick = r() * U.sum(pool), ai = 0; while (pick > pool[ai]) { pick -= pool[ai]; ai++; }
           var hp = r() * hourTot, hi = 0; while (hp > hourW[hi]) { hp -= hourW[hi]; hi++; }
           if (planned === 8) hi = hi % 8;
@@ -121,8 +121,8 @@
     return '<div class="grid g5">' + tiles.join('') + '</div>' +
       card('Fleet', 'Each robot against the stop-time limit. Select one to filter every view.', '<div class="fleet">' + fleet + '</div>') +
       '<div class="grid g2">' +
-      card('Availability per day', 'Operating hours ÷ planned hours, all robots in scope.', Charts.lines({ labels: byDay.map(function (g) { return U.short(g.k); }), series: [{ name: 'Availability', values: dayA.map(function (d) { return +d.A.toFixed(1); }) }], unit: '%', target: CFG.avail, targetLabel: 'target ' + CFG.avail + '%', yMax: 100, area: true, xName: 'Day' })) +
-      card('Stop time by robot', 'Alarm + waiting hours as a share of planned hours.', Charts.hbars({ rows: perRobot.map(function (p) { return { label: p.rb.id + ' ' + p.rb.cellName, value: +p.a.stop.toFixed(1) }; }).sort(function (x, y) { return y.value - x.value; }), unit: '%', target: CFG.stop, targetLabel: 'limit ' + CFG.stop + '%', name: 'Stop time', xName: 'Robot' })) +
+      card('Availability per day', 'Operating hours ÷ planned hours, all robots in scope.', Charts.lines({ W: WH, labels: byDay.map(function (g) { return U.short(g.k); }), series: [{ name: 'Availability', values: dayA.map(function (d) { return +d.A.toFixed(1); }) }], unit: '%', target: CFG.avail, targetLabel: 'target ' + CFG.avail + '%', yMax: 100, area: true, xName: 'Day' })) +
+      card('Stop time by robot', 'Alarm + waiting hours as a share of planned hours.', Charts.hbars({ W: WH, rows: perRobot.map(function (p) { return { label: p.rb.id + ' ' + p.rb.cellName, value: +p.a.stop.toFixed(1) }; }).sort(function (x, y) { return y.value - x.value; }), unit: '%', target: CFG.stop, targetLabel: 'limit ' + CFG.stop + '%', name: 'Stop time', xName: 'Robot' })) +
       '</div>';
   }
 
@@ -130,7 +130,7 @@
     var list = recs.filter(inScope), a = agg(list), nR = scopeRobots().length, cal = S.days * 24 * nR;
     var speed = Math.max(0, a.oper - a.std), rw = a.cycles ? a.std * (a.rework / a.cycles) : 0;
     var wf = Charts.waterfall({
-      unit: ' h', fmt: function (v) { return F(v, 0) + ' h'; }, totalName: 'Hours remaining', lossName: 'Hours lost', labelW: 168, steps: [
+      W: WF, unit: ' h', fmt: function (v) { return F(v, 0) + ' h'; }, totalName: 'Hours remaining', lossName: 'Hours lost', labelW: 168, steps: [
         { label: 'Calendar time', value: cal, kind: 'total' }, { label: 'Not scheduled', value: cal - a.planned, kind: 'loss' },
         { label: 'Planned production', value: a.planned, kind: 'total' }, { label: 'Alarm stops', value: a.alarm, kind: 'loss' }, { label: 'Waiting', value: a.wait, kind: 'loss' },
         { label: 'Operating', value: a.oper, kind: 'total' }, { label: 'Speed loss vs standard', value: speed, kind: 'loss' },
@@ -161,12 +161,12 @@
     return '<div class="grid g4">' + [
       Charts.tile({ label: 'Stop time', value: F(a.stop, 1), unit: '%', status: lo(a.stop, CFG.stop), note: 'limit ' + CFG.stop + '%' }),
       Charts.tile({ label: 'Alarm hours', value: F(a.alarm, 0), unit: 'h' }), Charts.tile({ label: 'Waiting hours', value: F(a.wait, 0), unit: 'h' }),
-      Charts.tile({ label: 'Stops per day', value: F(ev.length / days, 1), note: F(ev.length, 0) + ' alarm events' })].join('') + '</div>' +
+      Charts.tile({ label: 'Alarm events per robot-day', value: F(ev.length / (list.length || 1), 1), note: F(ev.length, 0) + ' events in scope' })].join('') + '</div>' +
       '<div class="grid g2">' +
-      card('Stop time by month', 'Always the full 90-day history for the robots in scope.', Charts.columns({ labels: months.map(function (g) { return U.MON[+g.k.slice(5) - 1] + ' ' + g.k.slice(0, 4); }), values: mm.map(function (x) { return +x.stop.toFixed(1); }), unit: '%', target: CFG.stop, targetLabel: 'limit ' + CFG.stop + '%', name: 'Stop time', xName: 'Month', h: 190 })) +
-      card('How each robot spends planned time', 'Share of planned hours, highest stop time first.', Charts.stackedH({ rows: comp, pct: true, labelW: 54, series: [{ name: 'Operating', color: 'var(--st-good)' }, { name: 'Alarm stop', color: 'var(--st-critical)' }, { name: 'Waiting', color: 'var(--st-warning)' }], fmt: function (v) { return F(v, 0) + ' h'; }, xName: 'Robot' })) +
+      card('Stop time by month', 'Always the full 90-day history for the robots in scope.', Charts.columns({ W: WH, labels: months.map(function (g) { return U.MON[+g.k.slice(5) - 1] + ' ' + g.k.slice(0, 4); }), values: mm.map(function (x) { return +x.stop.toFixed(1); }), unit: '%', target: CFG.stop, targetLabel: 'limit ' + CFG.stop + '%', name: 'Stop time', xName: 'Month', h: 190 })) +
+      card('How each robot spends planned time', 'Share of planned hours, highest stop time first.', Charts.stackedH({ W: WH, rows: comp, pct: true, labelW: 54, series: [{ name: 'Operating', color: 'var(--st-good)' }, { name: 'Alarm stop', color: 'var(--st-critical)' }, { name: 'Waiting', color: 'var(--st-warning)' }], fmt: function (v) { return F(v, 0) + ' h'; }, xName: 'Robot' })) +
       '</div>' +
-      card('When alarms happen', 'Alarm minutes by weekday and start hour. Darker cells in a column point at a shift-start or break pattern.', Charts.heat({ rows: dn, cols: hrs, values: grid, unit: ' min', name: 'Alarm time', yName: 'Day', cell: 22 })) +
+      card('When alarms happen', 'Alarm minutes by weekday and start hour. Darker cells in a column point at a shift-start or break pattern.', Charts.heat({ W: WF, rows: dn, cols: hrs, values: grid, unit: ' min', name: 'Alarm time', yName: 'Day', cell: 22 })) +
       card('Longest single stops', 'The ten longest alarm events in scope.', '<div class="tw"><table class="t"><thead><tr><th>Date</th><th>Robot</th><th>Code</th><th>Alarm</th><th>Category</th><th class="r">Minutes</th></tr></thead><tbody>' +
         top.map(function (e) { var al = ALARMS[e.a]; return '<tr><td class="code">' + U.short(e.date) + ' ' + (e.hour < 10 ? '0' : '') + e.hour + ':00</td><td><b>' + e.robot + '</b></td><td class="code">' + al[0] + '</td><td>' + h(al[1]) + '</td><td>' + h(al[2]) + '</td><td class="r">' + F(e.min, 0) + '</td></tr>'; }).join('') + '</tbody></table></div>');
   }
@@ -184,8 +184,8 @@
       Charts.tile({ label: 'Alarm events', value: F(ev.length, 0) }), Charts.tile({ label: 'Alarm hours', value: F(a.alarm, 0), unit: 'h' }),
       Charts.tile({ label: 'MTBF', value: F(a.oper / nAll, 1), unit: 'h', note: 'operating hours per alarm' }), Charts.tile({ label: 'MTTR', value: F(a.alarm * 60 / nAll, 1), unit: 'min', note: 'average alarm duration' })].join('') + '</div>' +
       '<div class="grid g2">' +
-      card('Lost hours by alarm category', 'Ranked. The first two or three rows usually decide where to work.', Charts.hbars({ rows: byCat.map(function (c) { return { label: c.label, value: c.value, extra: [['Events', F(c.n, 0), null]] }; }), unit: ' h', name: 'Alarm time', xName: 'Category', labelW: 118 })) +
-      card('Alarm events per week', 'Count of events, week starting Monday.', Charts.lines({ labels: weeks.map(function (g) { return U.short(g.k); }), series: [{ name: 'Alarm events', values: weeks.map(function (g) { return g.v.length; }) }], xName: 'Week of', area: true, h: 200 })) +
+      card('Lost hours by alarm category', 'Ranked. The first two or three rows usually decide where to work.', Charts.hbars({ W: WH, rows: byCat.map(function (c) { return { label: c.label, value: c.value, extra: [['Events', F(c.n, 0), null]] }; }), unit: ' h', name: 'Alarm time', xName: 'Category', labelW: 118 })) +
+      card('Alarm events per week', 'Count of events, week starting Monday.', Charts.lines({ W: WH, labels: weeks.map(function (g) { return U.short(g.k); }), series: [{ name: 'Alarm events', values: weeks.map(function (g) { return g.v.length; }) }], xName: 'Week of', area: true, h: 200 })) +
       '</div>' +
       card('Alarm codes', 'Sorted by lost time. The cumulative column is the Pareto reading.', '<div class="tw"><table class="t"><thead><tr><th>Code</th><th>Alarm</th><th class="r">Events</th><th class="r">Hours</th><th class="r">Avg min</th><th class="r">Share</th><th class="r">Cumulative</th></tr></thead><tbody>' + codeRows + '</tbody></table></div>') +
       card('Reliability by robot', 'MTBF = operating hours ÷ alarm events. MTTR = alarm minutes ÷ alarm events. Lowest MTBF first.', '<div class="tw"><table class="t"><thead><tr><th>Robot</th><th class="r">Alarm events</th><th class="r">MTBF (h)</th><th class="r">MTTR (min)</th></tr></thead><tbody>' +
@@ -204,39 +204,41 @@
   var MODELS = [['Linear trend', function (xs, ys) { return fitPoly(xs, ys, 1); }], ['Quadratic trend', function (xs, ys) { return ys.length >= 4 ? fitPoly(xs, ys, 2) : null; }], ['Holt smoothing', function (xs, ys) { return fitHolt(ys); }]];
 
   function vPredict() {
-    var rs = scopeRobots(); if (!S.pmRobot || !rs.some(function (x) { return x.id === S.pmRobot; })) S.pmRobot = rs.slice().sort(function (p, q) { return q.tip - p.tip; })[0].id;
+    var rs = scopeRobots(); if (!S.pmRobot || !rs.some(function (x) { return x.id === S.pmRobot; })) S.pmRobot = rs.slice().sort(function (p, q) { return q.liner - p.liner; })[0].id;
     var rb = rs.filter(function (x) { return x.id === S.pmRobot; })[0], hist = recs.filter(function (x) { return x.robot === rb.id; });
-    var st = hist.length - 1; while (st > 0 && !hist[st].tipChanged) st--;
-    var cyc = hist.slice(st), ys = cyc.map(function (x) { return x.asf; }), xs = ys.map(function (_, i) { return i; }), H = 12;
-    var res = MODELS.map(function (m) {
-      var mae = null; if (ys.length >= 8) { var k = ys.length - 4, f = m[1](xs.slice(0, k), ys.slice(0, k)); if (f) mae = U.avg(xs.slice(k).map(function (x, i) { return Math.abs(f(x) - ys[k + i]); })); }
-      var full = m[1](xs, ys), rul = null; if (full) for (var q = 1; q <= 40; q++) if (full(ys.length - 1 + q) >= CFG.asfLimit) { rul = q; break; }
-      return { name: m[0], mae: mae, f: full, rul: rul };
-    });
-    var ok = res.filter(function (x) { return x.f; }), best = ok.filter(function (x) { return x.mae != null; }).sort(function (p, q) { return p.mae - q.mae; })[0] || ok[0];
-    var arcDay = U.avg(hist.slice(-10).map(function (x) { return x.arc; }));
-    var labels = cyc.map(function (x) { return U.short(x.date); }), act = ys.map(function (v) { return +v.toFixed(2); }), fc = ys.map(function (v, i) { return i === ys.length - 1 ? +v.toFixed(2) : null; });
-    for (var q = 1; q <= H; q++) { labels.push('+' + q + 'd'); act.push(null); fc.push(+Math.max(0, best.f(ys.length - 1 + q)).toFixed(2)); }
-    var over = ys[ys.length - 1] >= CFG.asfLimit;
-    var chart = Charts.lines({ labels: labels, series: [{ name: 'Measured arc-start failure rate', values: act }, { name: 'Forecast (' + best.name.toLowerCase() + ')', values: fc, color: 'var(--s2)', dash: true }], unit: '%', fmt: function (v) { return F(v, 2) + '%'; }, target: CFG.asfLimit, targetLabel: 'limit ' + CFG.asfLimit + '%', xName: 'Working day', h: 230 });
-    var mt = '<div class="tw"><table class="t"><thead><tr><th>Model</th><th class="r">Backtest MAE (pts)</th><th class="r">Days to limit</th><th class="r">Arc-hours to limit</th><th></th></tr></thead><tbody>' +
-      res.map(function (x) { return '<tr><td><b>' + h(x.name) + '</b></td><td class="r">' + (x.mae == null ? 'needs 8+ days' : F(x.mae, 3)) + '</td><td class="r">' + (over ? 'limit passed' : x.rul == null ? '> 40' : x.rul) + '</td><td class="r">' + (over || x.rul == null ? '–' : F(x.rul * arcDay, 0)) + '</td><td>' + (x === best ? '<span class="pill info">used in chart</span>' : '') + '</td></tr>'; }).join('') + '</tbody></table></div>';
+    var st = hist.length - 1; while (st > 0 && !hist[st].linerChanged) st--;
+    var cyc = hist.slice(st), ys = cyc.map(function (x) { return x.feed; }), xs = ys.map(function (_, i) { return i; }), H = 15, enough = ys.length >= 6;
+    var sel = '<label class="f">Robot<select id="pmSel">' + rs.map(function (x) { return '<option value="' + x.id + '"' + (x.id === rb.id ? ' selected' : '') + '>' + x.id + ' · ' + h(x.cellName) + '</option>'; }).join('') + '</select></label>';
+    var arcDay = U.avg(hist.slice(-10).map(function (x) { return x.arc; })), now = ys[ys.length - 1], over = now >= CFG.feedLimit, res = [], best = null, chart, mt = '';
+    if (enough) {
+      res = MODELS.map(function (m) {
+        var mae = null; if (ys.length >= 10) { var k = ys.length - 4, f = m[1](xs.slice(0, k), ys.slice(0, k)); if (f) mae = U.avg(xs.slice(k).map(function (x, i) { return Math.abs(f(x) - ys[k + i]); })); }
+        var full = m[1](xs, ys), rul = null; if (full) for (var q = 1; q <= 60; q++) if (full(ys.length - 1 + q) >= CFG.feedLimit) { rul = q; break; }
+        return { name: m[0], mae: mae, f: full, rul: rul };
+      });
+      var ok = res.filter(function (x) { return x.f; }); best = ok.filter(function (x) { return x.mae != null; }).sort(function (p, q) { return p.mae - q.mae; })[0] || ok[0];
+      var labels = cyc.map(function (x) { return U.short(x.date); }), act = ys.map(function (v) { return +v.toFixed(1); }), fc = ys.map(function (v, i) { return i === ys.length - 1 ? +v.toFixed(1) : null; });
+      for (var q = 1; q <= H; q++) { labels.push('+' + q + 'd'); act.push(null); fc.push(+Math.max(0, best.f(ys.length - 1 + q)).toFixed(1)); }
+      chart = Charts.lines({ W: WF, labels: labels, series: [{ name: 'Measured feeder load over baseline', values: act }, { name: 'Forecast (' + best.name.toLowerCase() + ')', values: fc, color: 'var(--s2)', dash: true }], unit: '%', fmt: function (v) { return F(v, 1) + '%'; }, target: CFG.feedLimit, targetLabel: 'limit ' + CFG.feedLimit + '%', xName: 'Working day', h: 250 });
+      mt = card('Model comparison', 'Mean absolute error on a four-day hold-out, in percentage points. Lower is better. Scored only when the cycle has ten or more days.', '<div class="tw"><table class="t"><thead><tr><th>Model</th><th class="r">Backtest MAE (pts)</th><th class="r">Working days to limit</th><th class="r">Arc-hours to limit</th><th></th></tr></thead><tbody>' +
+        res.map(function (x) { return '<tr><td><b>' + h(x.name) + '</b></td><td class="r">' + (x.mae == null ? 'needs 10+ days' : F(x.mae, 2)) + '</td><td class="r">' + (over ? 'limit passed' : x.rul == null ? '> 60' : x.rul) + '</td><td class="r">' + (over || x.rul == null ? '–' : F(x.rul * arcDay, 0)) + '</td><td>' + (x === best ? '<span class="pill info">used in chart</span>' : '') + '</td></tr>'; }).join('') + '</tbody></table></div>');
+    } else {
+      chart = '<div class="note">This liner was changed ' + ys.length + ' working day' + (ys.length === 1 ? '' : 's') + ' ago. The forecast starts once the cycle has six days of readings. Pick another robot to see a full cycle.</div>';
+    }
     var cons = function (used, life, name) { var p = used / life * 100, kind = p >= 100 ? 'critical' : p >= 80 ? 'warning' : 'good'; return '<td style="min-width:150px"><div class="mrow"><span>' + F(used, 0) + ' / ' + life + ' arc-h</span>' + Charts.status(kind, kind === 'good' ? 'OK' : kind === 'warning' ? 'Plan change' : 'Overdue') + '</div>' + Charts.meter({ value: Math.min(p, 100), max: 100, kind: kind, label: name }) + '</td>'; };
-    var fleet = '<div class="tw"><table class="t"><thead><tr><th>Robot</th><th>Contact tip</th><th>Nozzle</th><th>Liner</th><th>Torch calibration</th></tr></thead><tbody>' + rs.map(function (x) {
+    var fleet = '<div class="tw"><table class="t"><thead><tr><th>Robot</th><th>Contact tip</th><th>Nozzle</th><th>Wire liner</th><th>Torch calibration</th></tr></thead><tbody>' + rs.map(function (x) {
       var dsc = U.diff(x.calib, TODAY), ck = dsc > CFG.calibDays ? 'critical' : dsc > CFG.calibDays * 0.8 ? 'warning' : 'good';
       return '<tr class="click" data-pm="' + x.id + '"><td><b>' + x.id + '</b><span class="sub">' + h(x.cellName) + '</span></td>' + cons(x.tip, CFG.tipLife, x.id + ' tip') + cons(x.nozzle, CFG.nozzleLife, x.id + ' nozzle') + cons(x.liner, CFG.linerLife, x.id + ' liner') +
-        '<td>' + dsc + ' days ago ' + Charts.status(ck, ck === 'good' ? 'OK' : ck === 'warning' ? 'Due soon' : 'Overdue') + '</td></tr>';
+        '<td><div class="mrow"><span>' + dsc + ' days ago</span>' + Charts.status(ck, ck === 'good' ? 'OK' : ck === 'warning' ? 'Due soon' : 'Overdue') + '</div></td></tr>';
     }).join('') + '</tbody></table></div>';
-    var sel = '<label class="f">Robot<select id="pmSel">' + rs.map(function (x) { return '<option value="' + x.id + '"' + (x.id === rb.id ? ' selected' : '') + '>' + x.id + ' · ' + h(x.cellName) + '</option>'; }).join('') + '</select></label>';
-    return '<div class="note"><b>Research prototype.</b> The wear signal and every reading here are synthetic. The three models are fitted live in your browser on the current tip cycle and scored on the last four working days. ' +
+    return '<div class="note"><b>Research prototype.</b> The wear signal and every reading here are synthetic. The three models are fitted live in your browser on the current liner cycle and scored on its last four working days. ' +
       'In my thesis work the same question is studied on controller logs with an LSTM model; that model is not part of this demo.</div>' +
       '<div class="grid g4">' + [
-        Charts.tile({ label: 'Tip in use', value: F(rb.tip, 0), unit: 'arc-h', note: 'expected life ' + CFG.tipLife + ' arc-h' }),
-        Charts.tile({ label: 'Arc-start failures today', value: F(ys[ys.length - 1], 2), unit: '%', status: lo(ys[ys.length - 1], CFG.asfLimit), note: 'limit ' + CFG.asfLimit + '%' }),
-        Charts.tile({ label: 'Forecast: days to limit', value: over ? '0' : best.rul == null ? '> 40' : String(best.rul), note: best.name }),
-        Charts.tile({ label: 'Days in this tip cycle', value: String(ys.length) })].join('') + '</div>' +
-      card('Contact-tip wear signal — ' + rb.id, 'Arc-start failure rate rises as the tip wears. The dashed line is the forecast; the limit is editable in Settings.', '<div class="filters" style="margin-bottom:10px">' + sel + '</div>' + chart) +
-      card('Model comparison', 'Mean absolute error on a four-day hold-out, in percentage points. Lower is better.', mt) +
+        Charts.tile({ label: 'Liner in use', value: F(rb.liner, 0), unit: 'arc-h', note: 'expected life ' + CFG.linerLife + ' arc-h' }),
+        Charts.tile({ label: 'Feeder load over baseline', value: F(now, 1), unit: '%', status: lo(now, CFG.feedLimit), note: 'limit ' + CFG.feedLimit + '%' }),
+        Charts.tile({ label: 'Forecast: working days to limit', value: !enough ? '–' : over ? '0' : best.rul == null ? '> 60' : String(best.rul), note: enough ? best.name : 'not enough data yet' }),
+        Charts.tile({ label: 'Days in this liner cycle', value: String(ys.length) })].join('') + '</div>' +
+      card('Wire-liner wear signal — ' + rb.id, 'Feeder motor load rises above its clean-liner baseline as the liner wears. The dashed line is the forecast; the limit is editable in Settings.', '<div class="filters" style="margin-bottom:10px">' + sel + '</div>' + chart) + mt +
       card('Consumables across the fleet', 'Usage against expected life in arc-hours. Select a row to forecast that robot.', fleet);
   }
 
@@ -249,8 +251,8 @@
       Charts.tile({ label: 'Specific energy', value: F(a.sec, 2), unit: 'kWh/kg wire', spark: wa.map(function (x) { return x.sec; }) }),
       Charts.tile({ label: 'Scope 2 emissions', value: F(a.kwh * CFG.ef / 1000, 1), unit: 't CO₂e', note: 'factor ' + CFG.ef + ' kg/kWh' })].join('') + '</div>' +
       '<div class="grid g2">' +
-      card('Specific energy per week', 'kWh of electricity per kg of wire deposited. Lower means less energy for the same weld metal.', Charts.lines({ labels: weeks.map(function (g) { return U.short(g.k); }), series: [{ name: 'Specific energy', values: wa.map(function (x) { return +x.sec.toFixed(2); }) }], fmt: function (v) { return F(v, 2) + ' kWh/kg'; }, xName: 'Week of', h: 200 })) +
-      card('Specific energy by robot', 'Highest first. Idle and alarm time still draws power, so stop time shows up here too.', Charts.hbars({ rows: per, fmt: function (v) { return F(v, 2) + ' kWh/kg'; }, name: 'Specific energy', xName: 'Robot' })) +
+      card('Specific energy per week', 'kWh of electricity per kg of wire deposited. Lower means less energy for the same weld metal.', Charts.lines({ W: WH, labels: weeks.map(function (g) { return U.short(g.k); }), series: [{ name: 'Specific energy', values: wa.map(function (x) { return +x.sec.toFixed(2); }) }], fmt: function (v) { return F(v, 2) + ' kWh/kg'; }, xName: 'Week of', h: 200 })) +
+      card('Specific energy by robot', 'Highest first. Idle and alarm time still draws power, so stop time shows up here too.', Charts.hbars({ W: WH, rows: per, fmt: function (v) { return F(v, 2) + ' kWh/kg'; }, name: 'Specific energy', xName: 'Robot' })) +
       '</div>' +
       '<div class="note"><b>Method.</b> Emissions are location-based Scope 2: electricity (kWh) × grid emission factor. The factor shown is a placeholder; replace it in Settings with the official factor for your grid and year. ' +
       'Energy here is modelled from arc, idle and stop hours. A real project meters it at the power source or cell feeder.</div>';
@@ -268,7 +270,7 @@
       Charts.tile({ label: 'Countermeasures', value: String(CM.length), note: done.length + ' with results' }),
       Charts.tile({ label: 'Hours recovered per month', value: F(U.sum(done.map(function (x) { return Math.max(0, x.s.rec); })), 0), unit: 'h', note: 'at 472 planned h per robot' }),
       Charts.tile({ label: 'Average stop-time change', value: F(U.avg(done.map(function (x) { return x.s.after - x.s.before; })), 1), unit: 'pts' })].join('') + '</div>' +
-      card('Stop time before and after', '28 days before the change against every day since. Same robot, same definition.', Charts.dumbbell({ rows: done.map(function (x) { return { label: x.c.id + ' · ' + x.c.robot, before: +x.s.before.toFixed(1), after: +x.s.after.toFixed(1) }; }), unit: '%', labelW: 110, beforeName: '28 days before', afterName: 'Since the change' })) +
+      card('Stop time before and after', '28 days before the change against every day since. Same robot, same definition.', Charts.dumbbell({ W: WF, rows: done.map(function (x) { return { label: x.c.id + ' · ' + x.c.robot, before: +x.s.before.toFixed(1), after: +x.s.after.toFixed(1) }; }), unit: '%', labelW: 110, beforeName: '28 days before', afterName: 'Since the change' })) +
       card('Register', 'One line per change so the effect can be checked later, not assumed.', '<div class="tw"><table class="t"><thead><tr><th>ID</th><th>Countermeasure</th><th>Robot</th><th>Targets</th><th>Owner</th><th>Since</th><th>Status</th><th class="r">Before</th><th class="r">After</th><th class="r">h / month</th></tr></thead><tbody>' +
         rows.map(function (x) { return '<tr><td class="code">' + x.c.id + '</td><td>' + h(x.c.title) + '</td><td><b>' + x.c.robot + '</b></td><td>' + h(x.c.cat) + '</td><td>' + h(x.c.owner) + '</td><td class="code">' + U.short(x.c.date) + '</td><td><span class="pill ' + stc[x.c.status] + '">' + x.c.status + '</span></td><td class="r">' + pct(x.s.before) + '</td><td class="r">' + (x.s.after == null ? '–' : pct(x.s.after)) + '</td><td class="r">' + (x.s.rec == null ? '–' : F(x.s.rec, 0)) + '</td></tr>'; }).join('') + '</tbody></table></div>') +
       '<div class="note"><b>Reading this honestly.</b> A before/after gap is not proof on its own: product mix, shifts and seasonality move stop time too. The register keeps the baseline period, the definition and the owner next to each claim so it can be re-checked.</div>';
@@ -277,12 +279,14 @@
   function vSettings() {
     var f = function (k, label, step, hint) { return '<label class="f">' + label + '<input type="number" step="' + step + '" id="cfg_' + k + '" value="' + CFG[k] + '">' + (hint ? '<span>' + hint + '</span>' : '') + '</label>'; };
     return card('Targets and limits', 'Saved in this browser only. Every view recalculates against these.', '<div class="grid g3">' + f('oee', 'OEE target (%)', 1) + f('avail', 'Availability target (%)', 1) + f('stop', 'Stop-time limit (%)', 1) + '</div>') +
-      card('Consumables', 'Expected life in arc-hours and the wear-signal limit used by the forecast.', '<div class="grid g3">' + f('tipLife', 'Contact tip life (arc-h)', 1) + f('nozzleLife', 'Nozzle life (arc-h)', 1) + f('linerLife', 'Liner life (arc-h)', 10) + f('asfLimit', 'Arc-start failure limit (%)', 0.1) + f('calibDays', 'Torch calibration interval (days)', 1) + '</div>') +
+      card('Consumables', 'Expected life in arc-hours and the wear-signal limit used by the forecast.', '<div class="grid g3">' + f('tipLife', 'Contact tip life (arc-h)', 1) + f('nozzleLife', 'Nozzle life (arc-h)', 1) + f('linerLife', 'Liner life (arc-h)', 10) + f('feedLimit', 'Feeder load limit (% over baseline)', 0.5) + f('calibDays', 'Torch calibration interval (days)', 1) + '</div>') +
       card('Emissions', '', '<div class="grid g3">' + f('ef', 'Grid emission factor (kg CO₂e per kWh)', 0.01, 'Placeholder. Use your official grid factor.') + '</div>') +
       '<div class="tools"><button class="btn pri" id="cfgSave" type="button">Save settings</button><button class="btn" id="cfgReset" type="button">Restore defaults</button><button class="btn" id="csv" type="button">Download daily data (CSV)</button></div>';
   }
 
   /* ---------------- shell ---------------- */
+  var WF = 640, WH = 640;
+  function measure() { var v = document.getElementById('view'), vw = Math.max(280, v.clientWidth - 44); WF = U.clamp(vw - 34, 280, 1120); WH = vw > 860 ? (vw - 14) / 2 - 34 : WF; }
   var R = { overview: vOverview, oee: vOee, stop: vStop, alarms: vAlarms, predict: vPredict, energy: vEnergy, cm: vCm, settings: vSettings };
   function draw() {
     document.getElementById('nav').innerHTML = VIEWS.map(function (v, i) { return '<button type="button" data-view="' + v[0] + '"' + (S.view === v[0] ? ' aria-current="page"' : '') + '><i>' + (i + 1 < 10 ? '0' : '') + (i + 1) + '</i>' + v[1] + '</button>'; }).join('');
@@ -294,8 +298,10 @@
       '<label class="f">Period<div class="seg" role="group" aria-label="Period">' + [30, 60, 90].map(function (d) { return '<button type="button" data-days="' + d + '" aria-pressed="' + (S.days === d) + '">' + d + ' days</button>'; }).join('') + '</div></label>' +
       '<label class="f">Cell<select id="fCell"><option value="all">All cells</option>' + CELLS.map(function (c) { return '<option value="' + c.id + '"' + (S.cell === c.id ? ' selected' : '') + '>' + c.id + ' · ' + c.name + '</option>'; }).join('') + '</select></label>' +
       '<label class="f">Robot<select id="fRobot"><option value="all">All robots</option>' + cellRobots.map(function (x) { return '<option value="' + x.id + '"' + (S.robot === x.id ? ' selected' : '') + '>' + x.id + '</option>'; }).join('') + '</select></label>';
+    measure();
     document.getElementById('view').innerHTML = R[S.view]();
   }
+  var rz; window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(draw, 160); });
   document.addEventListener('click', function (e) {
     var t = e.target; if (!t.closest) return;
     var b = t.closest('[data-view]'); if (b) { S.view = b.getAttribute('data-view'); draw(); window.scrollTo(0, 0); return; }
