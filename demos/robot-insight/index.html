@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" data-skin="mat">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Robot Insight — welding robot analytics demo</title>
+<meta name="description" content="Interactive demo by Auzan Asarudin: OEE, stop-time, alarm and consumable-life analytics for robotic welding cells. All data is synthetic.">
+<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/css/tokens.css">
+<link rel="stylesheet" href="../shared/demo.css">
+</head>
+<body>
+<div class="app">
+  <div class="demo-note">
+    <span>DEMO · synthetic data generated in your browser · not from any company · demo date 12 Nov 2026</span>
+    <span><a href="../../index.html#karya">← Back to portfolio</a> · <a href="../../index.html#kontak">Want this for your plant?</a></span>
+  </div>
+  <aside class="side">
+    <div class="brand"><span id="logo"></span><div><b>Robot Insight</b><small>Welding cell analytics</small></div></div>
+    <nav class="nav" id="nav" aria-label="Views"></nav>
+    <div class="foot">
+      <button class="btn sm ghost" data-skin-toggle type="button">Paper skin</button>
+      <span>Built by Auzan Asarudin. Method notes are in each view.</span>
+    </div>
+  </aside>
+  <main class="main">
+    <header class="top">
+      <div><h1 id="title">Overview</h1><div class="sub" id="sub"></div></div>
+      <div class="filters" id="filters"></div>
+    </header>
+    <div class="view" id="view"></div>
+  </main>
+</div>
+<script src="../../assets/js/labo-sprite.js"></script>
+<script src="../shared/util.js"></script>
+<script src="../shared/charts.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
