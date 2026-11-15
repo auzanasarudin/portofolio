@@ -45,7 +45,7 @@
       hero: {
         eyebrow: L('Production engineer · data & otomasi manufaktur', 'Production engineer · manufacturing data and automation'),
         h1a: L('Data pabrik yang berantakan, saya ubah jadi ', 'I turn messy factory data into '),
-        h1b: L('keputusan', 'decisions'),
+        h1b: L('keputusan.', 'decisions.'),
         sub: L('Saya Auzan, production engineer di manufaktur alat berat. Saya merapikan BOM, menghitung biaya dan waktu standar, lalu membangun dashboard dan alat kerja yang dipakai tim setiap hari.',
           'I’m Auzan, a production engineer in heavy-equipment manufacturing. I structure BOMs, estimate cost and standard time, and build the dashboards and working tools teams use every day.'),
         cta1: L('Lihat hasil kerja', 'See the work'), cta2: L('Ceritakan masalah Anda', 'Tell me your problem'),
@@ -347,4 +347,66 @@
       [L('Proyek apa yang tidak Anda ambil?', 'What work do you not take?'), L('Pekerjaan yang bersinggungan dengan pemberi kerja saya saat ini, pemasoknya, atau pesaing langsungnya, dan pekerjaan yang menuntut hadir di lokasi pada jam kerja.', 'Work that touches my current employer, its suppliers or its direct competitors, and work that requires being on site during working hours.')]
     ]
   };
+})();
+
+/* ---------------- tampilan sinematik (mode Ringkas) ---------------- */
+(function () {
+  'use strict';
+  var L = function (id, en) { return { id: id, en: en }; }, S = window.SITE;
+  S.v2 = {
+    hello: L('Halo, saya', 'Hello, I’m'),
+    bigword: 'PORTOFOLIO',
+    role: L('Production engineer · data & otomasi manufaktur', 'Production engineer · manufacturing data & automation'),
+    line: L('Dari bengkel las ke dashboard. Saya membangun alat yang membuat data pabrik bisa dibaca.', 'From the welding shop to the dashboard. I build tools that make factory data readable.'),
+    see: L('Lihat karya', 'See the work'),
+    stats: [[L('sejak', 'since'), '2016', L('di dunia manufaktur', 'in manufacturing')], ['3', '', L('alat kerja yang bisa dicoba', 'working tools to try')], ['23', '', L('cuplikan karya', 'work previews')]],
+    places: L('Pernah belajar dan bekerja di', 'Learned and worked at'),
+    placeList: ['PT PAL Indonesia', 'PT Ispat Indo', 'PT Kawamura Indah', 'PT GEN Indonesia', 'PT Duta Reka Bumi', 'Garnesa Racing Team', 'Universitas Negeri Surabaya', 'LABORU'],
+    s1: { n: '01 / KARYA', a: L('Karya yang', 'Work that'), b: L('bicara.', 'speaks.'), lead: L('Klik cuplikan untuk melihat lebih dekat. Semua demo memakai data contoh.', 'Click a preview for a closer look. Every demo runs on sample data.') },
+    filters: [['all', L('Semua', 'All')], ['analitik', L('Analitik', 'Analytics')], ['workflow', L('Workflow', 'Workflow')], ['bom', 'BOM'], ['laboru', L('Game & produk', 'Games & products')]],
+    s2: { n: '02 / PENGAKUAN', a: L('Kerjanya.', 'The work.'), b: L('Pengakuannya.', 'The recognition.'), big: '#1', bigSub: L('Juara 1 nasional, Steering & Braking 2020', 'National 1st place, Steering & Braking 2020') },
+    awards: [
+      ['2020', L('Juara 1 Steering & Braking', '1st place, Steering & Braking'), L('Kontes Mobil Hemat Energi · General Manager tim 50 orang', 'National energy-efficient car contest · GM of a 50-person team')],
+      ['2019', L('Juara 3 Urban Diesel', '3rd place, Urban Diesel'), L('Kontes Mobil Hemat Energi · tim chassis', 'National energy-efficient car contest · chassis team')],
+      ['2018', L('Juara 3 Karya Tulis Ilmiah', '3rd place, scientific writing'), L('Teknik Mesin UNESA', 'Mechanical Engineering, UNESA')],
+      ['2021', L('Artikel seminar nasional', 'National seminar paper'), L('Refurbishment cone crusher dengan las GMAW', 'Cone-crusher refurbishment with GMAW welding')],
+      [L('Kini', 'Now'), L('≈ US$300 rb / tahun', '≈ US$300K a year'), L('Estimasi penghematan dari menghapus satu proses primer · inisiatif tim', 'Estimated saving from removing one primer step · team initiative')]
+    ],
+    s3: { n: '03 / DI BALIK LAYAR', a: L('Bukan sekadar data.', 'Not just data.'), b: L('Tapi cara memutuskan.', 'But how decisions get made.'),
+      text: L('Saya pernah memegang mesin las, mesin CNC, lembar inspeksi, dan sekarang struktur produk sebuah pabrik alat berat. Karena itu alat yang saya buat mengikuti cara orang lantai produksi bekerja.', 'I have held a welding torch, run a CNC machine, filled in inspection sheets, and now manage product structures at a heavy-equipment plant. So the tools I build follow how shop-floor people work.'),
+      quote: L('Dari bengkel las, sampai data yang dibaca di rapat pagi.', 'From the welding shop to the data read in the morning meeting.'),
+      flow: [[L('Lihat', 'See'), L('alur aslinya', 'the real flow')], [L('Rapikan', 'Structure'), L('datanya', 'the data')], [L('Ukur', 'Measure'), L('dengan jujur', 'honestly')], [L('Otomasikan', 'Automate'), L('yang berulang', 'the repetition')]] },
+    s4: { n: '04 / PERJALANAN', a: L('Terus bergerak.', 'Keep moving.'), b: L('Terus berkarya.', 'Keep building.'), w1: L('Kemenangan kecil.', 'Little wins.'), w2: L('Arti besar.', 'Big meaning.') },
+    wins: [L('Lulus S1 dalam 3,5 tahun, IPK 3,62', 'Finished my bachelor’s in 3.5 years, GPA 3.62'), L('Memimpin 50 orang lewat 5 kepala divisi', 'Led 50 people through 5 division heads'), L('Ikut membangun 2 robot pembantu rumah sakit saat pandemi', 'Helped build 2 hospital-assistant robots during the pandemic'), L('Menempuh S2 sambil bekerja penuh waktu', 'Doing a master’s while working full time')],
+    s5: { n: '05 / DI LUAR JAM KERJA', a: L('Saya juga', 'I also'), b: L('membuat game.', 'make games.'), text: L('LABORU adalah game kantor pixel untuk mengatur kerja, kebiasaan, dan keuangan. Yang bulat hijau di sini, Labo, juga maskotnya.', 'LABORU is a pixel office game for organising work, habits and money. The round green one here, Labo, is its mascot.'), cta: L('Kenalan dengan LABORU', 'Meet LABORU') },
+    s6: { a: L('Mari', 'Let’s'), b: L('ngobrol.', 'talk.'), text: L('Punya ide, pertanyaan, atau sekadar ingin menyapa? Pintu saya terbuka.', 'Have an idea, a question, or just want to say hi? My door is open.'), deep: L('Butuh jasa untuk pabrik Anda? Lihat lembar detail.', 'Need help for your plant? Open the detail sheet.') },
+    deepIntro: L('Lembar detail · untuk yang ingin membaca', 'Detail sheet · for readers'),
+    close: L('Tutup', 'Close'), prev: L('Sebelumnya', 'Previous'), next: L('Berikutnya', 'Next'), open: L('Buka demo', 'Open demo'), readCase: L('Baca studi kasus', 'Read the case study')
+  };
+  S.gallery = [
+    { f: 'ri-overview', t: 'analitik', c: 'robot-insight', cap: L('Robot Insight · ringkasan armada robot', 'Robot Insight · fleet overview'), big: 1 },
+    { f: 'cb-board', t: 'workflow', c: 'change-board', cap: L('Change Board · siapa memegang bola', 'Change Board · who holds the ball'), big: 1 },
+    { f: 'bb-mbom', t: 'bom', c: 'bom-bridge', cap: L('BOM Bridge · MBOM dengan alasan per baris', 'BOM Bridge · MBOM with a reason on every line'), big: 1 },
+    { f: 'lb-lobby', t: 'laboru', cap: L('LABORU · lobi kantor pixel', 'LABORU · pixel office lobby'), link: 'laboru' },
+    { f: 'ri-predict', t: 'analitik', c: 'robot-insight', cap: L('Prakiraan umur liner kawat las', 'Wire-liner life forecast') },
+    { f: 'cb-timeline', t: 'workflow', c: 'change-board', cap: L('Gantt perubahan engineering', 'Engineering change Gantt') },
+    { f: 'lb-title', t: 'laboru', cap: L('LABORU · layar judul', 'LABORU · title screen'), tall: 1, link: 'laboru' },
+    { f: 'ri-oee', t: 'analitik', c: 'robot-insight', cap: L('Ke mana jam produksi pergi', 'Where the production hours go') },
+    { f: 'bb-ebom', t: 'bom', c: 'bom-bridge', cap: L('Struktur EBOM', 'EBOM structure') },
+    { f: 'ri-stop', t: 'analitik', c: 'robot-insight', cap: L('Pola alarm per jam', 'Alarms by hour') },
+    { f: 'cb-meeting', t: 'workflow', c: 'change-board', cap: L('Mode rapat dan rekap otomatis', 'Meeting mode and automatic recap') },
+    { f: 'lb-quest', t: 'laboru', cap: L('LABORU · papan quest', 'LABORU · quest board'), link: 'laboru' },
+    { f: 'ri-alarms', t: 'analitik', c: 'robot-insight', cap: L('Pareto kode alarm', 'Alarm code Pareto') },
+    { f: 'bb-rules', t: 'bom', c: 'bom-bridge', cap: L('Aturan make / buy / phantom', 'Make / buy / phantom rules') },
+    { f: 'lb-ratrace', t: 'laboru', cap: L('LABORU · game rat race', 'LABORU · rat-race game'), tall: 1, link: 'laboru' },
+    { f: 'cb-analytics', t: 'workflow', c: 'change-board', cap: L('Standar vs aktual per departemen', 'Standard vs actual per department') },
+    { f: 'ri-cm', t: 'analitik', c: 'robot-insight', cap: L('Register countermeasure', 'Countermeasure register') },
+    { f: 'bb-cbom', t: 'bom', c: 'bom-bridge', cap: L('Konfigurasi pesanan (CBOM)', 'Order configuration (CBOM)') },
+    { f: 'lb-hub', t: 'laboru', cap: L('Company System Hub', 'Company System Hub'), link: 'laboru' },
+    { f: 'ri-energy', t: 'analitik', c: 'robot-insight', cap: L('Energi per kg kawat dan emisi', 'Energy per kg of wire and emissions') },
+    { f: 'cb-drawer', t: 'workflow', c: 'change-board', cap: L('Riwayat satu kasus', 'One case history') },
+    { f: 'lb-pet', t: 'laboru', cap: L('LABORU · peliharaan Labo', 'LABORU · Labo the pet'), tall: 1, link: 'laboru' },
+    { f: 'lb-ebook', t: 'laboru', cap: L('Ebook pixel-art 500 halaman', '500-page pixel-art ebook'), tall: 1, link: 'laboru' }
+  ];
+  S.hero = ['ri-overview', 'cb-board', 'bb-mbom', 'lb-lobby'];
 })();
