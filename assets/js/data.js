@@ -395,7 +395,7 @@
     hello: L('Halo, saya', 'Hello, I’m'),
     bigword: 'PORTOFOLIO',
     role: L('Production engineer · manufaktur alat berat', 'Production engineer · heavy-equipment manufacturing'),
-    line: L('Dari ngelas di bengkel SMK sampai menyusun BOM pabrik excavator. Saya membuat proses pabrik lebih rapi, lebih cepat, dan terukur.', 'From welding in a school workshop to building BOMs at an excavator plant. I make factory processes tidier, faster and measurable.'),
+    line: L('Saya paham proses dari nol sampai jadi. Latar saya kuat di teknik, manajemen, dan planning, jadi banyak improvement saya bergerak di visualisasi, otomasi, analisis, efisiensi, dan optimasi. Terbiasa dengan standar Jepang (5S, Kaizen, Safety, Poka-Yoke), saya siap membantu perusahaan, organisasi, sampai UMKM dan bengkel untuk naik kelas.', 'I know the process from zero to finished product. My background is strong in engineering, management and planning, so most of my improvements are about visualisation, automation, analysis, efficiency and optimisation. Used to Japanese standards (5S, Kaizen, Safety, Poka-Yoke), I help companies, organisations, small businesses and workshops level up.'),
     see: L('Lihat karya', 'See the work'),
     stats: [[L('sejak', 'since'), '2016', L('di dunia manufaktur', 'in manufacturing')], ['7', '', L('pabrik & bengkel tempat saya belajar dan bekerja', 'plants and shops I’ve learned and worked in')], ['3', '', L('alat yang bisa langsung dicoba', 'tools you can try right now')]],
     places: L('Pernah belajar dan bekerja di', 'Learned and worked at'),
@@ -413,7 +413,7 @@
       std: ['5S', 'Kaizen', 'K3 · Safety', 'Poka-Yoke', 'ISO 9001', 'ISO 45001'],
       who: L('Yang saya suka: membereskan proses yang berantakan, baik di pabrik besar, organisasi, maupun bengkel kecil yang ingin naik kelas.', 'What I enjoy: untangling messy processes, whether in a large plant, an organisation, or a small workshop that wants to level up.'),
       quote: L('Tidak ada yang tidak bisa. Tinggal mau atau tidak.', 'Nothing is impossible to learn. It comes down to whether you want to.') },
-    s2: { n: '03 / PENGAKUAN', a: L('Kerjanya.', 'The work.'), b: L('Pengakuannya.', 'The recognition.'), bigSub: L('Juara 1 nasional, Sistem Kemudi & Pengereman, KMHE 2020', 'National 1st place, Steering & Braking, KMHE 2020') },
+    s2: { n: '03 / PENCAPAIAN', a: L('Pencapaian', 'My'), b: L('saya.', 'achievements.'), bigSub: L('Juara 1 nasional, Sistem Kemudi & Pengereman, KMHE 2020', 'National 1st place, Steering & Braking, KMHE 2020') },
     /* [tahun, judul, keterangan, link opsional] */
     awards: [
       ['2020', L('Juara 1 Sistem Kemudi & Pengereman', '1st place, Steering & Braking'), L('Kontes Mobil Hemat Energi nasional, kategori Urban · saya General Manager tim', 'National energy-efficient car contest, Urban class · I was team General Manager')],
@@ -422,7 +422,7 @@
       ['2021', L('Pemakalah seminar nasional', 'National seminar speaker'), L('SATRIA 2021, FT UNESA · refurbishment cone crusher dengan las', 'SATRIA 2021, UNESA · cone-crusher refurbishment by welding')],
       ['2018', L('Juara 3 Karya Tulis Ilmiah', '3rd place, scientific writing'), L('SCEMIC Weekend of Technology, Teknik Mesin UNESA', 'SCEMIC Weekend of Technology, UNESA Mechanical Engineering')]
     ],
-    s4: { n: '04 / PERJALANAN', a: L('Dari bengkel', 'From the workshop'), b: L('ke data.', 'to the data.'), w1: L('Kemenangan kecil.', 'Little wins.'), w2: L('Arti besar.', 'Big meaning.') },
+    s4: { n: '04 / PERJALANAN', a: L('Membuat semuanya', 'Making everything'), b: L('terukur.', 'measurable.'), w1: L('Kemenangan kecil.', 'Little wins.'), w2: L('Arti besar.', 'Big meaning.') },
     /* garis besar untuk Ringkas */
     outline: [
       ['2016', L('Mulai ngelas', 'Started welding'), L('SMK Teknik Pengelasan Kapal', 'Ship welding school')],

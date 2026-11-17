@@ -68,7 +68,7 @@ em{font-style:normal;color:var(--arc)}
 .hello{font-family:var(--f-script);font-size:clamp(34px,4vw,52px);color:var(--fg);line-height:1;margin-top:18px;transform:rotate(-3deg);transform-origin:left}
 .name{font-size:clamp(64px,9.4vw,148px);margin:4px 0 18px}
 .name i{font-style:normal;color:var(--arc)}
-.hline{font-size:1.1em;color:var(--fg-2);max-width:42ch}
+.hline{font-size:1.02em;color:var(--fg-2);max-width:52ch}
 .hero-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
 .hstats{display:flex;flex-wrap:wrap;gap:22px 34px;margin-top:34px}
 .hstats li{display:grid;gap:2px}

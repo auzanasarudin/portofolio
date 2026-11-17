@@ -29,7 +29,7 @@
     document.title = lang === 'id' ? 'Auzan Asarudin — Production Engineer · Data & Otomasi Manufaktur' : 'Auzan Asarudin — Production Engineer · Manufacturing Data & Automation';
     var nav = mode === 'deep'
       ? [['karya', T('nav.karya')], ['studi', lang === 'id' ? 'Studi kasus' : 'Cases'], ['riwayat', lang === 'id' ? 'Riwayat' : 'History'], ['produk', T('nav.produk')], ['jasa', T('nav.jasa')], ['kontak', T('nav.kontak')]]
-      : [['karya', T('nav.karya')], ['tentang', T('nav.tentang')], ['pengakuan', lang === 'id' ? 'Pengakuan' : 'Recognition'], ['perjalanan', lang === 'id' ? 'Perjalanan' : 'Journey'], ['kontak', T('nav.kontak')]];
+      : [['karya', T('nav.karya')], ['tentang', T('nav.tentang')], ['pengakuan', lang === 'id' ? 'Pencapaian' : 'Achievements'], ['perjalanan', lang === 'id' ? 'Perjalanan' : 'Journey'], ['kontak', T('nav.kontak')]];
     $('#nav').innerHTML = nav.map(function (n) { return '<a href="#' + n[0] + '">' + esc(n[1]) + '</a>'; }).join('');
     document.querySelectorAll('#modeSeg [data-mode-btn]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-mode-btn') === mode)); });
     $('#modeSeg').setAttribute('aria-label', T('mode.label'));
