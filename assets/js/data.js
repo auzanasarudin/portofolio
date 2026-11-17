@@ -59,10 +59,11 @@
       mode: { overview: L('Ringkas', 'Overview'), deep: L('Mendalam', 'Deep dive'), label: L('Kedalaman isi', 'Level of detail') },
       tb: { toDeep: L('Versi lengkap', 'Full version'), toOverview: L('Kembali ke versi ringkas', 'Back to the overview') },
       sec: {
+        showcase: L('Sistem siap pakai untuk perusahaan', 'Ready-made systems for companies'),
         problems: L('Masalah yang biasa saya bereskan', 'Problems I usually fix'),
         problemsLead: L('Tiga keluhan yang paling sering saya dengar di pabrik, dan alat yang saya buat untuk masing-masing.', 'The three complaints I hear most on the shop floor, and the tool I built for each.'),
         work: L('Studi kasus', 'Case studies'),
-        workLead: L('Tiga alat yang lahir dari pekerjaan sehari-hari. Versi di sini saya bangun ulang dari nol dengan data contoh, jadi bisa langsung dicoba.', 'Three tools that came out of daily work. I rebuilt the versions here from scratch on sample data, so you can try them right away.'),
+        workLead: L('Tiga alat yang lahir dari pekerjaan sehari-hari. Versi di sini saya bangun ulang dari nol dengan data contoh, menjadi bisa langsung dicoba.', 'Three tools that came out of daily work. I rebuilt the versions here from scratch on sample data, so you can try them right away.'),
         more: L('Karya lain', 'Other work'),
         products: L('Produk digital', 'Digital products'),
         productsLead: L('Saya jual dengan merek LABORU. Sekali bayar, bisa dipakai offline.', 'Sold under the LABORU brand. Pay once, use offline.'),
@@ -71,21 +72,21 @@
         servicesLead: L('Lingkupnya jelas, harga awalnya jelas, dan hasilnya alat yang bisa dipakai tim Anda sendiri. Saya kerjakan jarak jauh di luar jam kantor; kunjungan bisa di akhir pekan untuk area Jabodetabek.', 'Clear scope, a clear starting price, and a result your team can run on its own. Done remotely outside office hours; weekend visits are possible around Greater Jakarta.'),
         contactLead: L('Ceritakan masalahnya dalam dua-tiga kalimat. Saya balas dengan gambaran cara mengerjakan, perkiraan waktu, dan kisaran biaya. Belum ada kewajiban apa pun.', 'Describe the problem in two or three sentences. I’ll reply with an approach, a time estimate and a price range. No commitment yet.'),
         caps: L('Kemampuan', 'Capabilities'),
-        capsLead: L('Disusun seperti BOM: tiap baris ada buktinya dan seberapa sering saya memakainya.', 'Laid out like a BOM: each line has its evidence and how often I actually use it.'),
+        capsLead: L('Disusun seperti Bill of Material: tiap baris ada buktinya dan seberapa sering saya memakainya.', 'Laid out like a BOM: each line has its evidence and how often I actually use it.'),
         path: L('Jalur keahlian', 'Skill path'),
         method: L('Cara saya bekerja', 'How I work'),
         research: L('Riset S2', 'Master’s research'),
         history: L('Riwayat kerja dan magang', 'Work and internship history'),
         edu: L('Pendidikan', 'Education'),
         certs: L('Pelatihan dan sertifikat', 'Training and certificates'),
-        certsNote: L('Salinan sertifikat saya kirim kalau diminta.', 'Copies of certificates are available on request.'),
+        certsNote: L('Salinan sertifikat saya kirim jika diminta.', 'Copies of certificates are available on request.'),
         orgs: L('Organisasi dan kegiatan', 'Organisations and activities'),
         story: L('Cerita singkat', 'The short story'),
         catalog: L('Katalog produk lengkap', 'Full product catalogue'),
         faq: L('Yang biasa ditanyakan', 'Frequently asked')
       },
       btn: {
-        demo: L('Coba demonya', 'Try the demo'), buy: L('Beli', 'Buy'), ask: L('Tanyakan', 'Ask about it'), quote: L('Minta penawaran', 'Ask for a quote'),
+        demo: L('Coba demonya', 'Try the demo'), demoSvc: L('Coba demo', 'Try the demo'), buy: L('Beli', 'Buy'), ask: L('Tanyakan', 'Ask about it'), quote: L('Minta penawaran', 'Ask for a quote'),
         notify: L('Kabari saya saat rilis', 'Tell me when it ships'), open: L('Buka situs', 'Open site'), copy: L('Salin', 'Copy'), copied: L('Tersalin', 'Copied'),
         sendMail: L('Kirim lewat email', 'Send by email'), copyBrief: L('Salin ringkasan', 'Copy the brief'), askLabo: L('Tanya Labo dulu', 'Ask Labo first')
       },
@@ -101,7 +102,7 @@
       form: {
         name: L('Nama', 'Name'), org: L('Perusahaan / usaha', 'Company / business'), topic: L('Yang ingin dibereskan', 'What needs fixing'), msg: L('Ceritakan singkat', 'Tell me briefly'),
         ph: L('Contoh: laporan produksi harian masih diketik ulang dari 12 mesin, makan 2 jam sehari.', 'Example: the daily production report is retyped from 12 machines and takes 2 hours a day.'),
-        topics: [L('Dashboard produksi / OEE', 'Production / OEE dashboard'), L('Otomasi Excel atau laporan', 'Excel or report automation'), L('Struktur BOM / perubahan engineering', 'BOM structure / engineering changes'), L('Analisis robot las atau mesin', 'Welding robot or machine analysis'), L('Estimasi biaya dan waktu proses', 'Cost and process-time estimation'), L('Rekrutmen / peluang kerja', 'Hiring / a job opportunity'), L('Produk LABORU', 'LABORU products'), L('Lainnya', 'Something else'), L('Rapikan bengkel / UMKM (5S)', 'Workshop / small business tidy-up (5S)'), L('Persiapan audit ISO', 'ISO audit preparation')],
+        topics: [L('Dashboard produksi / OEE', 'Production / OEE dashboard'), L('Otomasi Excel atau laporan', 'Excel or report automation'), L('Struktur Bill of Material / perubahan engineering', 'BOM structure / engineering changes'), L('Analisis robot pengelasan atau mesin', 'Welding robot or machine analysis'), L('Estimasi biaya dan waktu proses', 'Cost and process-time estimation'), L('Rekrutmen / peluang kerja', 'Hiring / a job opportunity'), L('Produk LABORU', 'LABORU products'), L('Lainnya', 'Something else'), L('Rapikan bengkel / UMKM (5S)', 'Workshop / small business tidy-up (5S)'), L('Persiapan audit ISO', 'ISO audit preparation')],
         emailLbl: L('Atau tulis langsung ke', 'Or write directly to'), need: L('Isi nama dan ceritanya dulu, ya.', 'Add your name and a short description first.'),
         subject: L('Pesan dari situs portofolio', 'Message from the portfolio site')
       },
@@ -113,22 +114,22 @@
 
     /* ---------------- masalah -> bukti ---------------- */
     problems: [
-      { q: L('“Drawing sudah revisi, tapi barangnya belum sampai gudang. Nyangkut di siapa?”', '“The drawing was revised, but the part hasn’t reached the warehouse. Who is it stuck with?”'),
+      { q: L('“Drawing sudah revisi, tapi barangnya belum sampai gudang. Tersangkut di siapa?”', '“The drawing was revised, but the part hasn’t reached the warehouse. Who is it stuck with?”'),
         a: L('Satu papan yang menunjukkan tiap perubahan sedang dipegang departemen mana, sudah berapa hari, dan apa yang perlu diputuskan di rapat.', 'One board showing which department holds each change, for how many days, and what the meeting needs to decide.'), to: 'change-board' },
-      { q: L('“Ubah BOM engineering jadi BOM produksi makan berjam-jam di Excel.”', '“Turning the engineering BOM into a production BOM takes hours in Excel.”'),
+      { q: L('“Mengubah Bill of Material engineering menjadi Bill of Material produksi makan berjam-jam di Excel.”', '“Turning the engineering BOM into a production BOM takes hours in Excel.”'),
         a: L('Aturan make, buy, dan phantom ditulis sekali. MBOM keluar dalam hitungan detik, lengkap dengan alasan di tiap baris.', 'Make, buy and phantom rules are written once. The MBOM comes out in seconds, with a reason on every line.'), to: 'bom-bridge' },
-      { q: L('“Robot las sering berhenti, tapi tidak ada yang bisa sebut penyebab terbesarnya.”', '“Our welding robots stop a lot, and nobody can name the biggest cause.”'),
-        a: L('Log alarm diolah jadi OEE, peringkat penyebab berhenti, dan prakiraan kapan consumable perlu diganti.', 'Alarm logs become OEE, a ranked list of stop causes, and a forecast of when consumables need changing.'), to: 'robot-insight' }
+      { q: L('“Robot pengelasan sering berhenti, tapi tidak ada yang bisa sebut penyebab terbesarnya.”', '“Our welding robots stop a lot, and nobody can name the biggest cause.”'),
+        a: L('Log alarm diolah menjadi OEE, peringkat penyebab berhenti, dan prakiraan kapan consumable perlu diganti.', 'Alarm logs become OEE, a ranked list of stop causes, and a forecast of when consumables need changing.'), to: 'robot-insight' }
     ],
 
     cases: [
       {
-        id: 'change-board', demo: 'demos/change-board/index.html', img: 'assets/img/case-change-board', name: 'Change Board',
+        id: 'change-board', demo: 'demos/change-board/index.html', img: 'assets/img/case-change-board', name: L('Dashboard Perubahan Komponen Bill of Material', 'Bill of Material Change Dashboard'),
         title: L('Pelacak rapat perubahan engineering', 'Engineering change meeting tracker'),
         kicker: L('Workflow lintas departemen', 'Cross-department workflow'),
         summary: L('Setiap perubahan engineering menjadi satu kasus yang berpindah dari Design sampai Gudang. Papan ini menunjukkan siapa yang sedang memegangnya, berapa lama, lalu menulis rekap rapatnya.', 'Each engineering change becomes a case that moves from Design to Warehouse. The board shows who holds it, for how long, then writes the meeting recap.'),
         bullets: [L('Lama tunggu diukur terhadap waktu standar tiap departemen', 'Waiting time measured against each department’s standard'), L('Mode rapat: agenda, catatan keputusan, rekap siap kirim', 'Meeting mode: agenda, decision notes, a recap ready to send'), L('Gantt, analitik sumber perubahan, ekspor CSV', 'Gantt, change-source analytics, CSV export')],
-        context: L('Rapat mingguan perubahan BOM melibatkan Design, Production Engineering, Procurement, PPIC, dan Gudang. Statusnya biasanya tersebar di Excel dan utas email.', 'A weekly BOM change meeting involves Design, Production Engineering, Procurement, PPIC and Warehouse. Status usually lives across Excel files and email threads.'),
+        context: L('Rapat mingguan perubahan Bill of Material melibatkan Design, Production Engineering, Procurement, PPIC, dan Gudang. Statusnya biasanya tersebar di Excel dan utas email.', 'A weekly BOM change meeting involves Design, Production Engineering, Procurement, PPIC and Warehouse. Status usually lives across Excel files and email threads.'),
         problem: L('Rapat habis untuk membacakan baris tabel. Tidak ada yang bisa langsung menjawab kasus mana yang terlambat dan sedang ditunggu siapa.', 'The meeting is spent reading out rows. Nobody can say at a glance which cases are late and who they are waiting on.'),
         approach: [L('Memodelkan tiap perubahan sebagai kasus dengan lima tahap serah-terima dan waktu standar per tahap.', 'Model each change as a case with five hand-over stages and a standard time per stage.'), L('Menghitung otomatis pemegang saat ini, lama tunggu, dan keterlambatan.', 'Compute the current holder, waiting time and lateness automatically.'), L('Menyusun layar dari pertanyaan rapat: siapa memegang bola, mana yang kritis, apa keputusannya.', 'Shape the screens around the meeting’s questions: who holds the ball, what is critical, what was decided.'), L('Menyiapkan rekap dan pengingat sebagai draf email. Orang tetap yang menekan kirim.', 'Prepare the recap and reminders as email drafts. A person still presses send.')],
         arch: [L('Sheet rapat (Excel / Google Sheets)', 'Meeting sheet (Excel / Google Sheets)'), L('Model kasus + waktu standar', 'Case model + standard times'), L('Papan, Gantt, analitik', 'Board, Gantt, analytics'), L('Rekap dan draf pengingat', 'Recap and reminder drafts')],
@@ -137,10 +138,10 @@
         limits: L('Demo ini dibuat ulang dari nol. Kasus, nama part, nomor drawing, dan nama orang dihasilkan acak. Tidak ada data perusahaan.', 'This demo was rebuilt from scratch. Cases, part names, drawing numbers and people are generated. No company data is used.')
       },
       {
-        id: 'bom-bridge', demo: 'demos/bom-bridge/index.html', img: 'assets/img/case-bom-bridge', name: 'BOM Bridge',
+        id: 'bom-bridge', demo: 'demos/bom-bridge/index.html', img: 'assets/img/case-bom-bridge', name: L('Bill of Material Bridge', 'Bill of Material Bridge'),
         title: L('Generator CBOM → EBOM → MBOM', 'CBOM → EBOM → MBOM generator'),
         kicker: L('Data engineering & struktur produk', 'Engineering data and product structure'),
-        summary: L('Konfigurasi pesanan memilih cabang EBOM, lalu seperangkat aturan mengubahnya jadi MBOM: mana yang dibuat, disubkon, dibeli, atau sekadar pengelompokan.', 'An order configuration selects EBOM branches, then a rule set turns them into the MBOM: what is made, subcontracted, bought, or just a grouping.'),
+        summary: L('Konfigurasi pesanan memilih cabang EBOM, lalu seperangkat aturan mengubahnya menjadi MBOM: mana yang dibuat, disubkon, dibeli, atau sekadar pengelompokan.', 'An order configuration selects EBOM branches, then a rule set turns them into the MBOM: what is made, subcontracted, bought, or just a grouping.'),
         bullets: [L('Aturan bisa diubah tanpa menyentuh kode', 'Rules can be changed without touching code'), L('Setiap baris MBOM mencatat aturan yang memutuskannya', 'Every MBOM line records the rule that decided it'), L('Baris yang bertentangan ditandai untuk ditinjau', 'Conflicting lines are flagged for review')],
         context: L('Desain menyusun struktur produk menurut fungsi. Produksi membutuhkannya menurut cara membuat. Menerjemahkan yang satu ke yang lain biasanya dikerjakan manual untuk tiap model.', 'Design structures a product by function. Production needs it by how it is built. Translating one into the other is usually manual work for every model.'),
         problem: L('Konversi manual lambat, bergantung pada satu-dua orang yang hafal aturannya, dan sulit diaudit ketika hasilnya dipertanyakan.', 'Manual conversion is slow, depends on the one or two people who know the rules by heart, and is hard to audit when a result is questioned.'),
@@ -152,12 +153,12 @@
       },
       {
         id: 'robot-insight', demo: 'demos/robot-insight/index.html', img: 'assets/img/case-robot-insight', name: 'Robot Insight',
-        title: L('Analitik sel robot las', 'Welding robot cell analytics'),
+        title: L('Analitik sel robot pengelasan', 'Welding robot cell analytics'),
         kicker: L('Analitik produksi & pemeliharaan prediktif', 'Production analytics and predictive maintenance'),
-        summary: L('Log siklus dan alarm robot diubah jadi OEE, peringkat penyebab berhenti, pola jam rawan, dan prakiraan umur consumable.', 'Robot cycle and alarm logs become OEE, a ranked list of stop causes, time-of-day patterns, and a forecast of consumable life.'),
-        bullets: [L('Definisi OEE ditulis terbuka di layar, bukan angka ajaib', 'OEE definitions are written on screen, not a magic number'), L('Register countermeasure: sebelum dan sesudah, lengkap dengan periode pembanding', 'Countermeasure register: before and after, with the baseline period'), L('Energi per kg kawat las dan emisi Scope 2', 'Energy per kg of wire and Scope 2 emissions')],
-        context: L('Sel robot las menghasilkan riwayat siklus dan alarm setiap hari. Data itu jarang dibaca karena masih mentah dan tersebar per mesin.', 'Welding robot cells produce cycle and alarm history every day. It is rarely read because it is raw and scattered per machine.'),
-        problem: L('Waktu berhenti terasa besar. Tanpa peringkat penyebab dan definisi yang disepakati, perbaikan jadi tebak-tebakan dan hasilnya sulit dibuktikan.', 'Stop time feels large. Without a ranked list of causes and agreed definitions, improvement is guesswork and results are hard to prove.'),
+        summary: L('Log siklus dan alarm robot diubah menjadi OEE, peringkat penyebab berhenti, pola jam rawan, dan prakiraan umur consumable.', 'Robot cycle and alarm logs become OEE, a ranked list of stop causes, time-of-day patterns, and a forecast of consumable life.'),
+        bullets: [L('Definisi OEE ditulis terbuka di layar, bukan angka ajaib', 'OEE definitions are written on screen, not a magic number'), L('Register countermeasure: sebelum dan sesudah, lengkap dengan periode pembanding', 'Countermeasure register: before and after, with the baseline period'), L('Energi per kg kawat pengelasan dan emisi Scope 2', 'Energy per kg of wire and Scope 2 emissions')],
+        context: L('Sel robot pengelasan menghasilkan riwayat siklus dan alarm setiap hari. Data itu jarang dibaca karena masih mentah dan tersebar per mesin.', 'Welding robot cells produce cycle and alarm history every day. It is rarely read because it is raw and scattered per machine.'),
+        problem: L('Waktu berhenti terasa besar. Tanpa peringkat penyebab dan definisi yang disepakati, perbaikan menjadi tebak-tebakan dan hasilnya sulit dibuktikan.', 'Stop time feels large. Without a ranked list of causes and agreed definitions, improvement is guesswork and results are hard to prove.'),
         approach: [L('Menyepakati definisi: waktu terencana, operasi, alarm, menunggu.', 'Agree the definitions: planned, operating, alarm and waiting time.'), L('Menyusun waterfall jam dari waktu kalender sampai jam produktif.', 'Build the hours waterfall from calendar time down to productive time.'), L('Memeringkat alarm menurut jam yang hilang, bukan jumlah kejadian.', 'Rank alarms by hours lost, not by event count.'), L('Mencatat tiap countermeasure dengan periode pembandingnya agar efeknya bisa dicek ulang.', 'Log each countermeasure with its baseline period so the effect can be re-checked.'), L('Meneliti prakiraan umur consumable dari sinyal keausan.', 'Research consumable-life forecasting from a wear signal.')],
         arch: [L('Log kontroler robot (CSV / SQL)', 'Robot controller logs (CSV / SQL)'), L('Pembersihan dan agregasi harian', 'Cleaning and daily aggregation'), L('Metrik: OEE, stop time, MTBF/MTTR, SEC', 'Metrics: OEE, stop time, MTBF/MTTR, SEC'), L('Dashboard + register countermeasure', 'Dashboard + countermeasure register')],
         stack: ['HTML', 'CSS', 'JavaScript', 'SVG', 'SQL', 'Python', 'PostgreSQL'],
@@ -167,15 +168,13 @@
     ],
     more: [
       { name: L('Estimasi biaya & waktu proses manufaktur', 'Manufacturing cost and process-time estimation'), tag: 'Costing',
-        text: L('Lembar kerja untuk menghitung waktu dan biaya consumable proses las, machining, painting, dan assembly di proyek baru. Asumsinya tertulis, jadi bisa ditelusuri ulang.', 'Worksheets that estimate time and consumable cost for welding, machining, painting and assembly on new projects. The assumptions are written down, so they can be traced.'), href: '#kontak', cta: 'ask' },
-      { name: L('Konverter tabel massal untuk dokumen TKDN', 'Bulk table converter for local-content (TKDN) documents'), tag: 'Automation',
-        text: L('Mengubah ratusan tabel ke format kerja dalam sekali jalan, menggantikan salin-tempel manual.', 'Turns hundreds of tables into the working format in one run, replacing manual copy and paste.'), href: '#kontak', cta: 'ask' },
+        text: L('Lembar kerja untuk menghitung waktu dan biaya consumable proses pengelasan, machining, painting, dan assembly di proyek baru. Asumsinya tertulis, menjadi bisa ditelusuri ulang.', 'Worksheets that estimate time and consumable cost for welding, machining, painting and assembly on new projects. The assumptions are written down, so they can be traced.'), href: '#kontak', cta: 'ask' },
       { name: L('LABORU: ekosistem produk digital', 'LABORU: a digital product ecosystem'), tag: 'Product',
         text: L('Game produktivitas pixel-art, toolkit Excel/Sheets, ebook, dan sistem dokumen perusahaan. Produk, landing page, dan alur jualannya saya rancang sendiri.', 'A pixel-art productivity game, Excel/Sheets toolkits, ebooks and company document systems. I designed the products, the landing page and the sales flow myself.'), link: 'laboru', cta: 'open' },
       { name: L('Z-ONION: landing page ekspor bawang', 'Z-ONION: an onion export landing page'), tag: 'Web',
         text: L('Identitas merek, katalog, profil perusahaan, dan landing page untuk pembeli luar negeri.', 'Brand identity, catalogue, company profile and a landing page for overseas buyers.'), link: 'zonion', cta: 'open' },
-      { name: L('Monitoring robot las, versi pertama', 'Welding robot monitoring, first version'), tag: 'Dashboard',
-        text: L('Dashboard yang jadi cikal bakal Robot Insight. Awalnya Excel interaktif, lalu saya pindahkan ke web.', 'The dashboard Robot Insight grew out of. It started as an interactive Excel file before I moved it to the web.'), link: 'robotV1', cta: 'open' },
+      { name: L('Monitoring robot pengelasan, versi pertama', 'Welding robot monitoring, first version'), tag: 'Dashboard',
+        text: L('Dashboard yang menjadi cikal bakal Robot Insight. Awalnya Excel interaktif, lalu saya pindahkan ke web.', 'The dashboard Robot Insight grew out of. It started as an interactive Excel file before I moved it to the web.'), link: 'robotV1', cta: 'open' },
       { name: L('PEAS: asisten Production Engineering', 'PEAS: a Production Engineering assistant'), tag: 'AI · WIP', wip: true,
         text: L('Asisten lokal untuk tugas-tugas tim PE: dari menjawab pertanyaan proses sampai menyiapkan laporan. Datanya tetap di komputer sendiri.', 'A local assistant for PE team tasks, from answering process questions to drafting reports. The data stays on the local machine.') }
     ],
@@ -183,7 +182,7 @@
     /* ---------------- produk ---------------- */
     featured: {
       name: 'LABORU Level Up', img: 'assets/img/laboru-lobby.webp', img2: 'assets/img/laboru-quest.webp',
-      text: L('Sistem naik level untuk karyawan. Tugas jadi quest, kebiasaan dilacak, uang dicatat. Dimainkan seperti game kantor pixel, offline di Android, iPhone, dan laptop.', 'A level-up system for employees. Tasks become quests, habits are tracked, money is logged. It plays like a pixel office game, offline on Android, iPhone and laptop.'),
+      text: L('Sistem naik level untuk karyawan. Tugas menjadi quest, kebiasaan dilacak, uang dicatat. Dimainkan seperti game kantor pixel, offline di Android, iPhone, dan laptop.', 'A level-up system for employees. Tasks become quests, habits are tracked, money is logged. It plays like a pixel office game, offline on Android, iPhone and laptop.'),
       tiers: [{ k: 'core', name: 'Core', sub: L('Sistem pribadi: kerja, kebiasaan, keuangan', 'Personal system: work, habits, money') }, { k: 'ultimate', name: 'Ultimate', sub: L('Core + versi PRO, ebook, dan sistem perusahaan', 'Core + PRO version, ebooks and company systems') }],
       cta: L('Coba demo dan lihat paket', 'Try the demo and see the packages')
     },
@@ -202,6 +201,15 @@
       { k: 'upgrade', name: 'Upgrade Core → Ultimate', who: L('Pemilik Core', 'Core owners'), text: L('Naik ke Ultimate tanpa membeli ulang.', 'Move up to Ultimate without buying again.') }
     ],
     homeProducts: ['r07', 'r08', 'r09'],
+    /* Produk sistem perusahaan yang punya demo dashboard */
+    showcase: [
+      { k: 'r07', name: L('Persiapan Audit ISO 9001 / 45001', 'ISO 9001 / 45001 Audit Preparation'), img: 'assets/img/g/iso-overview.webp', demo: 'demos/iso-ready/index.html',
+        text: L('Checklist klausul 4–10 untuk dua standar, register dokumen, temuan audit internal dengan CAPA, dan hitung mundur ke audit. Termasuk dalam Company Preparation System.', 'Clause 4–10 checklists for both standards, a document register, internal audit findings with CAPA, and a countdown to the audit. Part of the Company Preparation System.'),
+        bullets: [L('Kesiapan per klausul dan per standar', 'Readiness per clause and per standard'), L('Daftar dokumen wajib dan statusnya', 'Required documents and their status'), L('Temuan mayor, minor, OFI sampai ditutup', 'Major, minor and OFI findings through to closure')] },
+      { k: 'r08', name: L('Optimasi Perusahaan', 'Company Optimisation'), img: 'assets/img/g/op-overview.webp', demo: 'demos/optimasi/index.html',
+        text: L('Audit 5S per area, register kaizen (process reduction, cost reduction, hemat energi), kalkulator biaya per unit, serta energi dan emisi CO₂. Termasuk dalam Company Improvement System.', 'Area 5S audits, a kaizen register (process reduction, cost reduction, energy saving), a unit-cost calculator, plus energy and CO₂. Part of the Company Improvement System.'),
+        bullets: [L('Skor 5S yang bisa dinilai ulang kapan saja', '5S scores you can re-rate any time'), L('Sebelum dan sesudah untuk tiap perbaikan', 'Before and after for every improvement'), L('Biaya per unit dengan asumsi tertulis', 'Unit cost with written assumptions')] }
+    ],
     pipeline: [
       { name: 'Change Board Starter', text: L('Template papan perubahan engineering untuk pabrik kecil dan menengah.', 'An engineering-change board template for small and mid-size plants.') },
       { name: 'OEE Dashboard Starter', text: L('Template Excel/Sheets untuk OEE, stop time, dan pareto alarm.', 'An Excel/Sheets template for OEE, stop time and alarm Pareto.') },
@@ -210,52 +218,52 @@
 
     /* ---------------- jasa ---------------- */
     services: [
-      { id: 'review', tier: 'entry', home: true, name: L('Bedah Data Produksi', 'Production Data Review'), idr: 1500000, usd: 95, time: L('3–5 hari kerja', '3–5 working days'),
+      { id: 'review', demo: 'demos/optimasi/index.html#ringkasan', tier: 'entry', home: true, name: L('Bedah Data Produksi', 'Production Data Review'), idr: 1500000, usd: 95, time: L('3–5 hari kerja', '3–5 working days'),
         who: L('Pabrik atau bengkel yang laporannya masih manual', 'Plants and workshops still reporting by hand'),
         problem: L('Anda tahu laporannya makan waktu, tapi belum tahu mulai dari mana.', 'You know reporting eats time, but not where to start.'),
         get: [L('Memo temuan 2–3 halaman dari file yang Anda kirim', 'A 2–3 page findings memo from the files you send'), L('Daftar perbaikan berurut prioritas, plus perkiraan waktu dan biaya', 'A prioritised fix list with time and cost estimates'), L('Satu sesi tanya jawab 45 menit', 'One 45-minute Q&A call')],
-        limits: L('Belum termasuk membuat alatnya. Biayanya dipotong kalau Anda lanjut ke proyek.', 'Building the tool is not included. The fee is credited if you continue to a project.') },
-      { id: 'umkm', tier: 'entry', home: true, name: L('Rapikan Bengkel: 5S & Visual Kerja', 'Workshop Tidy-up: 5S & Visual Work'), idr: 2500000, usd: 160, time: L('1–2 minggu', '1–2 weeks'),
-        who: L('UMKM, bengkel las dan fabrikasi, workshop kecil', 'Small businesses, welding and fabrication shops'),
+        limits: L('Belum termasuk membuat alatnya. Biayanya dipotong jika Anda lanjut ke proyek.', 'Building the tool is not included. The fee is credited if you continue to a project.') },
+      { id: 'umkm', demo: 'demos/optimasi/index.html#5s', tier: 'entry', home: true, name: L('Rapikan Bengkel: 5S & Visual Kerja', 'Workshop Tidy-up: 5S & Visual Work'), idr: 2500000, usd: 160, time: L('1–2 minggu', '1–2 weeks'),
+        who: L('UMKM, bengkel pengelasan dan fabrikasi, workshop kecil', 'Small businesses, welding and fabrication shops'),
         problem: L('Alat sering dicari, urutan kerja hanya ada di kepala satu orang, dan pelanggan menunggu tanpa kabar.', 'Tools go missing, the work sequence lives in one person’s head, and customers wait without updates.'),
         get: [L('Cek 5S dari foto/video, plus satu kunjungan akhir pekan (Jabodetabek)', 'A 5S check from photos/video, plus one weekend visit (Greater Jakarta)'), L('Usulan tata letak dan label visual siap cetak', 'A layout proposal and print-ready visual labels'), L('Checksheet harian dan SOP satu halaman per pekerjaan', 'Daily checksheets and one-page SOPs per job'), L('Papan status order sederhana di Google Sheets', 'A simple order-status board in Google Sheets')],
         limits: L('Kunjungan di luar Jabodetabek dihitung terpisah. Barang dan rak tidak termasuk.', 'Visits outside Greater Jakarta are quoted separately. Shelving and materials are not included.') },
-      { id: 'dashboard', tier: 'standard', home: true, name: L('Dashboard Produksi / OEE', 'Production / OEE Dashboard'), idr: 6000000, usd: 450, time: L('2–3 minggu', '2–3 weeks'), ex: 'robot-insight',
+      { id: 'dashboard', demo: 'demos/robot-insight/index.html', tier: 'standard', home: true, name: L('Dashboard Produksi / OEE', 'Production / OEE Dashboard'), idr: 6000000, usd: 450, time: L('2–3 minggu', '2–3 weeks'), ex: 'robot-insight',
         who: L('Tim produksi, maintenance, PE', 'Production, maintenance and PE teams'),
-        problem: L('Angka harian ada, tapi tidak pernah jadi gambar yang dibaca di rapat pagi.', 'The daily numbers exist, but never become a picture the morning meeting reads.'),
-        get: [L('Lembar input yang mengikuti cara tim mencatat sekarang', 'An input sheet that follows how the team records today'), L('Dashboard OEE, stop time, dan peringkat penyebab', 'A dashboard for OEE, stop time and ranked causes'), L('Definisi metrik tertulis yang disepakati', 'Written, agreed metric definitions'), L('Panduan pakai dan 30 hari perbaikan', 'A user guide and 30 days of fixes')],
+        problem: L('Angka harian ada, tapi tidak pernah menjadi gambar yang dibaca di rapat pagi.', 'The daily numbers exist, but never become a picture the morning meeting reads.'),
+        get: [L('Lembar input yang mengikuti cara tim mencatat sekarang', 'An input sheet that follows how the team records today'), L('Dashboard OEE, stop time, dan peringkat penyebab', 'A dashboard for OEE, stop time and ranked causes'), L('Definisi metrik tertulis yang disepakati', 'Written, agreed metric definitions'), L('Panduan penggunaan dan 30 hari perbaikan', 'A user guide and 30 days of fixes')],
         limits: L('Untuk satu lini atau maksimal 15 mesin. Pengambilan data otomatis dari mesin dihitung terpisah.', 'For one line or up to 15 machines. Automatic data capture from machines is quoted separately.') },
-      { id: 'automation', tier: 'standard', home: true, name: L('Otomasi Excel / Google Sheets', 'Excel / Google Sheets Automation'), idr: 3500000, usd: 250, time: L('1–2 minggu per alur', '1–2 weeks per workflow'),
+      { id: 'automation', demo: 'demos/optimasi/index.html#kaizen', tier: 'standard', home: true, name: L('Otomasi Excel / Google Sheets', 'Excel / Google Sheets Automation'), idr: 3500000, usd: 250, time: L('1–2 minggu per alur', '1–2 weeks per workflow'),
         who: L('Admin produksi, PPIC, engineering', 'Production admin, PPIC, engineering'),
         problem: L('Pekerjaan salin-tempel yang sama diulang tiap hari atau tiap minggu.', 'The same copy-and-paste job is repeated every day or every week.'),
         get: [L('Satu alur kerja yang jalan dengan satu klik atau terjadwal', 'One workflow that runs on a click or on a schedule'), L('Pengecekan kesalahan input', 'Input error checks'), L('Catatan cara kerja supaya tim Anda bisa merawatnya', 'Working notes so your team can maintain it')],
         limits: L('Satu alur per paket. Akses ke sistem lain mengikuti izin yang Anda punya.', 'One workflow per package. Access to other systems depends on the permissions you hold.') },
-      { id: 'iso', tier: 'standard', name: L('Persiapan Audit ISO 9001 / 45001', 'ISO 9001 / 45001 Audit Preparation'), idr: 5000000, usd: 380, time: L('3–4 minggu', '3–4 weeks'),
+      { id: 'iso', demo: 'demos/iso-ready/index.html', tier: 'standard', name: L('Persiapan Audit ISO 9001 / 45001', 'ISO 9001 / 45001 Audit Preparation'), idr: 5000000, usd: 380, time: L('3–4 minggu', '3–4 weeks'),
         who: L('Pabrik kecil-menengah yang mau sertifikasi atau perpanjangan', 'Small and mid-size plants certifying or renewing'),
         problem: L('Audit tinggal beberapa minggu, dokumennya masih tersebar di banyak folder.', 'The audit is weeks away and the documents are scattered across folders.'),
         get: [L('Cek celah terhadap klausul standar', 'A gap check against the standard’s clauses'), L('Daftar dokumen yang kurang, plus templatnya', 'A list of missing documents, with templates'), L('Simulasi audit internal dan daftar temuan', 'A mock internal audit and a findings list')],
         limits: L('Saya bukan lembaga sertifikasi. Keputusan lulus tetap di auditor.', 'I am not a certification body. The pass decision stays with the auditor.') },
-      { id: 'change', tier: 'standard', name: L('Papan Perubahan Engineering', 'Engineering Change Board'), idr: 7500000, usd: 600, time: L('2–3 minggu', '2–3 weeks'), ex: 'change-board',
+      { id: 'change', demo: 'demos/change-board/index.html', tier: 'standard', name: L('Papan Perubahan Engineering', 'Engineering Change Board'), idr: 7500000, usd: 600, time: L('2–3 minggu', '2–3 weeks'), ex: 'change-board',
         who: L('Engineering, PPIC, procurement', 'Engineering, PPIC, procurement'),
         problem: L('Tidak jelas perubahan drawing sedang ditunggu siapa.', 'Nobody can tell who a drawing change is waiting on.'),
         get: [L('Papan kasus yang membaca sheet rapat Anda', 'A case board that reads your meeting sheet'), L('Waktu standar per departemen dan tanda terlambat', 'Standard times per department and late flags'), L('Mode rapat dan rekap otomatis', 'Meeting mode and an automatic recap')],
         limits: L('Tanpa integrasi ERP. Email tetap dikirim oleh orang.', 'No ERP integration. Emails are still sent by a person.') },
-      { id: 'costing', tier: 'standard', name: L('Model Estimasi Biaya & Waktu Proses', 'Cost & Process-Time Model'), idr: 6000000, usd: 450, time: L('2–3 minggu', '2–3 weeks'),
+      { id: 'costing', demo: 'demos/optimasi/index.html#biaya', tier: 'standard', name: L('Model Estimasi Biaya & Waktu Proses', 'Cost & Process-Time Model'), idr: 6000000, usd: 450, time: L('2–3 minggu', '2–3 weeks'),
         who: L('Bengkel fabrikasi, tim estimasi', 'Fabrication shops, estimating teams'),
-        problem: L('Penawaran dihitung pakai perkiraan, dan selisih dengan biaya aktual baru ketahuan di akhir.', 'Quotes are built on guesses, and the gap to actual cost only shows at the end.'),
-        get: [L('Kalkulator biaya las, fabrikasi, painting, atau assembly', 'A cost calculator for welding, fabrication, painting or assembly'), L('Asumsi yang tertulis dan bisa diubah', 'Written assumptions you can change'), L('Perbandingan estimasi dengan aktual', 'An estimate-versus-actual comparison')],
+        problem: L('Penawaran dihitung berdasarkan perkiraan, dan selisih dengan biaya aktual baru terlihat di akhir.', 'Quotes are built on guesses, and the gap to actual cost only shows at the end.'),
+        get: [L('Kalkulator biaya pengelasan, fabrikasi, painting, atau assembly', 'A cost calculator for welding, fabrication, painting or assembly'), L('Asumsi yang tertulis dan bisa diubah', 'Written assumptions you can change'), L('Perbandingan estimasi dengan aktual', 'An estimate-versus-actual comparison')],
         limits: L('Tarif dan data waktu dari Anda. Saya tidak memakai data dari tempat lain.', 'Rates and time data come from you. I do not use data from anywhere else.') },
-      { id: 'bom', tier: 'premium', name: L('Struktur BOM & Generator MBOM', 'BOM Structuring & MBOM Generator'), idr: 12000000, usd: 900, time: L('3–5 minggu', '3–5 weeks'), ex: 'bom-bridge',
+      { id: 'bom', demo: 'demos/bom-bridge/index.html', tier: 'premium', name: L('Struktur Bill of Material & Generator MBOM', 'BOM Structuring & MBOM Generator'), idr: 12000000, usd: 900, time: L('3–5 minggu', '3–5 weeks'), ex: 'bom-bridge',
         who: L('Production engineering, PPIC', 'Production engineering, PPIC'),
         problem: L('Konversi EBOM ke MBOM bergantung pada satu-dua orang.', 'EBOM-to-MBOM conversion depends on one or two people.'),
         get: [L('Aturan make/buy/phantom Anda, ditulis dan diurutkan', 'Your make/buy/phantom rules, written down and ordered'), L('Generator yang membaca dan menulis format Excel Anda', 'A generator that reads and writes your Excel layout'), L('Daftar tinjau untuk baris yang bertentangan', 'A review list for conflicting lines')],
-        limits: L('Satu keluarga produk per paket. Aturan disusun bareng orang yang paham proses Anda.', 'One product family per package. Rules are written with the people who know your process.') },
-      { id: 'robot', tier: 'premium', name: L('Analitik Robot Las atau Mesin', 'Welding Robot or Machine Analytics'), idr: 18000000, usd: 1400, time: L('4–8 minggu', '4–8 weeks'), ex: 'robot-insight',
+        limits: L('Satu keluarga produk per paket. Aturan disusun bersama orang yang paham proses Anda.', 'One product family per package. Rules are written with the people who know your process.') },
+      { id: 'robot', demo: 'demos/robot-insight/index.html', tier: 'premium', name: L('Analitik Robot Pengelasan atau Mesin', 'Welding Robot or Machine Analytics'), idr: 18000000, usd: 1400, time: L('4–8 minggu', '4–8 weeks'), ex: 'robot-insight',
         who: L('Maintenance, production engineering', 'Maintenance, production engineering'),
         problem: L('Waktu berhenti tinggi, tapi penyebab terbesarnya belum pernah diurutkan.', 'Stop time is high, but the biggest causes have never been ranked.'),
-        get: [L('Analisis stop time dan alarm dari log yang ada', 'Stop-time and alarm analysis from your existing logs'), L('Dashboard dan register countermeasure', 'A dashboard and a countermeasure register'), L('Prototipe prakiraan umur consumable, kalau datanya cukup', 'A consumable-life forecasting prototype, if the data allows')],
+        get: [L('Analisis stop time dan alarm dari log yang ada', 'Stop-time and alarm analysis from your existing logs'), L('Dashboard dan register countermeasure', 'A dashboard and a countermeasure register'), L('Prototipe prakiraan umur consumable, jika datanya cukup', 'A consumable-life forecasting prototype, if the data allows')],
         limits: L('Bergantung pada log yang tersedia. Prakiraan masih prototipe, bukan jaminan.', 'Depends on the logs available. The forecast is a prototype, not a guarantee.') },
-      { id: 'retainer', tier: 'premium', name: L('Pendampingan Bulanan', 'Monthly Support'), idr: 4000000, usd: 300, per: L('per bulan', 'a month'), time: L('Minimal 3 bulan', '3-month minimum'),
+      { id: 'retainer', demo: 'demos/optimasi/index.html', tier: 'premium', name: L('Pendampingan Bulanan', 'Monthly Support'), idr: 4000000, usd: 300, per: L('per bulan', 'a month'), time: L('Minimal 3 bulan', '3-month minimum'),
         who: L('Klien yang sudah menjalankan satu proyek', 'Clients who have completed one project'),
         problem: L('Alatnya sudah jalan, tapi permintaan terus bertambah.', 'The tool is running, but the requests keep coming.'),
         get: [L('Jatah jam untuk perbaikan dan fitur baru', 'A monthly block of hours for fixes and additions'), L('Ringkasan tertulis tiap akhir bulan', 'A written summary at each month end')],
@@ -280,13 +288,13 @@
       L('Pabrik jarang kekurangan data. Yang kurang biasanya strukturnya.', 'Plants rarely lack data. What they usually lack is structure.'),
       L('Rapi dulu, baru cepat. 5S yang jalan kelihatan dari lantai, bukan dari poster.', 'Tidy first, then fast. Working 5S shows on the floor, not on a poster.'),
       L('Kesalahan yang bisa dicegah lebih murah daripada yang harus diperiksa. Itu inti poka-yoke.', 'A mistake you prevent is cheaper than one you inspect. That is the heart of poka-yoke.'),
-      L('Dashboard yang tidak dibuka di rapat cuma hiasan.', 'A dashboard nobody opens in the meeting is decoration.'),
+      L('Dashboard yang tidak dibuka di rapat hanya hiasan.', 'A dashboard nobody opens in the meeting is decoration.'),
       L('Angka tanpa definisi dan periode hanyalah opini.', 'A number without a definition and a period is an opinion.')
     ],
     /* Riwayat: urut terbaru. o = kunci di daftar org (untuk link situs resmi). */
     timeline: [
       { y: '2024 –', o: 'hcmi', now: true, what: L('Production Engineer', 'Production Engineer'), where: L('Pabrik alat berat, Cikarang', 'Heavy-equipment plant, Cikarang'),
-        text: L('Menyusun MBOM proyek dari CBOM dan EBOM, mengestimasi waktu proses dan biaya consumable (las, machining, painting, assembly), memimpin dua rapat mingguan lintas departemen, dan sejak Juli 2025 mengolah data robot las jadi dashboard monitoring.', 'Build project MBOMs from CBOM and EBOM, estimate process time and consumable cost (welding, machining, painting, assembly), run two weekly cross-department meetings, and since July 2025 turn welding robot data into a monitoring dashboard.') },
+        text: L('Menyusun MBOM proyek dari CBOM dan EBOM, mengestimasi waktu proses dan biaya consumable (pengelasan, machining, painting, assembly), memimpin dua rapat mingguan lintas departemen, dan sejak Juli 2025 mengolah data robot pengelasan menjadi dashboard monitoring.', 'Build project MBOMs from CBOM and EBOM, estimate process time and consumable cost (welding, machining, painting, assembly), run two weekly cross-department meetings, and since July 2025 turn welding robot data into a monitoring dashboard.') },
       { y: '2023 – 2024', o: 'kawamura', what: L('Quality Control & MR ISO', 'Quality Control & ISO Management Rep.'), where: L('Fabrikasi conveyor dan jig, Karawang', 'Conveyor and jig fabrication, Karawang'),
         text: L('Membuat checksheet dan go/no-go gauge, inspeksi incoming, proses, dan assembly. Sebagai management representative, saya menjalankan audit internal sampai mendampingi audit eksternal perpanjangan ISO 9001 dan ISO 45001.', 'Built checksheets and go/no-go gauges; inspected incoming, in-process and final assembly. As management representative I ran internal audits through to the external renewal audit for ISO 9001 and ISO 45001.') },
       { y: '2022', o: 'gen', what: L('CNC Programmer', 'CNC Programmer'), where: L('Molding body motor listrik, Sidoarjo', 'Electric-motorbike body moulds, Sidoarjo'),
@@ -294,21 +302,21 @@
       { y: '2021 – 2022', o: 'drb', what: L('Pengawas Stockpile, lalu General Affair', 'Stockpile Supervisor, then General Affairs'), where: L('Semarang dan Surabaya', 'Semarang and Surabaya'),
         text: L('Mengawasi penerimaan batubara dari tongkang, surat jalan, logbook, dan estimasi stok. Di Surabaya mengurus payroll proyek perumahan dan mengawasi vendor part bending motor listrik.', 'Supervised coal receipts from barges, delivery notes, logbooks and stock estimates. In Surabaya, handled payroll for a housing project and oversaw a vendor making bent-plate parts for electric motorbikes.') },
       { y: '2021', o: 'pal', what: L('Magang Welding Engineer', 'Welding Engineering Intern'), where: L('Galangan kapal BUMN, Surabaya', 'State shipyard, Surabaya'),
-        text: L('Dua bulan di proyek refurbishment cone crusher mengikuti WPS: preheating, pengelasan, dan PWHT. Hasilnya saya tulis jadi makalah seminar nasional.', 'Two months on a cone-crusher refurbishment following the WPS: preheating, welding and PWHT. I wrote it up as a national seminar paper.') },
+        text: L('Dua bulan di proyek refurbishment cone crusher mengikuti WPS: preheating, pengelasan, dan PWHT. Hasilnya saya tulis menjadi makalah seminar nasional.', 'Two months on a cone-crusher refurbishment following the WPS: preheating, welding and PWHT. I wrote it up as a national seminar paper.') },
       { y: '2019 – 2021', o: 'garnesa', what: L('Staf Chassis → General Manager', 'Chassis Staff → General Manager'), where: L('Tim mobil hemat energi UNESA', 'UNESA energy-efficient car team'),
         text: L('Dari merancang chassis aluminium hollow dengan sambungan rivet, sampai memimpin lima divisi (engine, chassis, body, electric, non-teknis). Body pertama fiberglass hand lay-up, yang kedua karbon vacuum infusion.', 'From designing a riveted hollow-aluminium chassis to leading five divisions (engine, chassis, body, electric, non-technical). The first body was hand-laid fibreglass, the second vacuum-infused carbon.') },
       { y: '2018', o: 'ispat', what: L('Praktik Kerja, Maintenance', 'Work Placement, Maintenance'), where: L('Pabrik wire rod, Sidoarjo', 'Wire-rod mill, Sidoarjo'),
-        text: L('Tiga bulan di refurbishment: menambah material las (hardfacing) pada roll produksi.', 'Three months in refurbishment: hardfacing production rolls.') },
+        text: L('Tiga bulan di bagian refurbishment: perbaikan roll produksi dengan pengelasan.', 'Three months in refurbishment: repairing production rolls by welding.') },
       { y: '2016', o: 'lintech', what: L('Praktik Kerja, Welder GMAW', 'Work Placement, GMAW Welder'), where: L('Fabrikasi baja, Surabaya', 'Steel fabrication, Surabaya'),
-        text: L('Tiga bulan ikut proyek pagar workshop 3×5 m dan cerobong Ø3 m × 10 m: baca gambar, las, assembly, sandblasting, painting, sampai packing.', 'Three months on a 3×5 m workshop fence and a Ø3 m × 10 m stack: reading drawings, welding, assembly, sandblasting, painting and packing.') }
+        text: L('Tiga bulan ikut proyek pagar workshop 3×5 m dan cerobong Ø3 m × 10 m: membaca gambar, pengelasan, assembly, sandblasting, painting, sampai packing.', 'Three months on a 3×5 m workshop fence and a Ø3 m × 10 m stack: reading drawings, welding, assembly, sandblasting, painting and packing.') }
     ],
     education: [
       { o: 'unesa', y: '2025 –', h: L('S2 Teknik Mesin', 'MEng, Mechanical Engineering'), sub: L('IPK sementara 3,87 dari 28 SKS · sedang semester 3', 'Interim GPA 3.87/4 over 28 credits · in semester 3'),
-        items: [L('Artificial Intelligence, Metode Numerik & Simulasi, Matematika Rekayasa', 'Artificial Intelligence, Numerical Methods & Simulation, Engineering Mathematics'), L('Analisis Kegagalan Mekanika, Material & Proses Manufaktur, Nanomaterial', 'Mechanical Failure Analysis, Materials & Manufacturing Processes, Nanomaterials'), L('Technopreneurship, Teknologi Penanganan Pencemaran Lingkungan', 'Technopreneurship, Pollution Control Technology'), L('Sedang: Produk Komposit, Energi Hidrogen, Fuel Cell', 'Current: Composite Products, Hydrogen Energy, Fuel Cells'), L('Tesis: predictive maintenance robot las (LSTM, RUL) untuk efisiensi dan dekarbonisasi', 'Thesis: welding robot predictive maintenance (LSTM, RUL) for efficiency and decarbonisation')] },
+        items: [L('Artificial Intelligence, Metode Numerik & Simulasi, Matematika Rekayasa', 'Artificial Intelligence, Numerical Methods & Simulation, Engineering Mathematics'), L('Analisis Kegagalan Mekanika, Material & Proses Manufaktur, Nanomaterial', 'Mechanical Failure Analysis, Materials & Manufacturing Processes, Nanomaterials'), L('Technopreneurship, Teknologi Penanganan Pencemaran Lingkungan', 'Technopreneurship, Pollution Control Technology'), L('Sedang: Produk Komposit, Energi Hidrogen, Fuel Cell', 'Current: Composite Products, Hydrogen Energy, Fuel Cells'), L('Tesis: predictive maintenance robot pengelasan (LSTM, RUL) untuk efisiensi dan dekarbonisasi', 'Thesis: welding robot predictive maintenance (LSTM, RUL) for efficiency and decarbonisation')] },
       { o: 'unesa', y: '2018 –', h: L('S1 Pendidikan Teknik Mesin', 'BEd, Mechanical Engineering Education'), sub: L('Lulus 7 semester · IPK 3,62', 'Finished in 7 semesters · GPA 3.62/4'),
         items: [L('Elemen mesin, mekanika teknik, termodinamika, mekanika fluida', 'Machine elements, engineering mechanics, thermodynamics, fluid mechanics'), L('CNC, teknologi & praktik pengelasan, teknik pembentukan, CAD', 'CNC, welding technology and practice, forming, CAD'), L('K3, pengendalian mutu, statistik, perawatan mesin, alat ukur', 'Occupational safety, quality control, statistics, maintenance, metrology'), L('PLP: mengajar FCAW 1F–3F selama 3 bulan di SMK Semen Gresik', 'Teaching placement: FCAW 1F–3F for 3 months at a vocational school'), L('Skripsi: video pembelajaran YouTube teknik pengelasan FCAW', 'Thesis: YouTube learning videos for FCAW welding')] },
       { o: 'smk', y: '– 2018', h: L('SMK Teknik Pengelasan Kapal', 'Vocational School, Ship Welding'), sub: L('Sertifikat kompetensi nilai 95', 'Competency certificate, score 95'),
-        items: [L('Las OAW, SMAW, FCAW, dan dasar GMAW', 'OAW, SMAW, FCAW and basic GMAW welding'), L('Rotasi: rancang bangun kapal (AutoCAD), konstruksi baja & NDT, kelistrikan, interior, permesinan kapal', 'Rotations: ship design (AutoCAD), steel construction & NDT, electrical, outfitting, marine machinery'), L('Gambar teknik manual dan dasar bahasa Jepang', 'Manual technical drawing and basic Japanese')] }
+        items: [L('Pengelasan OAW, SMAW, FCAW, dan dasar GMAW', 'OAW, SMAW, FCAW and basic GMAW welding'), L('Rotasi: rancang bangun kapal (AutoCAD), konstruksi baja & NDT, kelistrikan, interior, permesinan kapal', 'Rotations: ship design (AutoCAD), steel construction & NDT, electrical, outfitting, marine machinery'), L('Gambar teknik manual dan dasar bahasa Jepang', 'Manual technical drawing and basic Japanese')] }
     ],
     certs: [
       { y: '', h: L('Operasi Robot Welding Panasonic', 'Panasonic Welding Robot Operation'), by: L('Pelatihan di tempat kerja', 'Workplace training') },
@@ -324,18 +332,17 @@
       { h: 'Garnesa Racing Team', o: 'garnesa', text: L('General Manager dan Kepala Scrutineering. Panitia scrutineering KMHE 2021: merekrut dan melatih 15 orang untuk inspeksi dimensi, rem, keselamatan, berat, suara, dan grounding.', 'General Manager and Head of Scrutineering. On the KMHE 2021 scrutineering committee I recruited and trained 15 inspectors for dimensions, brakes, safety, weight, noise and grounding.') },
       { h: 'SCEMIC', text: L('Komunitas riset Teknik Mesin: karya tulis ilmiah dan PKM kewirausahaan.', 'Mechanical engineering research community: scientific writing and student enterprise programs.') },
       { h: L('Robot KECE UNESA', 'Robot KECE UNESA'), text: L('Ikut mengembangkan robot pembantu penanganan pasien COVID-19 yang diserahkan ke Pemprov Jawa Timur.', 'Helped develop a COVID-19 patient-care robot handed over to the East Java provincial government.'), url: 'https://unesa.ac.id/unesa-serahkan-bantuan-robot-kece-ke-pemprov-jatim-untuk-tangani-pasien-covid/' },
-      { h: L('KKN Penanggulangan Bencana', 'Disaster-response community service'), text: L('Prototipe alat deteksi banjir dan peta rawan banjir di Sidoarjo, plus relawan vaksinasi COVID-19.', 'A flood-detector prototype and a flood-risk map for Sidoarjo, plus COVID-19 vaccination volunteering.') },
-      { h: L('FMM UNESA · Kominfo, Remaja Masjid', 'Muslim Student Forum (comms), mosque youth group'), text: L('Mengelola informasi kegiatan dan komunikasi organisasi.', 'Handled activity information and organisation communications.') }
+      { h: L('KKN Penanggulangan Bencana', 'Disaster-response community service'), text: L('Prototipe alat deteksi banjir dan peta rawan banjir di Sidoarjo, plus relawan vaksinasi COVID-19.', 'A flood-detector prototype and a flood-risk map for Sidoarjo, plus COVID-19 vaccination volunteering.') }
     ],
 
     /* ---------------- kapabilitas ---------------- */
     levels: { daily: L('Dipakai harian', 'Used daily'), project: L('Dipakai di proyek', 'Used in projects'), growing: L('Sedang dikembangkan', 'Developing'), research: L('Riset', 'Research'), field: L('Dasar lapangan', 'Shop-floor foundation') },
     caps: [
-      [L('Struktur BOM / MBOM (CBOM → EBOM → MBOM)', 'BOM / MBOM structuring (CBOM → EBOM → MBOM)'), L('Pekerjaan harian, BOM Bridge', 'Daily work, BOM Bridge'), 'daily'],
-      [L('Estimasi waktu proses dan biaya consumable', 'Process-time and consumable cost estimation'), L('Las, machining, painting, assembly', 'Welding, machining, painting, assembly'), 'daily'],
-      [L('Memimpin rapat lintas departemen', 'Running cross-department meetings'), L('Dua rapat mingguan, Change Board', 'Two weekly meetings, Change Board'), 'daily'],
-      [L('Dashboard dan otomasi Excel / Google Sheets', 'Excel / Google Sheets dashboards and automation'), L('Produk LABORU, konverter TKDN', 'LABORU products, TKDN converter'), 'daily'],
-      [L('Analisis robot las: OEE, stop time, alarm', 'Welding robot analysis: OEE, stop time, alarms'), L('Robot Insight, rapat monitoring dua mingguan', 'Robot Insight, fortnightly monitoring meeting'), 'project'],
+      [L('Struktur Bill of Material / MBOM (CBOM → EBOM → MBOM)', 'BOM / MBOM structuring (CBOM → EBOM → MBOM)'), L('Pekerjaan harian, Bill of Material Bridge', 'Daily work, Bill of Material Bridge'), 'daily'],
+      [L('Estimasi waktu proses dan biaya consumable', 'Process-time and consumable cost estimation'), L('Pengelasan, machining, painting, assembly', 'Welding, machining, painting, assembly'), 'daily'],
+      [L('Memimpin rapat lintas departemen', 'Running cross-department meetings'), L('Dua rapat mingguan, dashboard perubahan komponen', 'Two weekly meetings, change dashboard'), 'daily'],
+      [L('Dashboard dan otomasi Excel / Google Sheets', 'Excel / Google Sheets dashboards and automation'), L('Produk LABORU, alat kerja internal', 'LABORU products, internal tools'), 'daily'],
+      [L('Analisis robot pengelasan: OEE, stop time, alarm', 'Welding robot analysis: OEE, stop time, alarms'), L('Robot Insight, rapat monitoring dua mingguan', 'Robot Insight, fortnightly monitoring meeting'), 'project'],
       [L('Sistem mutu: ISO 9001 dan ISO 45001', 'Quality systems: ISO 9001 and ISO 45001'), L('MR untuk audit perpanjangan', 'MR for a renewal audit'), 'project'],
       [L('5S, Kaizen, K3, Poka-Yoke (go/no-go gauge)', '5S, Kaizen, safety, poka-yoke (go/no-go gauges)'), L('QC fabrikasi, pabrik alat berat', 'Fabrication QC, heavy-equipment plant'), 'project'],
       [L('Planning: roadmap, jadwal, anggaran, KPI tim', 'Planning: roadmap, schedule, budget, team KPIs'), L('Garnesa, 50 anggota', 'Garnesa, 50 members'), 'project'],
@@ -344,12 +351,12 @@
       [L('Python, SQL, PostgreSQL', 'Python, SQL, PostgreSQL'), L('Backend monitoring robot (berjalan)', 'Robot monitoring backend (in progress)'), 'growing'],
       [L('Predictive maintenance: LSTM, RUL', 'Predictive maintenance: LSTM, RUL'), L('Tesis S2', 'Master’s thesis'), 'research'],
       [L('CNC: Mastercam, PowerMill, setting dan operasi', 'CNC: Mastercam, PowerMill, setup and operation'), L('Programmer CNC molding', 'Mould CNC programmer'), 'field'],
-      [L('Pengelasan: SMAW, FCAW, GMAW, OAW, hardfacing', 'Welding: SMAW, FCAW, GMAW, OAW, hardfacing'), L('SMK, tiga kali magang', 'School, three placements'), 'field'],
+      [L('Pengelasan: SMAW, FCAW, GMAW, OAW', 'Welding: SMAW, FCAW, GMAW, OAW'), L('SMK, tiga kali magang', 'School, three placements'), 'field'],
       [L('Komposit: fiberglass hand lay-up, karbon vacuum infusion', 'Composites: hand-laid fibreglass, vacuum-infused carbon'), L('Body mobil Garnesa', 'Garnesa car bodies'), 'field']
     ],
     path: [
-      { h: L('Lantai produksi', 'Shop floor'), items: [L('Las, CNC, inspeksi', 'Welding, CNC, inspection')] },
-      { h: L('Engineering', 'Engineering'), items: [L('BOM, costing, waktu proses', 'BOM, costing, process time')] },
+      { h: L('Kerja lapangan', 'Field work'), items: [L('Pengelasan, CNC, inspeksi', 'Welding, CNC, inspection')] },
+      { h: L('Engineering', 'Engineering'), items: [L('Bill of Material, costing, waktu proses', 'BOM, costing, process time')] },
       { h: L('Sistem kerja', 'Work systems'), items: [L('5S, Kaizen, ISO, K3', '5S, Kaizen, ISO, safety')] },
       { h: L('Visualisasi', 'Visualisation'), items: [L('Dashboard yang dibaca di rapat', 'Dashboards read in meetings')] },
       { h: L('Otomasi', 'Automation'), items: [L('Excel, Python, draf email', 'Excel, Python, email drafts')] },
@@ -361,27 +368,27 @@
       { h: L('Rapikan dulu', 'Tidy it first'), text: L('Seiri, seiton: buang yang tidak perlu, tulis definisi metrik dan periodenya sebelum menggambar grafik.', 'Sort and set in order: drop what isn’t needed, write the metric definitions and period before any chart.') },
       { h: L('Ukur dengan jujur', 'Measure honestly'), text: L('Grafik pertama dibuat dari data apa adanya, termasuk bagian yang tidak enak dilihat.', 'The first chart uses the data as it is, including the uncomfortable parts.') },
       { h: L('Cegah, lalu otomasikan', 'Prevent, then automate'), text: L('Pasang pencegah salah input (poka-yoke), lalu otomasikan yang benar-benar berulang. Keputusan tetap di tangan orang.', 'Add input mistake-proofing, then automate only what truly repeats. Decisions stay with people.') },
-      { h: L('Serahkan dan jaga', 'Hand over and keep it running'), text: L('Panduan pakai, 30 hari perbaikan, dan catatan hasil yang bisa dicek ulang. Kaizen-nya jalan terus.', 'A user guide, 30 days of fixes, and a results log anyone can re-check. The kaizen keeps going.') }
+      { h: L('Serahkan dan jaga', 'Hand over and keep it running'), text: L('Panduan penggunaan, 30 hari perbaikan, dan catatan hasil yang bisa dicek ulang. Kaizen-nya jalan terus.', 'A user guide, 30 days of fixes, and a results log anyone can re-check. The kaizen keeps going.') }
     ],
     research: {
-      title: L('Efisiensi energi dan prediksi perawatan robot las', 'Energy efficiency and predictive maintenance for welding robots'),
-      text: L('Tesis S2 saya menyambungkan tiga hal yang biasanya dilaporkan terpisah: waktu berhenti robot, energi per hasil las, dan kapan consumable perlu diganti.', 'My master’s thesis connects three things usually reported separately: robot stop time, energy per unit of weld output, and when consumables need changing.'),
+      title: L('Efisiensi energi dan prediksi perawatan robot pengelasan', 'Energy efficiency and predictive maintenance for welding robots'),
+      text: L('Tesis S2 saya menyambungkan tiga hal yang biasanya dilaporkan terpisah: waktu berhenti robot, energi per hasil pengelasan, dan kapan consumable perlu diganti.', 'My master’s thesis connects three things usually reported separately: robot stop time, energy per unit of weld output, and when consumables need changing.'),
       points: [
-        [L('Metrik energi', 'Energy metric'), L('Specific energy consumption: kWh per satuan kawat las yang terdeposit.', 'Specific energy consumption: kWh per unit of wire deposited.')],
+        [L('Metrik energi', 'Energy metric'), L('Specific energy consumption: kWh per satuan kawat pengelasan yang terdeposit.', 'Specific energy consumption: kWh per unit of wire deposited.')],
         [L('Emisi', 'Emissions'), L('Scope 2 berbasis lokasi mengikuti GHG Protocol.', 'Location-based Scope 2 following the GHG Protocol.')],
         [L('Model', 'Models'), L('LSTM dibandingkan dengan regresi linear dan polinomial untuk memperkirakan sisa umur (RUL).', 'LSTM compared with linear and polynomial regression for remaining useful life (RUL).')],
-        [L('Ukuran galat', 'Error measure'), L('MAE, karena lebih gampang dibaca orang lapangan daripada RMSE.', 'MAE, because shop-floor people read it more easily than RMSE.')],
+        [L('Ukuran galat', 'Error measure'), L('MAE, karena lebih mudah dibaca orang lapangan daripada RMSE.', 'MAE, because shop-floor people read it more easily than RMSE.')],
         [L('Status', 'Status'), L('Data mulai terambil otomatis dari sebagian robot. Hasil belum saya publikasikan sebelum validasinya selesai.', 'Data is now captured automatically from some robots. I am not publishing results before validation is complete.')]
       ]
     },
     faq: [
-      [L('Bagaimana cara kerjanya?', 'How does the work happen?'), L('Jarak jauh dan tertulis. Saya mengerjakan di malam hari dan akhir pekan (WIB), dengan satu update tertulis tiap minggu dan panggilan singkat kalau perlu.', 'Remote and in writing. I work evenings and weekends (UTC+7), with one written update a week and a short call when needed.')],
+      [L('Bagaimana cara kerjanya?', 'How does the work happen?'), L('Jarak jauh dan tertulis. Saya mengerjakan di malam hari dan akhir pekan (WIB), dengan satu update tertulis tiap minggu dan panggilan singkat jika perlu.', 'Remote and in writing. I work evenings and weekends (UTC+7), with one written update a week and a short call when needed.')],
       [L('Bisa datang ke lokasi?', 'Can you come on site?'), L('Bisa, di akhir pekan untuk area Jabodetabek. Di luar itu ongkos perjalanan dihitung terpisah.', 'Yes, on weekends around Greater Jakarta. Elsewhere, travel is quoted separately.')],
       [L('Usaha saya kecil. Masih cocok?', 'My business is small. Is it still a fit?'), L('Cocok. Paket Rapikan Bengkel dan Bedah Data memang dibuat untuk UMKM dan bengkel yang ingin naik kelas tanpa beli sistem mahal.', 'Yes. The Workshop Tidy-up and Data Review packages are made for small businesses and workshops that want to level up without buying expensive systems.')],
-      [L('Data kami rahasia.', 'Our data is confidential.'), L('Saya bersedia tanda tangan NDA. Nama part, pemasok, dan harga boleh Anda samarkan; saya cuma butuh strukturnya. File saya hapus setelah proyek selesai.', 'I am happy to sign an NDA. You can mask part names, suppliers and prices; I only need the structure. Files are deleted when the project ends.')],
-      [L('Pembayarannya bagaimana?', 'How does payment work?'), L('Bedah Data dibayar di awal. Proyek lain 50% di awal dan 50% saat serah terima, pakai invoice.', 'The Data Review is paid upfront. Other projects are 50% upfront and 50% at hand-over, with an invoice.')],
+      [L('Data kami rahasia.', 'Our data is confidential.'), L('Saya bersedia tanda tangan NDA. Nama part, pemasok, dan harga boleh Anda samarkan; saya hanya butuh strukturnya. File saya hapus setelah proyek selesai.', 'I am happy to sign an NDA. You can mask part names, suppliers and prices; I only need the structure. Files are deleted when the project ends.')],
+      [L('Pembayarannya bagaimana?', 'How does payment work?'), L('Bedah Data dibayar di awal. Proyek lain 50% di awal dan 50% saat serah terima, dengan invoice.', 'The Data Review is paid upfront. Other projects are 50% upfront and 50% at hand-over, with an invoice.')],
       [L('Kalau ada yang error setelah serah terima?', 'What if something breaks after hand-over?'), L('Perbaikan bug gratis 30 hari. Perubahan lingkup dibicarakan sebagai pekerjaan baru.', 'Bug fixes are free for 30 days. Scope changes are discussed as new work.')],
-      [L('Bisa mulai dari Excel yang sudah kami pakai?', 'Can you start from the Excel we already use?'), L('Bisa, dan memang itu yang saya sarankan. Alat yang mengikuti kebiasaan tim lebih mungkin dipakai.', 'Yes, and that is what I recommend. A tool that follows the team’s habits is more likely to be used.')],
+      [L('Bisa mulai dari Excel yang sudah kami gunakan?', 'Can you start from the Excel we already use?'), L('Bisa, dan memang itu yang saya sarankan. Alat yang mengikuti kebiasaan tim lebih mungkin dipakai.', 'Yes, and that is what I recommend. A tool that follows the team’s habits is more likely to be used.')],
       [L('Proyek apa yang tidak Anda ambil?', 'What work do you not take?'), L('Pekerjaan yang bersinggungan dengan pemberi kerja saya, pemasoknya, atau pesaing langsungnya, dan pekerjaan yang harus hadir di lokasi pada jam kerja.', 'Work that touches my employer, its suppliers or its direct competitors, and work that needs me on site during working hours.')]
     ]
   };
@@ -395,21 +402,29 @@
     hello: L('Halo, saya', 'Hello, I’m'),
     bigword: 'PORTOFOLIO',
     role: L('Production engineer · manufaktur alat berat', 'Production engineer · heavy-equipment manufacturing'),
-    line: L('Saya paham proses dari nol sampai jadi. Latar saya kuat di teknik, manajemen, dan planning, jadi banyak improvement saya bergerak di visualisasi, otomasi, analisis, efisiensi, dan optimasi. Terbiasa dengan standar Jepang (5S, Kaizen, Safety, Poka-Yoke), saya siap membantu perusahaan, organisasi, sampai UMKM dan bengkel untuk naik kelas.', 'I know the process from zero to finished product. My background is strong in engineering, management and planning, so most of my improvements are about visualisation, automation, analysis, efficiency and optimisation. Used to Japanese standards (5S, Kaizen, Safety, Poka-Yoke), I help companies, organisations, small businesses and workshops level up.'),
+    line: L('Production engineer yang menguasai visualisasi, otomatisasi, analisis, efisiensi, dan optimasi untuk perbaikan yang membuat perusahaan maupun UMKM naik kelas. Terbiasa bekerja dengan standar Jepang.', 'A production engineer who brings visualisation, automation, analysis, efficiency and optimisation to improvements that help companies and small businesses level up. Used to working with Japanese standards.'),
     see: L('Lihat karya', 'See the work'),
+    heroFeat: [
+      ['wrench', L('Teknik', 'Engineering'), L('Pengelasan, CNC, inspeksi, Bill of Material, dan estimasi biaya.', 'Welding, CNC, inspection, bills of material and cost estimates.')],
+      ['board', L('Manajemen & planning', 'Management & planning'), L('Memimpin tim, rapat lintas departemen, dan persiapan audit ISO.', 'Leading teams, cross-department meetings and ISO audit preparation.')],
+      ['chart', L('Data & otomasi', 'Data & automation'), L('Catatan manual menjadi dashboard yang mudah dianalisis.', 'Handwritten records turned into dashboards that are easy to analyse.')]
+    ],
     stats: [[L('sejak', 'since'), '2016', L('di dunia manufaktur', 'in manufacturing')], ['7', '', L('pabrik & bengkel tempat saya belajar dan bekerja', 'plants and shops I’ve learned and worked in')], ['3', '', L('alat yang bisa langsung dicoba', 'tools you can try right now')]],
     places: L('Pernah belajar dan bekerja di', 'Learned and worked at'),
     placeList: ['smk', 'lintech', 'ispat', 'unesa', 'garnesa', 'pal', 'drb', 'gen', 'kawamura', 'hcmi', 'laboru'],
-    s1: { n: '01 / KARYA', a: L('Lihat dulu,', 'Look first,'), b: L('baru baca.', 'read later.'), lead: L('Cuplikan alat yang saya bangun. Klik untuk memperbesar. Semua demo pakai data contoh.', 'Previews of tools I’ve built. Click to enlarge. Every demo runs on sample data.') },
-    filters: [['all', L('Semua', 'All')], ['analitik', L('Analitik', 'Analytics')], ['workflow', L('Workflow', 'Workflow')], ['bom', 'BOM'], ['laboru', L('Game & produk', 'Games & products')]],
+    s1: { n: '01 / KARYA', a: L('Lihat dulu,', 'Look first,'), b: L('baru membaca.', 'read later.'), lead: L('Cuplikan alat yang saya bangun. Klik untuk memperbesar. Semua demo menggunakan data contoh.', 'Previews of tools I’ve built. Click to enlarge. Every demo runs on sample data.') },
+    filters: [['all', L('Semua', 'All')], ['analitik', L('Analitik', 'Analytics')], ['workflow', L('Workflow', 'Workflow')], ['bom', 'Bill of Material'], ['sistem', L('ISO & optimasi', 'ISO & optimisation')], ['laboru', L('Game & produk', 'Games & products')]],
     s3: { n: '02 / SINGKATNYA', a: L('Paham prosesnya.', 'I know the process.'), b: L('Rapi hasilnya.', 'I tidy the result.'),
-      text: L('Sejak 2016 saya berpindah posisi di manufaktur: welder, programmer CNC, QC, sampai production engineer. Jadi kalau diajak membereskan proses, saya mulai dari lantai produksi, bukan dari slide.', 'Since 2016 I’ve moved through manufacturing roles: welder, CNC programmer, QC, production engineer. So when I’m asked to fix a process, I start on the shop floor, not in a slide deck.'),
+      text: L('Sejak 2016 saya berpindah posisi di manufaktur: welder, programmer CNC, QC, sampai production engineer. Saya terbiasa memulai dari kondisi yang berantakan sampai menjadi rapi dan maksimal.', 'Since 2016 I’ve moved through manufacturing roles: welder, CNC programmer, QC, production engineer. I’m used to starting from a messy situation and leaving it tidy and running at its best.'),
       pillars: [
-        [L('Engineering', 'Engineering'), L('Las, CNC, inspeksi, BOM, estimasi biaya dan waktu proses.', 'Welding, CNC, inspection, BOMs, cost and process-time estimates.')],
-        [L('Manajemen & planning', 'Management & planning'), L('Pernah memimpin tim 50 orang, menjalankan rapat lintas departemen tiap minggu, dan menyiapkan audit ISO.', 'Led a 50-person team, run weekly cross-department meetings, and prepared ISO audits.')],
-        [L('Data & otomasi', 'Data & automation'), L('Excel jadi dashboard, salin-tempel jadi satu klik, log mesin jadi keputusan.', 'Excel into dashboards, copy-paste into one click, machine logs into decisions.')]
+        [L('Visualisasi', 'Visualisation'), L('Dari catatan manual atau Excel menjadi tampilan yang lebih enak dilihat dan mudah dianalisis.', 'From handwritten notes or Excel to views that are easier to read and analyse.'), 'eye'],
+        [L('Otomatisasi', 'Automation'), L('Process reduction: langkah berulang dipangkas, laporan tersusun sendiri.', 'Process reduction: repeated steps cut, reports that build themselves.'), 'gear'],
+        [L('Analisis', 'Analysis'), L('Data mesin dan produksi diurutkan sampai penyebab terbesarnya terlihat.', 'Machine and production data ranked until the biggest cause shows.'), 'chart'],
+        [L('Efisiensi', 'Efficiency'), L('Cost reduction: waktu proses, consumable, dan biaya dihitung dengan asumsi tertulis.', 'Cost reduction: process time, consumables and cost worked out with written assumptions.'), 'coin'],
+        [L('Optimasi', 'Optimisation'), L('Kaizen berkelanjutan: 5S, Poka-Yoke, dan alur kerja yang lebih ringkas.', 'Continuous kaizen: 5S, poka-yoke and leaner work flows.'), 'up'],
+        [L('Hemat energi', 'Energy saving'), L('Dekarbonisasi: energi per hasil kerja dan emisi diukur, lalu diturunkan.', 'Decarbonisation: energy per output and emissions measured, then reduced.'), 'leaf']
       ],
-      stdLbl: L('Terbiasa kerja dengan standar Jepang', 'Used to Japanese shop-floor standards'),
+      stdLbl: L('Terbiasa bekerja dengan standar Jepang', 'Used to Japanese standards'),
       std: ['5S', 'Kaizen', 'K3 · Safety', 'Poka-Yoke', 'ISO 9001', 'ISO 45001'],
       who: L('Yang saya suka: membereskan proses yang berantakan, baik di pabrik besar, organisasi, maupun bengkel kecil yang ingin naik kelas.', 'What I enjoy: untangling messy processes, whether in a large plant, an organisation, or a small workshop that wants to level up.'),
       quote: L('Tidak ada yang tidak bisa. Tinggal mau atau tidak.', 'Nothing is impossible to learn. It comes down to whether you want to.') },
@@ -418,23 +433,21 @@
     awards: [
       ['2020', L('Juara 1 Sistem Kemudi & Pengereman', '1st place, Steering & Braking'), L('Kontes Mobil Hemat Energi nasional, kategori Urban · saya General Manager tim', 'National energy-efficient car contest, Urban class · I was team General Manager')],
       ['2020', L('Lolos Shell Eco-marathon Asia', 'Qualified for Shell Eco-marathon Asia'), L('Lolos fase 3, lalu ikut Pitch the Future di Virtual League 2021', 'Passed phase 3, then joined Pitch the Future in the 2021 Virtual League'), 'https://www.shellecomarathon.com/'],
-      ['2019', L('Juara 3 Urban Diesel · 87 km/liter', '3rd place, Urban Diesel · 87 km/litre'), L('KMHE 2019 di Universitas Negeri Malang · tim inti chassis dan time keeper', 'KMHE 2019 in Malang · core chassis team and time keeper'), 'https://unesa.ac.id/persiapan-terbatas-garnesa-racing-team-sabet-juara-3-kategori-urban-diesel-kmhe-2019/'],
-      ['2021', L('Pemakalah seminar nasional', 'National seminar speaker'), L('SATRIA 2021, FT UNESA · refurbishment cone crusher dengan las', 'SATRIA 2021, UNESA · cone-crusher refurbishment by welding')],
-      ['2018', L('Juara 3 Karya Tulis Ilmiah', '3rd place, scientific writing'), L('SCEMIC Weekend of Technology, Teknik Mesin UNESA', 'SCEMIC Weekend of Technology, UNESA Mechanical Engineering')]
+      ['2019', L('Juara 3 Urban Diesel · 87 km/liter', '3rd place, Urban Diesel · 87 km/litre'), L('KMHE 2019 di Universitas Negeri Malang · tim inti chassis dan time keeper', 'KMHE 2019 in Malang · core chassis team and time keeper'), 'https://unesa.ac.id/persiapan-terbatas-garnesa-racing-team-sabet-juara-3-kategori-urban-diesel-kmhe-2019/']
     ],
     s4: { n: '04 / PERJALANAN', a: L('Membuat semuanya', 'Making everything'), b: L('terukur.', 'measurable.'), w1: L('Kemenangan kecil.', 'Little wins.'), w2: L('Arti besar.', 'Big meaning.') },
     /* garis besar untuk Ringkas */
     outline: [
-      ['2016', L('Mulai ngelas', 'Started welding'), L('SMK Teknik Pengelasan Kapal', 'Ship welding school')],
-      ['2018', L('Kuliah dan tim balap hemat energi', 'University and an eco-car team'), L('UNESA · Garnesa Racing Team', 'UNESA · Garnesa Racing Team')],
+      ['2016', L('Mulai mengelas', 'Started welding'), L('SMK Teknik Pengelasan Kapal', 'Ship welding school')],
+      ['2018', L('Kuliah dan tim mobil hemat energi', 'University and an energy-efficient car team'), L('UNESA · Garnesa Racing Team', 'UNESA · Garnesa Racing Team')],
       ['2021', L('Masuk dunia kerja', 'Started working'), L('Stockpile, CNC, quality control', 'Stockpile, CNC, quality control')],
       ['2024', L('Production engineer', 'Production engineer'), L('Pabrik alat berat, Cikarang', 'Heavy-equipment plant, Cikarang'), 1],
-      ['2025', L('S2 dan LABORU', 'Master’s and LABORU'), L('Riset robot las · produk digital', 'Welding robot research · digital products')]
+      ['2025', L('S2 dan LABORU', 'Master’s and LABORU'), L('Riset robot pengelasan · produk digital', 'Welding robot research · digital products')]
     ],
     wins: [L('Lulus S1 dalam 7 semester', 'Finished my bachelor’s in 7 semesters'), L('Memimpin sekitar 50 orang lewat 5 kepala divisi', 'Led about 50 people through 5 division heads'), L('Ikut membangun robot pembantu pasien COVID-19', 'Helped build a COVID-19 patient-care robot'), L('IPK S2 sementara 3,87 sambil kerja penuh waktu', 'Master’s GPA 3.87 so far while working full time')],
     nudge: { a: L('Ini versi singkatnya.', 'That’s the short version.'), text: L('Versi lengkapnya ada di Mendalam: studi kasus, cara kerja, riwayat lengkap, pendidikan, sertifikat, dan produk.', 'The full version lives in Deep dive: case studies, how I work, full history, education, certificates and products.'), cta: L('Buka versi lengkap', 'Open the full version'), bubble: L('Yang detail ada di sebelah. Ayo saya antar.', 'The details are next door. Let me take you.') },
-    s5: { n: '05 / DI LUAR JAM KERJA', a: L('Saya juga', 'I also'), b: L('bikin game.', 'make games.'), text: L('LABORU itu game kantor pixel untuk mengatur kerja, kebiasaan, dan uang. Labo, si bulat hijau di pojok kanan bawah, adalah maskotnya.', 'LABORU is a pixel office game for organising work, habits and money. Labo, the round green one in the bottom corner, is its mascot.'), cta: L('Kenalan dengan LABORU', 'Meet LABORU') },
-    s6: { a: L('Mari', 'Let’s'), b: L('ngobrol.', 'talk.'), text: L('Mau tanya, ajak kerja sama, atau sekadar kenalan? Kirim pesan saja. Saya balas sendiri, biasanya malam hari.', 'Want to ask something, work together, or just say hi? Send a message. I reply myself, usually in the evening.'),
+    s5: { n: '05 / DI LUAR JAM KERJA', a: L('Saya juga', 'I also'), b: L('membuat game.', 'make games.'), text: L('LABORU itu game kantor pixel untuk mengatur kerja, kebiasaan, dan uang. Labo, si bulat hijau di pojok kanan bawah, adalah maskotnya.', 'LABORU is a pixel office game for organising work, habits and money. Labo, the round green one in the bottom corner, is its mascot.'), cta: L('Mengenal LABORU', 'Meet LABORU') },
+    s6: { a: L('Mari', 'Let’s'), b: L('berdiskusi.', 'talk.'), text: L('Mau tanya, ajak kerja sama, atau sekadar berkenalan? Kirim pesan saja. Saya balas sendiri, biasanya malam hari.', 'Want to ask something, work together, or just say hi? Send a message. I reply myself, usually in the evening.'),
       side: L('Belum yakin mau tanya apa? Labo bisa bantu cari jawabannya dulu.', 'Not sure what to ask yet? Labo can help you find the answer first.'),
       deep: L('Butuh detail lengkap? Buka versi Mendalam.', 'Need the full detail? Open the Deep dive.') },
     deepIntro: L('Versi lengkap · untuk yang ingin membaca detail', 'Full version · for readers who want the detail'),
@@ -445,10 +458,12 @@
   S.gallery = [
     { f: 'ri-overview', t: 'analitik', c: 'robot-insight', cap: L('Robot Insight · ringkasan armada robot', 'Robot Insight · fleet overview'), s: W },
     { f: 'lb-title', t: 'laboru', cap: L('LABORU · layar judul', 'LABORU · title screen'), s: P, link: 'laboru' },
-    { f: 'cb-board', t: 'workflow', c: 'change-board', cap: L('Change Board · siapa memegang bola', 'Change Board · who holds the ball'), s: W },
-    { f: 'bb-mbom', t: 'bom', c: 'bom-bridge', cap: L('BOM Bridge · MBOM dengan alasan per baris', 'BOM Bridge · MBOM with a reason on every line'), s: W },
+    { f: 'cb-board', t: 'workflow', c: 'change-board', cap: L('Dashboard perubahan komponen · siapa memegang bola', 'Change dashboard · who holds the ball'), s: W },
+    { f: 'bb-mbom', t: 'bom', c: 'bom-bridge', cap: L('Bill of Material Bridge · MBOM dengan alasan per baris', 'Bill of Material Bridge · MBOM with a reason on every line'), s: W },
+    { f: 'iso-overview', t: 'sistem', demo: 'demos/iso-ready/index.html', cap: L('Persiapan audit ISO · kesiapan per klausul', 'ISO audit prep · readiness per clause'), s: W },
+    { f: 'op-overview', t: 'sistem', demo: 'demos/optimasi/index.html', cap: L('Optimasi perusahaan · biaya, energi, 5S', 'Company optimisation · cost, energy, 5S'), s: W },
     { f: 'lb-lobby', t: 'laboru', cap: L('LABORU · lobi kantor pixel', 'LABORU · pixel office lobby'), s: H, link: 'laboru' },
-    { f: 'ri-predict', t: 'analitik', c: 'robot-insight', cap: L('Prakiraan umur liner kawat las', 'Wire-liner life forecast'), s: W },
+    { f: 'ri-predict', t: 'analitik', c: 'robot-insight', cap: L('Prakiraan umur liner kawat pengelasan', 'Wire-liner life forecast'), s: W },
     { f: 'cb-timeline', t: 'workflow', c: 'change-board', cap: L('Gantt perubahan engineering', 'Engineering change Gantt'), s: W },
     { f: 'ri-oee', t: 'analitik', c: 'robot-insight', cap: L('Ke mana jam produksi pergi', 'Where the production hours go'), s: W },
     { f: 'lb-ratrace', t: 'laboru', cap: L('LABORU · game rat race', 'LABORU · rat-race game'), s: P, link: 'laboru' },
@@ -462,6 +477,11 @@
     { f: 'cb-analytics', t: 'workflow', c: 'change-board', cap: L('Standar vs aktual per departemen', 'Standard vs actual per department'), s: W },
     { f: 'ri-cm', t: 'analitik', c: 'robot-insight', cap: L('Register countermeasure', 'Countermeasure register'), s: W },
     { f: 'bb-cbom', t: 'bom', c: 'bom-bridge', cap: L('Konfigurasi pesanan (CBOM)', 'Order configuration (CBOM)'), s: W },
+    { f: 'op-5s', t: 'sistem', demo: 'demos/optimasi/index.html#5s', cap: L('Audit 5S per area', '5S audit per area'), s: W },
+    { f: 'iso-find', t: 'sistem', demo: 'demos/iso-ready/index.html#temuan', cap: L('Temuan audit dan CAPA', 'Audit findings and CAPA'), s: W },
+    { f: 'op-cost', t: 'sistem', demo: 'demos/optimasi/index.html#biaya', cap: L('Kalkulator biaya per unit', 'Unit cost calculator'), s: W },
+    { f: 'op-energy', t: 'sistem', demo: 'demos/optimasi/index.html#energi', cap: L('Energi dan emisi CO₂', 'Energy and CO₂ emissions'), s: W },
+    { f: 'iso-check', t: 'sistem', demo: 'demos/iso-ready/index.html#checklist', cap: L('Checklist klausul ISO', 'ISO clause checklist'), s: W },
     { f: 'lb-hub', t: 'laboru', cap: L('Company System Hub', 'Company System Hub'), s: W, link: 'laboru' },
     { f: 'ri-energy', t: 'analitik', c: 'robot-insight', cap: L('Energi per kg kawat dan emisi', 'Energy per kg of wire and emissions'), s: W },
     { f: 'cb-drawer', t: 'workflow', c: 'change-board', cap: L('Riwayat satu kasus', 'One case history'), s: W },

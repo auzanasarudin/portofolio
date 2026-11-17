@@ -47,17 +47,18 @@
 <main id="main">
   <!-- ============ HERO ============ -->
   <section class="hero" id="top">
-    <div class="bigword" aria-hidden="true" id="bigword">PORTOFOLIO</div>
+    <div class="bigword only-deep" aria-hidden="true" id="bigword">PORTOFOLIO</div>
     <div class="wrap hero-grid">
       <div class="hero-txt">
         <p class="eyebrow" id="hRole"></p>
         <p class="hello" id="hHello">Halo, saya</p>
-        <h1 class="name">Auzan<br>Asarudin<i>.</i></h1>
+        <h1 class="name">Auzan <br>Asarudin<i>.</i></h1>
         <p class="hline" id="hLine"></p>
+        <ul class="hfeat only-overview" id="hFeat"></ul>
         <div class="hero-cta"><a class="btn pri" href="#karya" id="hSee">Lihat karya</a><button type="button" class="btn ghost" data-mode-btn="deep"><span data-t="tb.toDeep">Buka lembar 2</span> <span aria-hidden="true">→</span></button></div>
-        <ul class="hstats" id="hStats"></ul>
+        <ul class="hstats only-deep" id="hStats"></ul>
       </div>
-      <div class="hero-screen" aria-label="Cuplikan karya">
+      <div class="hero-screen only-deep" aria-label="Cuplikan karya">
         <div class="browser">
           <div class="bar"><i></i><i></i><i></i><span id="hUrl">auzanasarudin.github.io/portofolio</span></div>
           <div class="reel" id="reel"></div>
@@ -65,6 +66,7 @@
         <div class="reel-dots" id="reelDots"></div>
       </div>
     </div>
+    <div class="scene only-overview" id="scene"></div>
     <div class="ticker" aria-label="Tempat belajar dan bekerja"><span class="tk-lbl" id="placesLbl"></span><div class="tk-track"><div class="tk-move" id="places"></div></div></div>
   </section>
 
@@ -194,6 +196,9 @@
     <section id="produk" class="sec">
       <div class="wrap">
         <div class="sh"><h2 data-t="sec.products">Produk digital</h2><p class="lead" data-t="sec.productsLead"></p></div>
+        <h3 class="h3 first" data-t="sec.showcase">Sistem siap pakai untuk perusahaan</h3>
+        <div class="showcase" id="showcase"></div>
+        <h3 class="h3">LABORU Level Up</h3>
         <div id="featured"></div>
         <h3 class="h3" data-t="sec.catalog">Katalog produk lengkap</h3>
         <div class="tw"><table class="t" id="catalog"></table></div>
@@ -265,6 +270,7 @@
 
 <script src="assets/js/data.js"></script>
 <script src="assets/js/labo-sprite.js"></script>
+<script src="assets/js/scene.js"></script>
 <script src="assets/js/site.js"></script>
 <script src="assets/js/labo.js"></script>
 </body>

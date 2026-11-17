@@ -38,6 +38,8 @@
     set('hRole', tx(V.role)); set('hHello', tx(V.hello)); set('hLine', tx(V.line)); set('bigword', V.bigword);
     $('#hSee').innerHTML = esc(tx(V.see)) + ' <span aria-hidden="true">↓</span>';
     $('#hStats').innerHTML = V.stats.map(function (s) { return '<li><b>' + (s[1] ? '<small>' + esc(tx(s[0])) + '</small>' + esc(s[1]) : esc(s[0])) + '</b><span>' + esc(tx(s[2])) + '</span></li>'; }).join('');
+    $('#hFeat').innerHTML = V.heroFeat.map(function (f) { return '<li>' + (window.PixelIcon ? PixelIcon(f[0], 36) : '') + '<b>' + esc(tx(f[1])) + '</b><span>' + esc(tx(f[2])) + '</span></li>'; }).join('');
+    if (window.LaboScene && !$('#scene svg')) LaboScene($('#scene'));
     set('placesLbl', tx(V.places));
     var p = V.placeList.map(function (k) { var o = org(k); return o.url ? '<a href="' + o.url + '"' + EXT + '>' + esc(o.name) + '</a>' : '<span>' + esc(o.name) + '</span>'; }).join('');
     $('#places').innerHTML = p + p.replace(/<(a|span)( |>)/g, '<$1 aria-hidden="true" tabindex="-1"$2');
@@ -62,7 +64,7 @@
     set('s1n', V.s1.n); set('s1a', tx(V.s1.a)); set('s1b', tx(V.s1.b)); set('s1lead', tx(V.s1.lead));
     $('#filters').innerHTML = V.filters.map(function (f) { return '<button type="button" data-filter="' + f[0] + '" aria-pressed="' + (gFilter === f[0]) + '">' + esc(tx(f[1])) + '</button>'; }).join('');
     $('#gal').innerHTML = D.gallery.map(function (g, i) {
-      var tag = g.t === 'laboru' ? 'LABORU' : (g.c ? caseById(g.c).name : '');
+      var tag = g.t === 'laboru' ? 'LABORU' : g.t === 'sistem' ? 'Demo' : (g.c ? tx(caseById(g.c).name) : '');
       return '<button type="button" class="tile' + (g.s[1] > g.s[0] ? ' tall' : '') + '" data-g="' + i + '"' + (tileHidden(g, i) ? ' hidden' : '') + '>' +
         (g.s[1] > g.s[0] ? '<img class="bg" src="assets/img/g/' + g.f + '-s.webp" loading="lazy" decoding="async" alt="">' : '') +
         '<img src="assets/img/g/' + g.f + '-s.webp" width="' + g.s[0] + '" height="' + g.s[1] + '" loading="lazy" decoding="async" alt="">' +
@@ -111,7 +113,7 @@
     if (cur >= 0) sel.selectedIndex = cur;
     $('#f-msg').placeholder = T('form.ph');
     $('#footLinks').innerHTML = '<a href="' + p.linkedin + '"' + EXT + '>LinkedIn</a><a href="' + D.links.laboru + '"' + EXT + '>LABORU</a><a href="' + D.links.zonion + '"' + EXT + '>Z-ONION</a>' +
-      D.cases.map(function (c) { return '<a href="' + c.demo + '">' + esc(c.name) + '</a>'; }).join('') + '<a href="#top">' + esc(T('foot.top')) + '</a>';
+      D.cases.map(function (c) { return '<a href="' + c.demo + '">' + esc(tx(c.name)) + '</a>'; }).join('') + '<a href="#top">' + esc(T('foot.top')) + '</a>';
   }
 
   /* ---------------- deep (reading + offers) ---------------- */
@@ -120,11 +122,11 @@
     $('#caps').innerHTML = '<thead><tr><th>' + esc(T('lbl.no')) + '</th><th>' + esc(T('lbl.cap')) + '</th><th>' + esc(T('lbl.evidence')) + '</th><th>' + esc(T('lbl.level')) + '</th></tr></thead><tbody>' +
       D.caps.map(function (c, i) { return '<tr><td class="n">' + ('0' + (i + 1)).slice(-2) + '</td><td><b>' + esc(tx(c[0])) + '</b></td><td>' + esc(tx(c[1])) + '</td><td><span class="lv ' + c[2] + '">' + esc(tx(D.levels[c[2]])) + '</span></td></tr>'; }).join('') + '</tbody>';
     $('#path').innerHTML = D.path.map(function (p) { return '<li><b>' + esc(tx(p.h)) + '</b><span>' + p.items.map(function (i) { return esc(tx(i)); }).join('<br>') + '</span></li>'; }).join('');
-    $('#probs').innerHTML = D.problems.map(function (p) { var c = caseById(p.to); return '<article class="prob"><q>' + esc(tx(p.q)) + '</q><p>' + esc(tx(p.a)) + '</p><a class="tlink" href="#case-' + c.id + '">' + esc(c.name) + AR + '</a></article>'; }).join('');
+    $('#probs').innerHTML = D.problems.map(function (p) { var c = caseById(p.to); return '<article class="prob"><q>' + esc(tx(p.q)) + '</q><p>' + esc(tx(p.a)) + '</p><a class="tlink" href="#case-' + c.id + '">' + esc(tx(c.name)) + AR + '</a></article>'; }).join('');
     $('#cases').innerHTML = D.cases.map(function (c, i) {
       var box = function (h, body, wide) { return '<div class="box' + (wide ? ' wide' : '') + '"><h4>' + esc(h) + '</h4>' + body + '</div>'; };
-      return '<article class="case" id="case-' + c.id + '"><figure class="fig"><a href="' + c.demo + '"><img src="' + c.img + '.webp" srcset="' + c.img + '-800.webp 800w, ' + c.img + '.webp 1600w" sizes="(max-width:1050px) 94vw, 700px" width="1600" height="1040" loading="lazy" decoding="async" alt="' + esc(c.name + ' — ' + tx(c.title)) + '"></a><figcaption>Fig. ' + (i + 1) + ' · ' + esc(c.name) + ' · ' + esc(T('lbl.demoNote')) + '</figcaption></figure>' +
-        '<div><p class="eyebrow">' + esc(tx(c.kicker)) + '</p><h3>' + esc(c.name) + '</h3><p class="ttl">' + esc(tx(c.title)) + '</p><p class="sum">' + esc(tx(c.summary)) + '</p><ul class="ticks">' + c.bullets.map(function (b) { return '<li>' + esc(tx(b)) + '</li>'; }).join('') + '</ul><div class="acts"><a class="btn pri" href="' + c.demo + '">' + esc(T('btn.demo')) + AR + '</a></div></div>' +
+      return '<article class="case" id="case-' + c.id + '"><figure class="fig"><a href="' + c.demo + '"><img src="' + c.img + '.webp" srcset="' + c.img + '-800.webp 800w, ' + c.img + '.webp 1600w" sizes="(max-width:1050px) 94vw, 700px" width="1600" height="1040" loading="lazy" decoding="async" alt="' + esc(c.name + ' — ' + tx(c.title)) + '"></a><figcaption>Fig. ' + (i + 1) + ' · ' + esc(tx(c.name)) + ' · ' + esc(T('lbl.demoNote')) + '</figcaption></figure>' +
+        '<div><p class="eyebrow">' + esc(tx(c.kicker)) + '</p><h3>' + esc(tx(c.name)) + '</h3><p class="ttl">' + esc(tx(c.title)) + '</p><p class="sum">' + esc(tx(c.summary)) + '</p><ul class="ticks">' + c.bullets.map(function (b) { return '<li>' + esc(tx(b)) + '</li>'; }).join('') + '</ul><div class="acts"><a class="btn pri" href="' + c.demo + '">' + esc(T('btn.demo')) + AR + '</a></div></div>' +
         '<div class="detail">' + box(T('lbl.context'), '<p>' + esc(tx(c.context)) + '</p>') + box(T('lbl.problem'), '<p>' + esc(tx(c.problem)) + '</p>') +
         box(T('lbl.approach'), '<ol>' + c.approach.map(function (a) { return '<li>' + esc(tx(a)) + '</li>'; }).join('') + '</ol>') +
         box(T('lbl.status'), '<ul class="sts">' + c.status.map(function (s) { return '<li><span>' + esc(tx(s[0])) + '</span><span class="tagst ' + s[1] + '">' + esc(stLbl[s[1]]) + '</span></li>'; }).join('') + '</ul>') +
@@ -149,6 +151,7 @@
     rProducts(); rServices();
   }
   function rProducts() {
+    $('#showcase').innerHTML = D.showcase.map(function (p) { return '<article class="feat sc"><a class="shots" href="' + p.demo + '"><img src="' + p.img + '" width="1440" height="900" loading="lazy" alt="' + esc(tx(p.name)) + '"></a><div><p class="eyebrow">LABORU · ' + esc(T('lbl.demoNote')) + '</p><h3>' + esc(tx(p.name)) + '</h3><p>' + esc(tx(p.text)) + '</p><ul class="ticks">' + p.bullets.map(function (b) { return '<li>' + esc(tx(b)) + '</li>'; }).join('') + '</ul><div class="acts"><a class="btn pri" href="' + p.demo + '">' + esc(T('btn.demo')) + AR + '</a><a class="btn ghost" href="' + buy(p.k) + '"' + EXT + '>' + esc(T('btn.buy')) + ' · ' + price(p.k) + '</a></div></div></article>'; }).join('');
     var f = D.featured;
     $('#featured').innerHTML = '<div class="feat"><div class="shots"><img src="' + f.img + '" width="1280" height="720" loading="lazy" alt="' + esc(f.name) + '"><img src="' + f.img2 + '" width="960" height="540" loading="lazy" alt=""></div><div><p class="eyebrow">LABORU</p><h3>' + esc(f.name) + '</h3><p>' + esc(tx(f.text)) + '</p><div class="tiers">' + f.tiers.map(function (t) { return '<div class="tier"><b>' + esc(t.name) + '</b><span>' + esc(tx(t.sub)) + '</span><div class="pr">' + price(t.k) + '</div></div>'; }).join('') + '</div><div class="acts"><a class="btn pri" href="' + D.links.laboru + '"' + EXT + '>' + esc(tx(f.cta)) + AR + '</a></div></div></div>';
     var rows = f.tiers.map(function (t) { return { k: t.k, name: f.name + ' · ' + t.name, who: D.products[3].who, text: t.sub }; }).concat(D.products);
@@ -160,9 +163,9 @@
       var ex = s.ex ? caseById(s.ex) : null, pr = lang === 'id' ? rp(s.idr) : 'US$' + Number(s.usd).toLocaleString('en-US');
       return '<article class="svc" id="svc-' + s.id + '"><span class="pill" style="align-self:flex-start">' + esc(tx(D.tiers[s.tier])) + '</span><h3>' + esc(tx(s.name)) + '</h3><p class="pb">' + esc(tx(s.problem)) + '</p><p style="font-size:.93em"><b>' + esc(T('lbl.forWho')) + ':</b> ' + esc(tx(s.who)) + '</p>' +
         '<ul class="ticks" style="margin:4px 0 6px">' + s.get.map(function (g) { return '<li>' + esc(tx(g)) + '</li>'; }).join('') + '</ul><p style="font-size:.9em;color:var(--fg-2)"><b>' + esc(T('lbl.limits')) + ':</b> ' + esc(tx(s.limits)) + '</p>' +
-        (ex ? '<p style="font-size:.93em"><a class="tlink" href="#case-' + ex.id + '">' + esc(T('lbl.example')) + ': ' + esc(ex.name) + '</a></p>' : '') +
+        (ex ? '<p style="font-size:.93em"><a class="tlink" href="#case-' + ex.id + '">' + esc(T('lbl.example')) + ': ' + esc(tx(ex.name)) + '</a></p>' : '') +
         '<div class="meta">' + esc(T('lbl.duration')) + ': ' + esc(tx(s.time)) + '</div><div class="price"><small>' + esc(T('lbl.from')) + '</small>' + pr + (s.per ? ' <small>' + esc(tx(s.per)) + '</small>' : '') + '</div>' +
-        '<a class="btn sm" href="#kontak" data-brief="' + BRIEF[s.id] + '" data-note="' + esc(tx(s.name)) + '">' + esc(T('btn.quote')) + AR + '</a></article>';
+        '<div class="acts">' + (s.demo ? '<a class="btn sm pri" href="' + s.demo + '">' + esc(T('btn.demoSvc')) + AR + '</a>' : '') + '<a class="btn sm" href="#kontak" data-brief="' + BRIEF[s.id] + '" data-note="' + esc(tx(s.name)) + '">' + esc(T('btn.quote')) + AR + '</a></div></article>';
     }).join('');
   }
   function renderAll() { rChrome(); rHero(); rReel(); rGallery(); rRecognition(); rBehind(); rJourney(); rLaboru(); rContact(); rDeep(); reveal(); document.dispatchEvent(new CustomEvent('site:render')); }
@@ -176,7 +179,7 @@
   function showLb() {
     var g = D.gallery[lbList[lbIdx]], c = g.c && caseById(g.c);
     $('#lbImg').src = 'assets/img/g/' + g.f + '.webp'; $('#lbImg').width = g.s[0] * 2; $('#lbImg').height = g.s[1] * 2; $('#lbImg').alt = tx(g.cap); set('lbCap', tx(g.cap));
-    $('#lbActs').innerHTML = c ? '<a class="btn pri sm" href="' + c.demo + '">' + esc(tx(V.open)) + AR + '</a><button type="button" class="btn sm" data-go-deep="case-' + c.id + '" data-lb="close">' + esc(tx(V.readCase)) + '</button>' : '<a class="btn pri sm" href="' + D.links.laboru + '"' + EXT + '>LABORU ↗</a>';
+    $('#lbActs').innerHTML = g.demo ? '<a class="btn pri sm" href="' + g.demo + '">' + esc(tx(V.open)) + AR + '</a>' : c ? '<a class="btn pri sm" href="' + c.demo + '">' + esc(tx(V.open)) + AR + '</a><button type="button" class="btn sm" data-go-deep="case-' + c.id + '" data-lb="close">' + esc(tx(V.readCase)) + '</button>' : '<a class="btn pri sm" href="' + D.links.laboru + '"' + EXT + '>LABORU ↗</a>';
     $('#lbClose').setAttribute('aria-label', tx(V.close));
   }
   function closeLb() { $('#lb').hidden = true; document.body.style.overflow = ''; }

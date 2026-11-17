@@ -117,7 +117,7 @@ h2.one span + span{color:var(--arc)}
 .tile.tall img:not(.bg){padding:10px 0 46px}
 .tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(5,6,6,.92));transition:opacity .3s}
 .tile .cap{position:absolute;left:14px;right:14px;bottom:12px;z-index:1;display:grid;gap:4px}
-.tile .cap b{font-size:14.5px;font-weight:650;line-height:1.3}
+.tile .cap b{font-size:14.5px;font-weight:650;line-height:1.3;color:#fff}
 .tile .cap small{font-family:var(--f-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--arc-2)}
 .tile:hover img:not(.bg),.tile:focus-visible img:not(.bg){transform:scale(1.03)}
 .tile:hover,.tile:focus-visible{border-color:var(--arc)}
@@ -309,6 +309,9 @@ table.t{border-collapse:collapse;width:100%;font-size:.94em}
 .cred li{font-size:.95em;padding:5px 0;border-bottom:1px solid var(--rule-2)}.cred li:last-child{border-bottom:0}
 .feat{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:34px;align-items:center;border:1px solid var(--rule);background:var(--surface);border-radius:12px;padding:24px}
 .feat .shots{position:relative;padding-bottom:9%}
+.showcase{display:grid;gap:16px}
+.feat.sc .shots{padding-bottom:0;display:block}
+.feat.sc .shots img{width:100%;border-radius:10px}
 .feat .shots img{display:block;width:92%;height:auto;border-radius:8px;border:1px solid var(--rule)}
 .feat .shots img+img{position:absolute;right:0;bottom:0;width:52%;box-shadow:var(--shadow)}
 .feat h3{font-size:clamp(36px,4vw,54px);margin:6px 0 10px}
@@ -392,4 +395,53 @@ details.q p{padding:0 0 16px;color:var(--fg-2);max-width:72ch}
   .form .two,.tiers{grid-template-columns:minmax(0,1fr)}
   .seg button{padding:6px 10px;font-size:12.5px}
   .tk-lbl{display:none}
+}
+
+/* ==========================================================================
+   MODE RINGKAS — gaya pixel-art tenang (pastel mint, huruf monospace,
+   tepi danau di hero). Mendalam tetap gelap sinematik.
+   ========================================================================== */
+:root[data-mode="overview"]{
+  --bg:#d4e7df; --surface:#e8f2ed; --surface-2:#c6ddd3; --fg:#14382f; --fg-2:#4b6c62;
+  --rule:rgba(20,56,47,.2); --rule-2:rgba(20,56,47,.1);
+  --arc:#e5604f; --arc-2:#cf4a3a; --accent:#e5604f; --mint:#2f7d62; --hl:#e9b949;
+  --shadow:0 18px 40px -24px rgba(20,56,47,.45);
+  color-scheme:light;
+}
+:root[data-mode="overview"] body{background:var(--bg)}
+:root[data-mode="overview"] body::before,:root[data-mode="overview"] body::after{display:none}
+:root[data-mode="overview"] .hdr{background:rgba(212,231,223,.86);border-bottom-color:var(--rule-2)}
+:root[data-mode="overview"] h1,:root[data-mode="overview"] h2,:root[data-mode="overview"] h3,:root[data-mode="overview"] h4,:root[data-mode="overview"] .mark,:root[data-mode="overview"] .tk-move a,:root[data-mode="overview"] .tk-move span{font-family:var(--f-mono);text-transform:none;letter-spacing:-.03em;line-height:1.05}
+:root[data-mode="overview"] body{font-family:var(--f-mono);font-size:15.5px}
+:root[data-mode="overview"] .sec h2{font-size:clamp(32px,4.4vw,60px)}
+:root[data-mode="overview"] .rec h2{font-size:clamp(32px,4.2vw,58px)}
+:root[data-mode="overview"] .huge{font-size:clamp(46px,8vw,120px)!important;line-height:1}
+:root[data-mode="overview"] .btn.pri,:root[data-mode="overview"] .btn.pri:hover{color:#fff}
+:root[data-mode="overview"] .btn{border-radius:999px}
+:root[data-mode="overview"] .seg{background:rgba(232,242,237,.8)}
+:root[data-mode="overview"] .quote{background:var(--arc);color:#fff;box-shadow:var(--shadow)}
+:root[data-mode="overview"] .quote p{font-family:var(--f-mono);font-size:22px;line-height:1.35}
+:root[data-mode="overview"] .bignum b{text-shadow:none}
+:root[data-mode="overview"] .labo-msg.me{color:#fff}
+/* hero ringkas: terpusat + pemandangan */
+:root[data-mode="overview"] .hero{padding-bottom:0}
+:root[data-mode="overview"] .hero{padding-top:clamp(18px,3vw,34px)}
+:root[data-mode="overview"] .hero-grid{grid-template-columns:minmax(0,1fr);padding-top:0;justify-items:center}
+:root[data-mode="overview"] .hero-txt{text-align:center;max-width:820px}
+:root[data-mode="overview"] .hello{transform:none;font-family:var(--f-mono);font-size:16px;color:var(--fg-2);margin-top:10px}
+:root[data-mode="overview"] .name{font-size:clamp(40px,6.2vw,88px);margin:4px 0 14px}
+:root[data-mode="overview"] .name br{display:none}
+:root[data-mode="overview"] .hline{margin-inline:auto;max-width:62ch;font-size:.98em;line-height:1.7}
+:root[data-mode="overview"] .hero-cta{justify-content:center}
+.hfeat{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin:22px auto 4px;max-width:760px}
+.hfeat li{display:grid;justify-items:center;gap:6px;text-align:center}
+.hfeat b{font-size:14px}
+.hfeat span{font-size:12.5px;color:var(--fg-2);line-height:1.5}
+.scene{margin-top:-90px;line-height:0;overflow:hidden;position:relative;z-index:-1}
+.scene canvas{display:block;image-rendering:pixelated;image-rendering:crisp-edges}
+:root[data-mode="overview"] .ticker{margin-top:0;background:var(--surface);border-color:var(--rule)}
+@media (max-width:620px){
+  .hfeat{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+  .hfeat span{display:none}
+  .hfeat b{font-size:12px}
 }
