@@ -15,7 +15,7 @@
   var caseById = function (id) { return D.cases.filter(function (c) { return c.id === id; })[0]; };
   var price = function (k) { return D.prices[k] ? rp(D.prices[k][0]) : ''; };
   var buy = function (k) { return D.prices[k] ? D.prices[k][1] : D.links.laboru; };
-  var BRIEF = { review: 1, umkm: 8, dashboard: 0, automation: 1, iso: 9, change: 2, bom: 2, costing: 4, robot: 3, retainer: 7 };
+  var BRIEF = { erp: 10, review: 1, umkm: 8, dashboard: 0, automation: 1, iso: 9, change: 2, bom: 2, costing: 4, robot: 3, retainer: 7 };
   var org = function (k) { return D.org[k] || { name: k }; };
   var orgLink = function (k, cls) { var o = org(k); return o.url ? '<a class="' + (cls || 'olink') + '" href="' + o.url + '"' + EXT + '>' + esc(o.name) + ' <span aria-hidden="true">↗</span></a>' : '<span class="' + (cls || 'olink') + '">' + esc(o.name) + '</span>'; };
   var gFilter = 'all', gAll = false, lbList = [], lbIdx = 0;
@@ -151,7 +151,7 @@
     rProducts(); rServices();
   }
   function rProducts() {
-    $('#showcase').innerHTML = D.showcase.map(function (p) { return '<article class="feat sc"><a class="shots" href="' + p.demo + '"><img src="' + p.img + '" width="1440" height="900" loading="lazy" alt="' + esc(tx(p.name)) + '"></a><div><p class="eyebrow">LABORU · ' + esc(T('lbl.demoNote')) + '</p><h3>' + esc(tx(p.name)) + '</h3><p>' + esc(tx(p.text)) + '</p><ul class="ticks">' + p.bullets.map(function (b) { return '<li>' + esc(tx(b)) + '</li>'; }).join('') + '</ul><div class="acts"><a class="btn pri" href="' + p.demo + '">' + esc(T('btn.demo')) + AR + '</a><a class="btn ghost" href="' + buy(p.k) + '"' + EXT + '>' + esc(T('btn.buy')) + ' · ' + price(p.k) + '</a></div></div></article>'; }).join('');
+    $('#showcase').innerHTML = D.showcase.map(function (p) { return '<article class="feat sc"><a class="shots" href="' + p.demo + '"><img src="' + p.img + '" width="1440" height="900" loading="lazy" alt="' + esc(tx(p.name)) + '"></a><div><p class="eyebrow">LABORU · ' + esc(T('lbl.demoNote')) + '</p><h3>' + esc(tx(p.name)) + '</h3><p>' + esc(tx(p.text)) + '</p><ul class="ticks">' + p.bullets.map(function (b) { return '<li>' + esc(tx(b)) + '</li>'; }).join('') + '</ul><div class="acts"><a class="btn pri" href="' + p.demo + '">' + esc(T('btn.demo')) + AR + '</a>' + (p.href ? '<a class="btn ghost" href="' + p.href + '" data-brief="10" data-note="' + esc(tx(p.name)) + '">' + esc(tx(p.priceTxt)) + '</a>' : '<a class="btn ghost" href="' + buy(p.k) + '"' + EXT + '>' + esc(T('btn.buy')) + ' · ' + price(p.k) + '</a>') + '</div></div></article>'; }).join('');
     var f = D.featured;
     $('#featured').innerHTML = '<div class="feat"><div class="shots"><img src="' + f.img + '" width="1280" height="720" loading="lazy" alt="' + esc(f.name) + '"><img src="' + f.img2 + '" width="960" height="540" loading="lazy" alt=""></div><div><p class="eyebrow">LABORU</p><h3>' + esc(f.name) + '</h3><p>' + esc(tx(f.text)) + '</p><div class="tiers">' + f.tiers.map(function (t) { return '<div class="tier"><b>' + esc(t.name) + '</b><span>' + esc(tx(t.sub)) + '</span><div class="pr">' + price(t.k) + '</div></div>'; }).join('') + '</div><div class="acts"><a class="btn pri" href="' + D.links.laboru + '"' + EXT + '>' + esc(tx(f.cta)) + AR + '</a></div></div></div>';
     var rows = f.tiers.map(function (t) { return { k: t.k, name: f.name + ' · ' + t.name, who: D.products[3].who, text: t.sub }; }).concat(D.products);

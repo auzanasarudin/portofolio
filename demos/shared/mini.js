@@ -15,14 +15,14 @@
       var keys = Object.keys(cfg.views);
       document.body.innerHTML = '<div class="app"><div class="demo-note"><span>' + esc(cfg.note) + '</span><span><a href="../../index.html#karya">← Kembali ke portofolio</a> · <a href="../../index.html#kontak">Mau ini untuk perusahaan Anda?</a></span></div>' +
         '<aside class="side"><div class="brand"><span id="logo"></span><div><b>' + esc(cfg.brand) + '</b><small>' + esc(cfg.sub) + '</small></div></div><nav class="nav" aria-label="Tampilan">' +
-        keys.map(function (k, i) { return '<button type="button" data-v="' + k + '"><i>0' + (i + 1) + '</i>' + esc(cfg.views[k].label) + '</button>'; }).join('') +
+        keys.map(function (k, i) { return '<button type="button" data-v="' + k + '"><i>' + String(i + 1).padStart(2, '0') + '</i>' + esc(cfg.views[k].label) + '</button>'; }).join('') +
         '</nav><div class="foot"><span>Perubahan tersimpan di browser ini saja.</span><button type="button" class="btn sm" id="reset">Reset data demo</button></div></aside>' +
         '<main class="main"><header class="top"><div><h1 id="title"></h1><div class="sub" id="sub"></div></div><div class="tools" id="tools"></div></header><div class="view" id="view"></div></main></div>';
       if (window.LaboSprite) document.getElementById('logo').innerHTML = LaboSprite.svg('happy', 34);
       function show(k) {
         if (!cfg.views[k]) k = cfg.first || keys[0];
         document.querySelectorAll('[data-v]').forEach(function (b) { if (b.getAttribute('data-v') === k) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
-        var v = cfg.views[k]; document.getElementById('title').textContent = v.title || v.label; document.getElementById('sub').textContent = v.sub || '';
+        var v = cfg.views[k]; document.getElementById('title').textContent = v.title || v.label; document.getElementById('sub').textContent = typeof v.sub === 'function' ? v.sub() : (v.sub || '');
         document.getElementById('tools').innerHTML = ''; v.render(document.getElementById('view'), document.getElementById('tools'));
         try { history.replaceState(null, '', '#' + k); } catch (e) { /* sandbox */ }
         window.scrollTo(0, 0);
@@ -33,6 +33,7 @@
       });
       M.show = show; M.rerender = function () { show((location.hash || '').slice(1)); };
       show((location.hash || '').slice(1));
+      window.addEventListener('hashchange', function () { var k = (location.hash || '').slice(1); if (cfg.views[k] && document.querySelector('[data-v="' + k + '"][aria-current]') === null) show(k); });
     },
     kpi: function (l, v, unit, d, cls) { return '<div class="kpi"><div class="l">' + esc(l) + '</div><div class="v">' + v + (unit ? '<small>' + esc(unit) + '</small>' : '') + '</div><div class="d' + (cls ? ' ' + cls : '') + '">' + (d || '') + '</div></div>'; },
     card: function (h, hint, body, cls) { return '<section class="card' + (cls ? ' ' + cls : '') + '"><h3>' + esc(h) + '</h3>' + (hint ? '<p class="hint">' + esc(hint) + '</p>' : '') + body + '</section>'; },

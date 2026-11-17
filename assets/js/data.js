@@ -102,7 +102,7 @@
       form: {
         name: L('Nama', 'Name'), org: L('Perusahaan / usaha', 'Company / business'), topic: L('Yang ingin dibereskan', 'What needs fixing'), msg: L('Ceritakan singkat', 'Tell me briefly'),
         ph: L('Contoh: laporan produksi harian masih diketik ulang dari 12 mesin, makan 2 jam sehari.', 'Example: the daily production report is retyped from 12 machines and takes 2 hours a day.'),
-        topics: [L('Dashboard produksi / OEE', 'Production / OEE dashboard'), L('Otomasi Excel atau laporan', 'Excel or report automation'), L('Struktur Bill of Material / perubahan engineering', 'BOM structure / engineering changes'), L('Analisis robot pengelasan atau mesin', 'Welding robot or machine analysis'), L('Estimasi biaya dan waktu proses', 'Cost and process-time estimation'), L('Rekrutmen / peluang kerja', 'Hiring / a job opportunity'), L('Produk LABORU', 'LABORU products'), L('Lainnya', 'Something else'), L('Rapikan bengkel / UMKM (5S)', 'Workshop / small business tidy-up (5S)'), L('Persiapan audit ISO', 'ISO audit preparation')],
+        topics: [L('Dashboard produksi / OEE', 'Production / OEE dashboard'), L('Otomasi Excel atau laporan', 'Excel or report automation'), L('Struktur Bill of Material / perubahan engineering', 'BOM structure / engineering changes'), L('Analisis robot pengelasan atau mesin', 'Welding robot or machine analysis'), L('Estimasi biaya dan waktu proses', 'Cost and process-time estimation'), L('Rekrutmen / peluang kerja', 'Hiring / a job opportunity'), L('Produk LABORU', 'LABORU products'), L('Lainnya', 'Something else'), L('Rapikan bengkel / UMKM (5S)', 'Workshop / small business tidy-up (5S)'), L('Persiapan audit ISO', 'ISO audit preparation'), L('LABORU ERP untuk bengkel', 'LABORU ERP for workshops')],
         emailLbl: L('Atau tulis langsung ke', 'Or write directly to'), need: L('Isi nama dan ceritanya dulu, ya.', 'Add your name and a short description first.'),
         subject: L('Pesan dari situs portofolio', 'Message from the portfolio site')
       },
@@ -203,6 +203,9 @@
     homeProducts: ['r07', 'r08', 'r09'],
     /* Produk sistem perusahaan yang punya demo dashboard */
     showcase: [
+      { k: 'erp', name: L('LABORU ERP: Workshop Naik Kelas', 'LABORU ERP: Workshop Level-Up'), img: 'assets/img/g/erp-order.webp', demo: 'demos/laboru-erp/index.html', priceTxt: L('Lisensi mulai Rp1.490.000', 'Licence from Rp1,490,000'), href: '#kontak',
+        text: L('Pengelolaan bengkel dan manufaktur kecil–menengah dari order masuk sampai serah terima. Pilih barang dari katalog, bahan dan langkah kerja langsung terurai, estimasi jadwal memperhitungkan proyek yang sedang jalan, lalu setiap tahap butuh foto dan checksheet. WhatsApp jadi jalur perintah dan laporan.', 'Workshop and small-manufacturer management from incoming order to hand-over. Pick from the catalogue, materials and work steps break down instantly, schedules account for running projects, and every stage needs a photo and checklist. WhatsApp carries the instructions and reports.'),
+        bullets: [L('Katalog → bahan → langkah kerja & waktu, HPP dan harga saran otomatis', 'Catalogue → materials → work steps and time, automatic cost and suggested price'), L('Enam strategi jadwal (paralel, lembur terukur, sisip, subkon, express) dengan toleransi PERT untuk negosiasi', 'Six schedule strategies (parallel, measured overtime, priority, subcontract, express) with PERT tolerance for negotiation'), L('PO otomatis dari stok minimum, QC incoming–akhir, surat jalan, BAST, dokumen ISO 9001', 'Automatic POs from minimum stock, incoming-to-final QC, delivery notes, hand-over, ISO 9001 documents'), L('Tim & keahlian, penyusutan alat real time, umur pakai konsumabel dari laporan mandor', 'Team and skills, real-time tool depreciation, consumable life from foreman reports')] },
       { k: 'r07', name: L('Persiapan Audit ISO 9001 / 45001', 'ISO 9001 / 45001 Audit Preparation'), img: 'assets/img/g/iso-overview.webp', demo: 'demos/iso-ready/index.html',
         text: L('Checklist klausul 4–10 untuk dua standar, register dokumen, temuan audit internal dengan CAPA, dan hitung mundur ke audit. Termasuk dalam Company Preparation System.', 'Clause 4–10 checklists for both standards, a document register, internal audit findings with CAPA, and a countdown to the audit. Part of the Company Preparation System.'),
         bullets: [L('Kesiapan per klausul dan per standar', 'Readiness per clause and per standard'), L('Daftar dokumen wajib dan statusnya', 'Required documents and their status'), L('Temuan mayor, minor, OFI sampai ditutup', 'Major, minor and OFI findings through to closure')] },
@@ -218,6 +221,11 @@
 
     /* ---------------- jasa ---------------- */
     services: [
+      { id: 'erp', demo: 'demos/laboru-erp/index.html', tier: 'standard', home: true, name: L('LABORU ERP: Workshop Naik Kelas', 'LABORU ERP: Workshop Level-Up'), idr: 9500000, usd: 650, time: L('3–4 minggu', '3–4 weeks'),
+        who: L('Pemilik/manajer bengkel, workshop fabrikasi, manufaktur skala kecil–menengah', 'Owners and managers of workshops and small-to-mid manufacturers'),
+        problem: L('Order tidak pernah ditolak, tapi sulit memilih mana yang didahulukan, estimasi dan harga tidak terukur, progres harus ditanya terus ke mandor lewat WhatsApp.', 'Every order gets accepted, yet it is hard to prioritise, estimates and prices are not measured, and progress means chasing the foreman on WhatsApp.'),
+        get: [L('Katalog, resep bahan, dan langkah kerja bengkel Anda dimasukkan ke LABORU ERP', 'Your catalogue, material recipes and work steps loaded into LABORU ERP'), L('Data pekerja, keahlian, alat, dan stok standar disesuaikan', 'Workers, skills, tools and standard stock set up'), L('Template pesan WhatsApp untuk mandor, pekerja, pemasok, dan pelanggan', 'WhatsApp templates for foreman, workers, suppliers and customers'), L('Alur dokumen ISO 9001 dan dua sesi pelatihan', 'An ISO 9001 document flow and two training sessions')],
+        limits: L('Versi saat ini menyimpan data di perangkat (ekspor/impor untuk cadangan). Bot WhatsApp otomatis dan multi-pengguna online dihitung sebagai tahap lanjutan.', 'This version stores data on the device (export/import for backup). An automatic WhatsApp bot and online multi-user setup are quoted as a next phase.') },
       { id: 'review', demo: 'demos/optimasi/index.html#ringkasan', tier: 'entry', home: true, name: L('Bedah Data Produksi', 'Production Data Review'), idr: 1500000, usd: 95, time: L('3–5 hari kerja', '3–5 working days'),
         who: L('Pabrik atau bengkel yang laporannya masih manual', 'Plants and workshops still reporting by hand'),
         problem: L('Anda tahu laporannya makan waktu, tapi belum tahu mulai dari mana.', 'You know reporting eats time, but not where to start.'),
@@ -413,7 +421,7 @@
     places: L('Pernah belajar dan bekerja di', 'Learned and worked at'),
     placeList: ['smk', 'lintech', 'ispat', 'unesa', 'garnesa', 'pal', 'drb', 'gen', 'kawamura', 'hcmi', 'laboru'],
     s1: { n: '01 / KARYA', a: L('Lihat dulu,', 'Look first,'), b: L('baru membaca.', 'read later.'), lead: L('Cuplikan alat yang saya bangun. Klik untuk memperbesar. Semua demo menggunakan data contoh.', 'Previews of tools I’ve built. Click to enlarge. Every demo runs on sample data.') },
-    filters: [['all', L('Semua', 'All')], ['analitik', L('Analitik', 'Analytics')], ['workflow', L('Workflow', 'Workflow')], ['bom', 'Bill of Material'], ['sistem', L('ISO & optimasi', 'ISO & optimisation')], ['laboru', L('Game & produk', 'Games & products')]],
+    filters: [['all', L('Semua', 'All')], ['analitik', L('Analitik', 'Analytics')], ['workflow', L('Workflow', 'Workflow')], ['bom', 'Bill of Material'], ['sistem', L('ERP, ISO & optimasi', 'ERP, ISO & optimisation')], ['laboru', L('Game & produk', 'Games & products')]],
     s3: { n: '02 / SINGKATNYA', a: L('Paham prosesnya.', 'I know the process.'), b: L('Rapi hasilnya.', 'I tidy the result.'),
       text: L('Sejak 2016 saya berpindah posisi di manufaktur: welder, programmer CNC, QC, sampai production engineer. Saya terbiasa memulai dari kondisi yang berantakan sampai menjadi rapi dan maksimal.', 'Since 2016 I’ve moved through manufacturing roles: welder, CNC programmer, QC, production engineer. I’m used to starting from a messy situation and leaving it tidy and running at its best.'),
       pillars: [
@@ -460,6 +468,7 @@
     { f: 'lb-title', t: 'laboru', cap: L('LABORU · layar judul', 'LABORU · title screen'), s: P, link: 'laboru' },
     { f: 'cb-board', t: 'workflow', c: 'change-board', cap: L('Dashboard perubahan komponen · siapa memegang bola', 'Change dashboard · who holds the ball'), s: W },
     { f: 'bb-mbom', t: 'bom', c: 'bom-bridge', cap: L('Bill of Material Bridge · MBOM dengan alasan per baris', 'Bill of Material Bridge · MBOM with a reason on every line'), s: W },
+    { f: 'erp-order', t: 'sistem', demo: 'demos/laboru-erp/index.html#order', cap: L('LABORU ERP · order, estimasi & strategi', 'LABORU ERP · order, estimate & strategy'), s: W },
     { f: 'iso-overview', t: 'sistem', demo: 'demos/iso-ready/index.html', cap: L('Persiapan audit ISO · kesiapan per klausul', 'ISO audit prep · readiness per clause'), s: W },
     { f: 'op-overview', t: 'sistem', demo: 'demos/optimasi/index.html', cap: L('Optimasi perusahaan · biaya, energi, 5S', 'Company optimisation · cost, energy, 5S'), s: W },
     { f: 'lb-lobby', t: 'laboru', cap: L('LABORU · lobi kantor pixel', 'LABORU · pixel office lobby'), s: H, link: 'laboru' },
@@ -477,6 +486,9 @@
     { f: 'cb-analytics', t: 'workflow', c: 'change-board', cap: L('Standar vs aktual per departemen', 'Standard vs actual per department'), s: W },
     { f: 'ri-cm', t: 'analitik', c: 'robot-insight', cap: L('Register countermeasure', 'Countermeasure register'), s: W },
     { f: 'bb-cbom', t: 'bom', c: 'bom-bridge', cap: L('Konfigurasi pesanan (CBOM)', 'Order configuration (CBOM)'), s: W },
+    { f: 'erp-proj', t: 'sistem', demo: 'demos/laboru-erp/index.html#proyek', cap: L('LABORU ERP · alur proyek ISO 9001', 'LABORU ERP · ISO 9001 project flow'), s: W },
+    { f: 'erp-wa', t: 'sistem', demo: 'demos/laboru-erp/index.html#wa', cap: L('LABORU ERP · pusat WhatsApp & bot', 'LABORU ERP · WhatsApp hub and bot'), s: W },
+    { f: 'erp-dash', t: 'sistem', demo: 'demos/laboru-erp/index.html', cap: L('LABORU ERP · dashboard & saran keputusan', 'LABORU ERP · dashboard and decision tips'), s: W },
     { f: 'op-5s', t: 'sistem', demo: 'demos/optimasi/index.html#5s', cap: L('Audit 5S per area', '5S audit per area'), s: W },
     { f: 'iso-find', t: 'sistem', demo: 'demos/iso-ready/index.html#temuan', cap: L('Temuan audit dan CAPA', 'Audit findings and CAPA'), s: W },
     { f: 'op-cost', t: 'sistem', demo: 'demos/optimasi/index.html#biaya', cap: L('Kalkulator biaya per unit', 'Unit cost calculator'), s: W },
