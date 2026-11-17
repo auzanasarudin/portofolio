@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Ruang Pribadi — Skill Tree</title>
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<style>
+:root,:root[data-mode]{--bg:#0b0d0c;--s1:#131715;--s2:#1b201d;--fg:#f2f1ea;--fg2:#9da59f;--rule:rgba(242,241,234,.13);--arc:#ff5a1f;--mint:#8fd6a8;--amber:#f2c53d;--info:#8fbfe6;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15.5px;line-height:1.55}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+.wrap{max-width:1240px;margin:auto;padding:0 max(16px,env(safe-area-inset-left,0px))}
+header{position:sticky;top:0;z-index:5;background:rgba(11,13,12,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+header .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;min-height:60px;padding-block:8px}
+h1,h2,h3{font-family:var(--f-display);text-transform:uppercase;line-height:.95;margin:0;font-weight:700}
+h1{font-size:24px}h1 i{font-style:normal;color:var(--arc)}
+h2{font-size:clamp(30px,4vw,46px);margin:40px 0 14px}
+.tabs{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+.tabs button,.btn{border:1px solid var(--rule);background:var(--s1);border-radius:999px;padding:7px 14px;cursor:pointer;font-weight:600;font-size:13.5px}
+.tabs button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+.btn.pri{background:var(--arc);border-color:var(--arc);color:#160a04}
+.btn:hover{border-color:var(--fg2)}
+.warn{margin:18px 0 0;padding:12px 14px;border:1px solid rgba(242,197,61,.4);background:rgba(242,197,61,.08);border-radius:10px;font-size:13.5px;color:#f5dc8a}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:18px}
+.kpi{border:1px solid var(--rule);background:var(--s1);border-radius:12px;padding:14px}
+.kpi b{display:block;font-family:var(--f-display);font-size:34px;line-height:1}
+.kpi span{font-size:12.5px;color:var(--fg2)}
+.bar{height:8px;border-radius:4px;background:var(--s2);overflow:hidden;margin-top:8px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--arc),var(--amber))}
+.tree{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.branch{border:1px solid var(--rule);background:var(--s1);border-radius:14px;padding:14px}
+.branch h3{font-size:22px;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.branch h3 small{font-family:var(--f-mono);font-size:11px;color:var(--fg2);font-weight:400}
+.nodes{list-style:none;margin:12px 0 0;padding:0 0 0 14px;border-left:2px solid var(--rule);display:grid;gap:6px}
+.node{position:relative;display:grid;grid-template-columns:auto 1fr;gap:2px 8px;align-items:start;padding:8px 10px;border:1px solid var(--rule);border-radius:10px;background:var(--bg);cursor:pointer;text-align:left;width:100%}
+.node::before{content:"";position:absolute;left:-16px;top:16px;width:14px;height:2px;background:var(--rule)}
+.node .dot{width:12px;height:12px;border-radius:50%;margin-top:5px;border:2px solid var(--fg2)}
+.node.mastered .dot{background:var(--mint);border-color:var(--mint)}
+.node.learning .dot{background:var(--amber);border-color:var(--amber)}
+.node.next .dot{border-color:var(--info)}
+.node.locked{opacity:.55}
+.node b{font-weight:650;font-size:14px}
+.node small{grid-column:2;color:var(--fg2);font-size:12px}
+.node .rp{grid-column:2;font-family:var(--f-mono);font-size:10.5px;color:var(--arc)}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12.5px;color:var(--fg2);margin:0 0 12px}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px;border:2px solid var(--fg2)}
+.legend .m::before{background:var(--mint);border-color:var(--mint)}.legend .l::before{background:var(--amber);border-color:var(--amber)}.legend .n::before{border-color:var(--info)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.card{border:1px solid var(--rule);background:var(--s1);border-radius:14px;padding:16px}
+form.card{display:grid;gap:10px}
+label{display:grid;gap:4px;font-size:12.5px;color:var(--fg2);font-weight:600}
+input,select,textarea{width:100%;padding:9px 10px;border:1px solid var(--rule);border-radius:8px;background:var(--bg);font-size:16px}
+textarea{min-height:90px;resize:vertical}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.log{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:8px}
+.log li{border:1px solid var(--rule);border-radius:10px;padding:10px 12px;background:var(--s1)}
+.log .meta{font-family:var(--f-mono);font-size:11px;color:var(--fg2);display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between}
+.log p{margin:6px 0 0;white-space:pre-wrap}
+.x{background:none;border:0;color:var(--fg2);cursor:pointer;font-size:12px}
+.chart{display:flex;align-items:flex-end;gap:6px;height:170px;border-bottom:1px solid var(--rule);padding-top:10px;margin-top:14px;overflow-x:auto}
+.chart div{flex:1 0 34px;display:grid;justify-items:center;gap:4px;font-family:var(--f-mono);font-size:10px;color:var(--fg2);align-self:stretch;align-content:end}
+.chart i{display:block;width:100%;border-radius:4px 4px 0 0;background:var(--arc);min-height:2px}
+.chart i.hit{background:var(--mint)}
+.goal-line{font-size:12.5px;color:var(--fg2);margin-top:6px}
+dialog{border:1px solid var(--rule);background:var(--s1);color:var(--fg);border-radius:14px;max-width:min(520px,calc(100vw - 32px));width:100%;padding:18px}
+dialog::backdrop{background:rgba(0,0,0,.6)}
+.hide{display:none!important}
+.muted{color:var(--fg2);font-size:13px}
+footer{padding:40px 0 60px;color:var(--fg2);font-size:12.5px}
+@media (max-width:760px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.two,.three{grid-template-columns:minmax(0,1fr)}.tabs{margin-left:0}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <h1>Ruang pribadi<i>.</i></h1>
+  <nav class="tabs" aria-label="Bagian">
+    <button type="button" data-tab="tree" aria-pressed="true">Skill tree</button>
+    <button type="button" data-tab="life" aria-pressed="false">Update kehidupan</button>
+    <button type="button" data-tab="money" aria-pressed="false">Target 2027</button>
+    <button type="button" data-tab="data" aria-pressed="false">Data</button>
+  </nav>
+  <a class="btn" href="../">← Portofolio</a>
+</div></header>
+
+<main class="wrap">
+  <p class="warn">Halaman ini tidak ditautkan di situs dan tidak diindeks mesin pencari, tetapi alamatnya tetap publik. <b>Semua isian hanya tersimpan di browser ini</b> (tidak terkirim ke mana pun). Ekspor JSON secara rutin ke Google Drive sebagai cadangan, lalu impor di perangkat lain.</p>
+
+  <section class="kpis" id="kpis"></section>
+
+  <!-- SKILL TREE -->
+  <section id="tab-tree">
+    <h2>Skill tree</h2>
+    <p class="legend"><span class="m">Dikuasai</span><span class="l">Sedang dipelajari</span><span class="n">Berikutnya</span><span>Terkunci</span></p>
+    <div class="tree" id="tree"></div>
+    <div class="row" style="margin-top:14px"><button type="button" class="btn" id="addBranch">+ Cabang baru</button><span class="muted">Klik skill untuk ubah status, bukti, dan cara skill itu menghasilkan uang.</span></div>
+  </section>
+
+  <!-- UPDATE KEHIDUPAN -->
+  <section id="tab-life" class="hide">
+    <h2>Update kehidupan</h2>
+    <form class="card" id="lifeForm">
+      <div class="three">
+        <label>Tanggal<input type="date" id="lDate" required></label>
+        <label>Jenis<select id="lType"><option>Pencapaian</option><option>Belajar</option><option>Proyek</option><option>Penghasilan</option><option>Refleksi</option><option>Kendala</option></select></label>
+        <label>Skill terkait<select id="lSkill"><option value="">—</option></select></label>
+      </div>
+      <label>Judul<input id="lTitle" maxlength="120" required placeholder="Contoh: Dashboard robot pakai data real-time"></label>
+      <label>Cerita / catatan<textarea id="lText" maxlength="4000" placeholder="Apa yang terjadi, apa yang dipelajari, apa langkah berikutnya."></textarea></label>
+      <label class="row" style="display:flex;gap:8px;color:var(--fg)"><input type="checkbox" id="lPublic" style="width:auto"> Layak masuk portofolio publik (penanda saja)</label>
+      <div class="row"><button class="btn pri" type="submit">Simpan</button><span class="muted" id="lMsg"></span></div>
+    </form>
+    <div class="row" style="margin-top:14px"><input id="lFind" placeholder="Cari catatan…" style="max-width:320px"></div>
+    <ol class="log" id="lifeLog"></ol>
+  </section>
+
+  <!-- TARGET 2027 -->
+  <section id="tab-money" class="hide">
+    <h2>Target 2027</h2>
+    <form class="card" id="goalForm">
+      <div class="three">
+        <label>Target total s.d. akhir 2027 (Rp)<input type="number" id="gTotal" min="0" step="100000"></label>
+        <label>Target per bulan (Rp)<input type="number" id="gMonth" min="0" step="100000"></label>
+        <label>Tenggat<input type="date" id="gDate"></label>
+      </div>
+      <label>Kenapa target ini penting<input id="gWhy" maxlength="200"></label>
+      <div class="row"><button class="btn" type="submit">Simpan target</button></div>
+    </form>
+    <form class="card" id="incForm" style="margin-top:12px">
+      <div class="three">
+        <label>Bulan<input type="month" id="iMonth" required></label>
+        <label>Sumber<select id="iSrc"><option>Gaji</option><option>Lembur</option><option>Jasa</option><option>Produk digital</option><option>Ekspor</option><option>Lainnya</option></select></label>
+        <label>Jumlah (Rp)<input type="number" id="iAmt" min="0" step="1000" required></label>
+      </div>
+      <label>Catatan<input id="iNote" maxlength="160"></label>
+      <div class="row"><button class="btn pri" type="submit">Tambah pemasukan</button></div>
+    </form>
+    <div class="card" style="margin-top:12px"><b>Pemasukan per bulan</b><div class="chart" id="chart"></div><p class="goal-line" id="goalLine"></p></div>
+    <ol class="log" id="incLog"></ol>
+  </section>
+
+  <!-- DATA -->
+  <section id="tab-data" class="hide">
+    <h2>Data</h2>
+    <div class="card" style="display:grid;gap:12px">
+      <div class="row"><button class="btn pri" type="button" id="exp">Ekspor JSON</button><label class="btn" style="display:inline-block">Impor JSON<input type="file" id="imp" accept="application/json" class="hide"></label><button class="btn" type="button" id="copyAI">Salin ringkasan untuk Claude</button><button class="btn" type="button" id="reset">Kembalikan skill tree awal</button></div>
+      <p class="muted" id="dMsg">Tombol “Salin ringkasan untuk Claude” membuat teks berisi skill, catatan baru, dan progres target. Tempel ke Claude untuk memperbarui portofolio atau menyusun rencana minggu depan.</p>
+    </div>
+  </section>
+</main>
+<footer class="wrap">Ruang pribadi · data lokal · <span id="ver"></span></footer>
+
+<dialog id="dlg"><form method="dialog" id="nodeForm" style="display:grid;gap:10px">
+  <h3 id="dTitle" style="font-size:26px">Skill</h3>
+  <label>Nama<input id="nName" maxlength="80" required></label>
+  <label>Status<select id="nSt"><option value="mastered">Dikuasai</option><option value="learning">Sedang dipelajari</option><option value="next">Berikutnya</option><option value="locked">Terkunci</option></select></label>
+  <label>Bukti / sumber<input id="nEv" maxlength="160"></label>
+  <label>Cara skill ini menghasilkan uang<input id="nMoney" maxlength="160"></label>
+  <label>Langkah berikutnya<input id="nNext" maxlength="160"></label>
+  <div class="row"><button class="btn pri" value="save">Simpan</button><button class="btn" value="cancel" formnovalidate>Batal</button><button class="btn" value="del" formnovalidate style="margin-left:auto">Hapus</button></div>
+</form></dialog>
+
+<script>
+(function () {
+  'use strict';
+  var KEY = 'aa_me_v1', $ = function (s) { return document.querySelector(s); };
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+  var rp = function (n) { return 'Rp' + Math.round(Number(n) || 0).toLocaleString('id-ID'); };
+  var uid = function () { return Math.random().toString(36).slice(2, 9); };
+  var N = function (n, st, ev, money, next) { return { id: uid(), n: n, st: st, ev: ev || '', money: money || '', next: next || '' }; };
+  /* Skill tree awal dari perjalanan Auzan (tanpa data pribadi). Bebas diubah. */
+  function seed() {
+    return [
+      { id: uid(), h: 'Manufaktur & Engineering', nodes: [
+        N('Pengelasan SMAW · FCAW · GMAW', 'mastered', 'SMK (kompetensi 95), PKL, PAL', 'Jasa inspeksi/QC las, konten edukasi las'),
+        N('Gambar teknik & CAD (AutoCAD, Inventor, NX)', 'mastered', 'SMK, Garnesa, pelatihan NX', 'Gambar kerja untuk bengkel/UMKM'),
+        N('CNC programming (Mastercam, PowerMill)', 'mastered', 'Programmer CNC molding'),
+        N('QC, alat ukur, go/no-go', 'mastered', 'QC fabrikasi'),
+        N('BOM / MBOM', 'mastered', 'Pekerjaan harian PE', 'Jasa struktur BOM, BOM Bridge Rule Kit'),
+        N('Estimasi waktu proses & biaya', 'mastered', 'Pekerjaan harian, pelatihan ABC', 'Model costing untuk bengkel fabrikasi'),
+        N('Robot welding (operasi & data)', 'learning', 'Pelatihan Panasonic, dashboard monitoring', 'Jasa analitik robot las'),
+        N('Komposit (fiberglass, karbon VI)', 'mastered', 'Body mobil Garnesa'),
+        N('P&ID', 'mastered', 'Kelas Engineer 2023')
+      ] },
+      { id: uid(), h: 'Sistem & Manajemen', nodes: [
+        N('ISO 9001 & 45001 (MR, audit internal)', 'mastered', 'QC & MR ISO', 'Jasa persiapan audit, Company Preparation System'),
+        N('5S · Kaizen · K3 · Poka-Yoke', 'mastered', 'Pabrik standar Jepang', 'Paket Rapikan Bengkel untuk UMKM'),
+        N('Memimpin tim 50 orang', 'mastered', 'GM Garnesa'),
+        N('Rapat lintas departemen', 'mastered', '2 rapat mingguan'),
+        N('Planning: roadmap, jadwal, anggaran, KPI', 'mastered', 'Garnesa', 'Template KPI & MIS untuk perusahaan'),
+        N('Lean Six Sigma (sertifikasi)', 'next', '', 'Menaikkan harga jasa improvement'),
+        N('Manajemen proyek (PMP/PRINCE2)', 'locked')
+      ] },
+      { id: uid(), h: 'Data & Otomasi', nodes: [
+        N('Excel lanjutan & dashboard', 'mastered', 'LABORU, monitoring robot', 'Template OEE, jasa dashboard'),
+        N('HTML · CSS · JavaScript', 'mastered', '3 demo + situs ini', 'Landing page & alat web untuk klien'),
+        N('Python', 'learning', 'Kursus, konverter TKDN', 'Otomasi laporan'),
+        N('SQL & PostgreSQL', 'learning', 'Backend monitoring robot'),
+        N('Google Apps Script / otomasi workflow', 'next', '', 'Otomasi follow-up rapat untuk klien'),
+        N('Pipeline data IoT mesin', 'learning', 'Dashboard real-time (berjalan)', 'Jasa monitoring real-time')
+      ] },
+      { id: uid(), h: 'AI & Riset', nodes: [
+        N('Dasar AI & machine learning', 'mastered', 'Mata kuliah AI (A-)'),
+        N('Metode numerik & simulasi (MATLAB)', 'mastered', 'Garnesa, S2'),
+        N('LSTM & RUL untuk predictive maintenance', 'learning', 'Tesis S2', 'Prototipe prediksi untuk pabrik'),
+        N('Dekarbonisasi (Scope 2, SEC)', 'learning', 'Tesis S2', 'Laporan energi & emisi untuk pabrik'),
+        N('PEAS: asisten AI tim PE', 'learning', '', 'Dijual ke perusahaan lain'),
+        N('Publikasi jurnal tesis', 'next')
+      ] },
+      { id: uid(), h: 'Bisnis & Produk', nodes: [
+        N('Produk digital LABORU', 'mastered', 'Game, ebook, toolkit', 'Penjualan lynk.id'),
+        N('Landing page & funnel', 'mastered', 'LABORU, Z-ONION'),
+        N('Iklan Meta Ads', 'learning', 'Masih tersendat di kreatif', 'Skala penjualan LABORU'),
+        N('Konten kreatif konsisten (video/visual)', 'learning'),
+        N('Jasa ke pabrik & UMKM', 'next', 'Katalog jasa siap', 'Proyek pertama'),
+        N('Ekspor (dokumen & proses)', 'mastered', 'Kelas ekspor, PT perorangan'),
+        N('Proposal & negosiasi harga', 'next')
+      ] },
+      { id: uid(), h: 'Keuangan', nodes: [
+        N('Catat arus kas tiap bulan', 'learning', '', 'Dasar semua keputusan'),
+        N('Kelola utang & cicilan', 'next'),
+        N('Dana darurat', 'locked'),
+        N('Investasi / aset produktif', 'locked'),
+        N('Penghasilan pasif dari produk', 'learning', 'LABORU')
+      ] }
+    ];
+  }
+  var db;
+  function load() { try { db = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { db = null; } if (!db || !db.tree) db = { v: 1, tree: seed(), life: [], income: [], goal: { total: 0, month: 0, date: '2027-12-31', why: '' } }; }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(db)); } catch (e) { alert('Browser menolak menyimpan. Ekspor JSON agar data tidak hilang.'); } render(); }
+  var ST = { mastered: 'Dikuasai', learning: 'Dipelajari', next: 'Berikutnya', locked: 'Terkunci' };
+  function allNodes() { var a = []; db.tree.forEach(function (b) { b.nodes.forEach(function (n) { a.push({ b: b, n: n }); }); }); return a; }
+  function render() {
+    var nodes = allNodes(), m = nodes.filter(function (x) { return x.n.st === 'mastered'; }).length, l = nodes.filter(function (x) { return x.n.st === 'learning'; }).length;
+    var total = db.income.reduce(function (s, i) { return s + Number(i.a || 0); }, 0), g = db.goal.total || 0;
+    $('#kpis').innerHTML = '<div class="kpi"><b>' + m + '/' + nodes.length + '</b><span>skill dikuasai</span><div class="bar"><i style="width:' + (nodes.length ? m / nodes.length * 100 : 0) + '%"></i></div></div>' +
+      '<div class="kpi"><b>' + l + '</b><span>sedang dipelajari</span></div><div class="kpi"><b>' + db.life.length + '</b><span>catatan kehidupan</span></div>' +
+      '<div class="kpi"><b>' + (g ? Math.round(total / g * 100) + '%' : '—') + '</b><span>' + (g ? rp(total) + ' dari ' + rp(g) : 'isi target di tab Target 2027') + '</span><div class="bar"><i style="width:' + (g ? Math.min(100, total / g * 100) : 0) + '%"></i></div></div>';
+    $('#tree').innerHTML = db.tree.map(function (b) {
+      var mm = b.nodes.filter(function (n) { return n.st === 'mastered'; }).length;
+      return '<article class="branch"><h3><span>' + esc(b.h) + '</span><small>' + mm + '/' + b.nodes.length + '</small></h3><ol class="nodes">' +
+        b.nodes.map(function (n) { return '<li><button type="button" class="node ' + n.st + '" data-b="' + b.id + '" data-n="' + n.id + '"><span class="dot"></span><b>' + esc(n.n) + '</b>' + (n.ev ? '<small>' + esc(n.ev) + '</small>' : '') + (n.money ? '<span class="rp">Rp → ' + esc(n.money) + '</span>' : '') + (n.next ? '<small>→ ' + esc(n.next) + '</small>' : '') + '</button></li>'; }).join('') +
+        '<li><button type="button" class="x" data-add="' + b.id + '">+ skill</button></li></ol></article>';
+    }).join('');
+    $('#lSkill').innerHTML = '<option value="">—</option>' + nodes.map(function (x) { return '<option value="' + x.n.id + '">' + esc(x.b.h + ' · ' + x.n.n) + '</option>'; }).join('');
+    var q = ($('#lFind').value || '').toLowerCase(), byId = {}; nodes.forEach(function (x) { byId[x.n.id] = x.n.n; });
+    $('#lifeLog').innerHTML = db.life.slice().sort(function (a, b) { return b.d < a.d ? -1 : 1; }).filter(function (e) { return !q || (e.t + ' ' + e.x).toLowerCase().indexOf(q) >= 0; }).map(function (e) {
+      return '<li><div class="meta"><span>' + esc(e.d) + ' · ' + esc(e.k) + (e.s ? ' · ' + esc(byId[e.s] || '') : '') + (e.p ? ' · ★ portofolio' : '') + '</span><button class="x" data-dl="' + e.id + '">hapus</button></div><b>' + esc(e.t) + '</b>' + (e.x ? '<p>' + esc(e.x) + '</p>' : '') + '</li>';
+    }).join('') || '<li class="muted">Belum ada catatan. Mulai dari satu kejadian minggu ini.</li>';
+    $('#gTotal').value = db.goal.total || ''; $('#gMonth').value = db.goal.month || ''; $('#gDate').value = db.goal.date || ''; $('#gWhy').value = db.goal.why || '';
+    var months = {}; db.income.forEach(function (i) { months[i.m] = (months[i.m] || 0) + Number(i.a || 0); });
+    var keys = Object.keys(months).sort().slice(-14), max = Math.max.apply(null, keys.map(function (k) { return months[k]; }).concat([db.goal.month || 0, 1]));
+    $('#chart').innerHTML = keys.map(function (k) { return '<div title="' + rp(months[k]) + '"><i class="' + (db.goal.month && months[k] >= db.goal.month ? 'hit' : '') + '" style="height:' + (months[k] / max * 140) + 'px"></i>' + k.slice(2) + '</div>'; }).join('') || '<p class="muted">Belum ada data pemasukan.</p>';
+    var left = Math.max(0, g - total), dl = db.goal.date ? new Date(db.goal.date) : null, mLeft = dl ? Math.max(1, (dl.getFullYear() - new Date().getFullYear()) * 12 + dl.getMonth() - new Date().getMonth() + 1) : 0;
+    $('#goalLine').textContent = g ? 'Sisa ' + rp(left) + (mLeft ? ' · perlu rata-rata ' + rp(left / mLeft) + ' per bulan selama ' + mLeft + ' bulan.' : '') + (db.goal.why ? ' Alasan: ' + db.goal.why : '') : 'Isi target total dan per bulan untuk melihat kebutuhan rata-rata per bulan.';
+    $('#incLog').innerHTML = db.income.slice().sort(function (a, b) { return b.m < a.m ? -1 : 1; }).slice(0, 60).map(function (i) { return '<li><div class="meta"><span>' + esc(i.m) + ' · ' + esc(i.s) + '</span><button class="x" data-di="' + i.id + '">hapus</button></div><b>' + rp(i.a) + '</b>' + (i.n ? '<p>' + esc(i.n) + '</p>' : '') + '</li>'; }).join('');
+    $('#ver').textContent = 'tersimpan di perangkat ini';
+  }
+  var editing = null;
+  function openNode(bId, nId) {
+    var b = db.tree.filter(function (x) { return x.id === bId; })[0], n = nId ? b.nodes.filter(function (x) { return x.id === nId; })[0] : { n: '', st: 'next', ev: '', money: '', next: '' };
+    editing = { b: b, n: n, isNew: !nId };
+    $('#dTitle').textContent = b.h; $('#nName').value = n.n; $('#nSt').value = n.st; $('#nEv').value = n.ev; $('#nMoney').value = n.money; $('#nNext').value = n.next;
+    $('#dlg').showModal();
+  }
+  $('#dlg').addEventListener('close', function () {
+    var v = $('#dlg').returnValue; if (!editing) return;
+    if (v === 'save' && $('#nName').value.trim()) { var n = editing.n; n.n = $('#nName').value.trim(); n.st = $('#nSt').value; n.ev = $('#nEv').value.trim(); n.money = $('#nMoney').value.trim(); n.next = $('#nNext').value.trim(); if (editing.isNew) { n.id = uid(); editing.b.nodes.push(n); } save(); }
+    if (v === 'del' && !editing.isNew && confirm('Hapus skill ini?')) { editing.b.nodes = editing.b.nodes.filter(function (x) { return x !== editing.n; }); save(); }
+    editing = null;
+  });
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest ? e.target.closest('[data-tab],[data-n],[data-add],[data-dl],[data-di]') : null; if (!t) return;
+    if (t.dataset.tab) { document.querySelectorAll('[data-tab]').forEach(function (b) { b.setAttribute('aria-pressed', String(b === t)); }); ['tree', 'life', 'money', 'data'].forEach(function (k) { $('#tab-' + k).classList.toggle('hide', k !== t.dataset.tab); }); try { sessionStorage.setItem('aa_me_tab', t.dataset.tab); } catch (er) { /* ignore */ } return; }
+    if (t.dataset.n) return openNode(t.dataset.b, t.dataset.n);
+    if (t.dataset.add) return openNode(t.dataset.add, null);
+    if (t.dataset.dl && confirm('Hapus catatan ini?')) { db.life = db.life.filter(function (x) { return x.id !== t.dataset.dl; }); save(); }
+    if (t.dataset.di && confirm('Hapus pemasukan ini?')) { db.income = db.income.filter(function (x) { return x.id !== t.dataset.di; }); save(); }
+  });
+  $('#addBranch').onclick = function () { var h = prompt('Nama cabang skill baru:'); if (h && h.trim()) { db.tree.push({ id: uid(), h: h.trim(), nodes: [] }); save(); } };
+  $('#lifeForm').onsubmit = function (e) { e.preventDefault(); db.life.push({ id: uid(), d: $('#lDate').value, k: $('#lType').value, s: $('#lSkill').value, t: $('#lTitle').value.trim(), x: $('#lText').value.trim(), p: $('#lPublic').checked }); $('#lTitle').value = ''; $('#lText').value = ''; $('#lPublic').checked = false; $('#lMsg').textContent = 'Tersimpan.'; save(); };
+  $('#lFind').oninput = render;
+  $('#goalForm').onsubmit = function (e) { e.preventDefault(); db.goal = { total: +$('#gTotal').value || 0, month: +$('#gMonth').value || 0, date: $('#gDate').value, why: $('#gWhy').value.trim() }; save(); };
+  $('#incForm').onsubmit = function (e) { e.preventDefault(); db.income.push({ id: uid(), m: $('#iMonth').value, s: $('#iSrc').value, a: +$('#iAmt').value || 0, n: $('#iNote').value.trim() }); $('#iAmt').value = ''; $('#iNote').value = ''; save(); };
+  $('#exp').onclick = function () { var b = new Blob([JSON.stringify(db, null, 2)], { type: 'application/json' }), a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'ruang-pribadi-' + new Date().toISOString().slice(0, 10) + '.json'; a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000); };
+  $('#imp').onchange = function () { var f = this.files[0]; if (!f) return; var r = new FileReader(); r.onload = function () { try { var d = JSON.parse(r.result); if (!d.tree) throw 0; db = { v: 1, tree: d.tree, life: d.life || [], income: d.income || [], goal: d.goal || db.goal }; save(); $('#dMsg').textContent = 'Impor berhasil.'; } catch (er) { $('#dMsg').textContent = 'File tidak dikenali.'; } }; r.readAsText(f); };
+  $('#reset').onclick = function () { if (confirm('Ganti skill tree dengan versi awal? Catatan dan pemasukan tetap.')) { db.tree = seed(); save(); } };
+  $('#copyAI').onclick = function () {
+    var nodes = allNodes(), recent = db.life.slice().sort(function (a, b) { return b.d < a.d ? -1 : 1; }).slice(0, 15), total = db.income.reduce(function (s, i) { return s + Number(i.a || 0); }, 0);
+    var txt = 'Ringkasan ruang pribadi Auzan (' + new Date().toISOString().slice(0, 10) + ')\n\nSKILL\n' + db.tree.map(function (b) { return '- ' + b.h + ': ' + b.nodes.map(function (n) { return n.n + ' [' + ST[n.st] + ']'; }).join('; '); }).join('\n') +
+      '\n\nCATATAN TERBARU\n' + recent.map(function (e) { return '- ' + e.d + ' (' + e.k + (e.p ? ', layak portofolio' : '') + '): ' + e.t + (e.x ? ' — ' + e.x.replace(/\s+/g, ' ').slice(0, 300) : ''); }).join('\n') +
+      '\n\nTARGET\nTotal ' + rp(db.goal.total) + ', per bulan ' + rp(db.goal.month) + ', tenggat ' + db.goal.date + '. Tercapai ' + rp(total) + '.\n\nTolong: (1) usulkan update portofolio dari catatan yang layak publik, (2) pilih 3 skill paling cepat menghasilkan uang, (3) susun rencana 7 hari.';
+    (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(function () { $('#dMsg').textContent = 'Tersalin. Tempel ke Claude.'; }, function () { prompt('Salin teks ini:', txt); });
+  };
+  load();
+  $('#lDate').value = new Date().toISOString().slice(0, 10); $('#iMonth').value = new Date().toISOString().slice(0, 7);
+  render();
+  try { var tb = sessionStorage.getItem('aa_me_tab'); if (tb) { var btn = document.querySelector('[data-tab="' + tb + '"]'); if (btn) btn.click(); } } catch (e) { /* ignore */ }
+})();
+</script>
+</body>
+</html>

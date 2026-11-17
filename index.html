@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Auzan Asarudin — Production Engineer · Data &amp; Otomasi Manufaktur</title>
-<meta name="description" content="Portofolio Auzan Asarudin, production engineer di manufaktur alat berat. Dashboard, otomasi, struktur BOM, analitik robot las, dan game pixel LABORU. Coba demonya langsung.">
+<meta name="description" content="Portofolio Auzan Asarudin, production engineer di manufaktur alat berat. Engineering, manajemen, dan otomasi: BOM, estimasi biaya, dashboard robot las, 5S, ISO, dan game pixel LABORU.">
 <meta name="author" content="Auzan Asarudin">
 <link rel="canonical" href="https://auzanasarudin.github.io/portofolio/">
 <meta property="og:type" content="website">
@@ -111,7 +111,25 @@
     </section>
   </div>
 
-  <!-- ============ 02 PENGAKUAN ============ -->
+  <!-- ============ 02 SINGKATNYA / TENTANG ============ -->
+  <section id="tentang" class="sec">
+    <div class="wrap">
+      <p class="num" id="s3n"></p>
+      <div class="behind">
+        <div><h2 class="stack"><span id="s3a"></span><em id="s3b"></em></h2><p class="lead" id="s3text"></p></div>
+        <blockquote class="quote"><span aria-hidden="true">“</span><p id="s3quote"></p><cite>Auzan</cite></blockquote>
+      </div>
+      <div class="pillars" id="pillars"></div>
+      <div class="std"><span class="eyebrow" id="stdLbl"></span><ul id="std"></ul></div>
+      <p class="who only-overview" id="s3who"></p>
+      <div class="only-deep about-deep">
+        <h3 class="h3" data-t="sec.story">Cerita singkat</h3>
+        <div class="about"><div class="story" id="story"></div><ul class="bel" id="beliefs"></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 03 PENGAKUAN ============ -->
   <section id="pengakuan" class="sec">
     <div class="wrap rec">
       <div>
@@ -123,31 +141,36 @@
     </div>
   </section>
 
-  <!-- ============ 03 DI BALIK LAYAR ============ -->
-  <section id="tentang" class="sec">
-    <div class="wrap">
-      <p class="num" id="s3n"></p>
-      <div class="behind">
-        <div><h2 class="stack"><span id="s3a"></span><em id="s3b"></em></h2><p class="lead" id="s3text"></p></div>
-        <ol class="flow" id="flow"></ol>
-        <blockquote class="quote"><span aria-hidden="true">“</span><p id="s3quote"></p><cite>Auzan</cite></blockquote>
-      </div>
-      <div class="only-deep about-deep">
-        <div class="about"><div class="story" id="story"></div><ul class="bel" id="beliefs"></ul></div>
-        <h3 class="h3" data-t="sec.cred">Pendidikan, penghargaan, publikasi</h3>
-        <div class="cred" id="cred"></div>
-      </div>
-    </div>
-  </section>
-
   <!-- ============ 04 PERJALANAN ============ -->
   <section id="perjalanan" class="sec">
     <div class="wrap">
       <p class="num" id="s4n"></p>
       <h2 class="one"><span id="s4a"></span> <span id="s4b"></span></h2>
-      <div class="journey">
+      <div class="journey only-overview">
         <ol class="tl" id="tl"></ol>
         <aside class="wins"><h3 class="stack sm"><span id="w1"></span><em id="w2"></em></h3><ol id="wins"></ol></aside>
+      </div>
+      <div class="only-deep">
+        <div class="sh" id="riwayat"><h3 class="h3 first" data-t="sec.history">Riwayat kerja dan magang</h3></div>
+        <ol class="hist" id="timeline"></ol>
+        <h3 class="h3" id="pendidikan" data-t="sec.edu">Pendidikan</h3>
+        <div class="edu" id="edu"></div>
+        <h3 class="h3" id="sertifikat" data-t="sec.certs">Pelatihan dan sertifikat</h3>
+        <div class="tw"><table class="t" id="certs"></table></div>
+        <p class="note" data-t="sec.certsNote"></p>
+        <h3 class="h3" id="organisasi" data-t="sec.orgs">Organisasi dan kegiatan</h3>
+        <div class="orgs" id="orgs"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NUDGE KE MENDALAM (hanya Ringkas) ============ -->
+  <section class="sec only-overview" id="lanjut">
+    <div class="wrap">
+      <div class="nudge-band">
+        <div class="nb-labo" id="nbLabo" aria-hidden="true"></div>
+        <div class="nb-txt"><p class="nb-bubble" id="nbBubble"></p><h2 class="stack"><span id="nbA"></span></h2><p class="lead" id="nbText"></p></div>
+        <button type="button" class="btn pri" data-mode-btn="deep" id="nbCta"></button>
       </div>
     </div>
   </section>
@@ -180,16 +203,13 @@
     </section>
     <section id="jasa" class="sec">
       <div class="wrap">
-        <div class="sh"><h2 data-t="sec.services">Jasa untuk pabrik dan bengkel</h2><p class="lead" data-t="sec.servicesLead"></p></div>
+        <div class="sh"><h2 data-t="sec.services">Jasa</h2><p class="lead" data-t="sec.servicesLead"></p></div>
         <div class="cards" id="services"></div>
         <p class="note"><span data-t="lbl.priceNote"></span> <span data-t="lbl.idr"></span></p>
       </div>
     </section>
-    <section id="riwayat" class="sec">
-      <div class="wrap"><div class="sh"><h2 data-t="sec.history">Riwayat</h2></div><div class="tw"><table class="t" id="timeline"></table></div></div>
-    </section>
     <section id="faq" class="sec">
-      <div class="wrap"><div class="sh"><h2 data-t="sec.faq">Pertanyaan yang biasa muncul</h2></div><div id="faqList"></div></div>
+      <div class="wrap"><div class="sh"><h2 data-t="sec.faq">FAQ</h2></div><div id="faqList"></div></div>
     </section>
   </div>
 
@@ -197,27 +217,38 @@
   <section id="kontak" class="sec end">
     <div class="wrap">
       <h2 class="huge"><span id="s6a"></span> <em id="s6b"></em></h2>
-      <p class="lead" id="s6text"></p>
-      <div class="chan" id="chan"></div>
-      <p class="only-overview"><button type="button" class="tlink" data-go-deep="jasa" id="s6deep"></button></p>
-      <form class="form only-deep" id="brief" novalidate>
-        <p class="lead" data-t="sec.contactLead"></p>
-        <div class="two">
-          <label for="f-name"><span data-t="form.name">Nama</span><input id="f-name" name="name" autocomplete="name"></label>
-          <label for="f-org"><span data-t="form.org">Perusahaan</span><input id="f-org" name="org" autocomplete="organization"></label>
+      <div class="contact">
+        <div class="c-main">
+          <p class="lead" id="s6text"></p>
+          <ul class="chan" id="chan"></ul>
+          <p class="c-base" id="cBase"></p>
         </div>
-        <label for="f-topic"><span data-t="form.topic"></span><select id="f-topic" name="topic"></select></label>
-        <label for="f-msg"><span data-t="form.msg"></span><textarea id="f-msg" name="msg" maxlength="900"></textarea></label>
-        <div class="acts"><button class="btn pri" type="submit" data-t="btn.sendMail">Kirim lewat email</button><button class="btn ghost" type="button" id="copyBrief" data-t="btn.copyBrief">Salin ringkasan</button></div>
-        <p class="msg" id="formMsg" role="status"></p>
-      </form>
+        <div class="c-side">
+          <div class="c-card only-overview">
+            <div class="c-labo" id="cLabo" aria-hidden="true"></div>
+            <p id="s6side"></p>
+            <div class="acts"><button type="button" class="btn pri sm" id="askLabo" data-t="btn.askLabo">Tanya Labo dulu</button><button type="button" class="btn sm" data-mode-btn="deep" id="s6deep"></button></div>
+          </div>
+          <form class="form only-deep" id="brief" novalidate>
+            <p class="lead" data-t="sec.contactLead"></p>
+            <div class="two">
+              <label for="f-name"><span data-t="form.name">Nama</span><input id="f-name" name="name" autocomplete="name"></label>
+              <label for="f-org"><span data-t="form.org">Perusahaan</span><input id="f-org" name="org" autocomplete="organization"></label>
+            </div>
+            <label for="f-topic"><span data-t="form.topic"></span><select id="f-topic" name="topic"></select></label>
+            <label for="f-msg"><span data-t="form.msg"></span><textarea id="f-msg" name="msg" maxlength="900"></textarea></label>
+            <div class="acts"><button class="btn pri" type="submit" data-t="btn.sendMail">Kirim lewat email</button><button class="btn ghost" type="button" id="copyBrief" data-t="btn.copyBrief">Salin ringkasan</button></div>
+            <p class="msg" id="formMsg" role="status"></p>
+          </form>
+        </div>
+      </div>
     </div>
   </section>
 </main>
 
 <footer class="ftr">
   <div class="wrap row">
-    <div><p data-t="foot.note"></p><p>© 2026 Auzan Asarudin</p></div>
+    <div><p data-t="foot.note"></p><p><span id="me" class="me-key">©</span> 2026 Auzan Asarudin</p></div>
     <div class="links" id="footLinks"></div>
   </div>
 </footer>

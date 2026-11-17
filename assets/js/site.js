@@ -15,8 +15,11 @@
   var caseById = function (id) { return D.cases.filter(function (c) { return c.id === id; })[0]; };
   var price = function (k) { return D.prices[k] ? rp(D.prices[k][0]) : ''; };
   var buy = function (k) { return D.prices[k] ? D.prices[k][1] : D.links.laboru; };
-  var BRIEF = { review: 1, dashboard: 0, automation: 1, change: 2, bom: 2, costing: 4, robot: 3, retainer: 7 };
-  var gFilter = 'all', gAll = false, lbList = [], lbIdx = 0, G_LIMIT = 10;
+  var BRIEF = { review: 1, umkm: 8, dashboard: 0, automation: 1, iso: 9, change: 2, bom: 2, costing: 4, robot: 3, retainer: 7 };
+  var org = function (k) { return D.org[k] || { name: k }; };
+  var orgLink = function (k, cls) { var o = org(k); return o.url ? '<a class="' + (cls || 'olink') + '" href="' + o.url + '"' + EXT + '>' + esc(o.name) + ' <span aria-hidden="true">↗</span></a>' : '<span class="' + (cls || 'olink') + '">' + esc(o.name) + '</span>'; };
+  var gFilter = 'all', gAll = false, lbList = [], lbIdx = 0;
+  var gLimit = function () { return mode === 'deep' ? 99 : 6; };
 
   /* ---------------- overview (showreel) ---------------- */
   function rChrome() {
@@ -25,8 +28,8 @@
     document.querySelectorAll('[data-lang]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === lang)); });
     document.title = lang === 'id' ? 'Auzan Asarudin — Production Engineer · Data & Otomasi Manufaktur' : 'Auzan Asarudin — Production Engineer · Manufacturing Data & Automation';
     var nav = mode === 'deep'
-      ? [['karya', T('nav.karya')], ['studi', lang === 'id' ? 'Studi kasus' : 'Case studies'], ['produk', T('nav.produk')], ['jasa', T('nav.jasa')], ['faq', 'FAQ'], ['kontak', T('nav.kontak')]]
-      : [['karya', T('nav.karya')], ['pengakuan', lang === 'id' ? 'Pengakuan' : 'Recognition'], ['tentang', T('nav.tentang')], ['perjalanan', lang === 'id' ? 'Perjalanan' : 'Journey'], ['kontak', T('nav.kontak')]];
+      ? [['karya', T('nav.karya')], ['studi', lang === 'id' ? 'Studi kasus' : 'Cases'], ['riwayat', lang === 'id' ? 'Riwayat' : 'History'], ['produk', T('nav.produk')], ['jasa', T('nav.jasa')], ['kontak', T('nav.kontak')]]
+      : [['karya', T('nav.karya')], ['tentang', T('nav.tentang')], ['pengakuan', lang === 'id' ? 'Pengakuan' : 'Recognition'], ['perjalanan', lang === 'id' ? 'Perjalanan' : 'Journey'], ['kontak', T('nav.kontak')]];
     $('#nav').innerHTML = nav.map(function (n) { return '<a href="#' + n[0] + '">' + esc(n[1]) + '</a>'; }).join('');
     document.querySelectorAll('#modeSeg [data-mode-btn]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-mode-btn') === mode)); });
     $('#modeSeg').setAttribute('aria-label', T('mode.label'));
@@ -36,8 +39,8 @@
     $('#hSee').innerHTML = esc(tx(V.see)) + ' <span aria-hidden="true">↓</span>';
     $('#hStats').innerHTML = V.stats.map(function (s) { return '<li><b>' + (s[1] ? '<small>' + esc(tx(s[0])) + '</small>' + esc(s[1]) : esc(s[0])) + '</b><span>' + esc(tx(s[2])) + '</span></li>'; }).join('');
     set('placesLbl', tx(V.places));
-    var p = V.placeList.map(function (x) { return '<span>' + esc(x) + '</span>'; }).join('');
-    $('#places').innerHTML = p + p;
+    var p = V.placeList.map(function (k) { var o = org(k); return o.url ? '<a href="' + o.url + '"' + EXT + '>' + esc(o.name) + '</a>' : '<span>' + esc(o.name) + '</span>'; }).join('');
+    $('#places').innerHTML = p + p.replace(/<(a|span)( |>)/g, '<$1 aria-hidden="true" tabindex="-1"$2');
   }
   var reelT, reelI = 0;
   function rReel() {
@@ -60,30 +63,33 @@
     $('#filters').innerHTML = V.filters.map(function (f) { return '<button type="button" data-filter="' + f[0] + '" aria-pressed="' + (gFilter === f[0]) + '">' + esc(tx(f[1])) + '</button>'; }).join('');
     $('#gal').innerHTML = D.gallery.map(function (g, i) {
       var tag = g.t === 'laboru' ? 'LABORU' : (g.c ? caseById(g.c).name : '');
-      return '<button type="button" class="tile' + (g.big ? ' big' : '') + (g.tall ? ' tall' : '') + '" data-g="' + i + '"' + (tileHidden(g, i) ? ' hidden' : '') + '>' +
-        '<img src="assets/img/g/' + g.f + '-s.webp" loading="lazy" decoding="async" alt="">' +
+      return '<button type="button" class="tile' + (g.s[1] > g.s[0] ? ' tall' : '') + '" data-g="' + i + '"' + (tileHidden(g, i) ? ' hidden' : '') + '>' +
+        (g.s[1] > g.s[0] ? '<img class="bg" src="assets/img/g/' + g.f + '-s.webp" loading="lazy" decoding="async" alt="">' : '') +
+        '<img src="assets/img/g/' + g.f + '-s.webp" width="' + g.s[0] + '" height="' + g.s[1] + '" loading="lazy" decoding="async" alt="">' +
         '<span class="cap"><small>' + esc(tag) + '</small><b>' + esc(tx(g.cap)) + '</b></span></button>';
     }).join('') + '';
     syncMore();
   }
-  function tileHidden(g, i) { return gFilter !== 'all' ? g.t !== gFilter : (!gAll && i >= G_LIMIT); }
+  function tileHidden(g, i) { return gFilter !== 'all' ? g.t !== gFilter : (!gAll && i >= gLimit()); }
   function syncMore() {
     var b = $('#galMore'), n = D.gallery.length;
     if (!b) return;
-    b.hidden = gFilter !== 'all' || gAll;
+    b.hidden = gFilter !== 'all' || gAll || n <= gLimit();
     b.textContent = (lang === 'id' ? 'Lihat semua ' + n + ' cuplikan' : 'See all ' + n + ' previews') + ' ↓';
   }
   function rRecognition() {
     set('s2n', V.s2.n); set('s2a', tx(V.s2.a)); set('s2b', tx(V.s2.b)); set('s2sub', tx(V.s2.bigSub));
-    $('#awards').innerHTML = V.awards.map(function (a) { return '<li><b>' + esc(tx(a[1])) + '</b><span>' + esc(tx(a[2])) + '</span><i>' + esc(tx(a[0])) + '</i></li>'; }).join('');
+    $('#awards').innerHTML = V.awards.map(function (a) { return '<li><b>' + esc(tx(a[1])) + '</b><span>' + esc(tx(a[2])) + (a[3] ? ' · <a href="' + a[3] + '"' + EXT + '>' + (lang === 'id' ? 'sumber' : 'source') + ' ↗</a>' : '') + '</span><i>' + esc(tx(a[0])) + '</i></li>'; }).join('');
   }
   function rBehind() {
     var s = V.s3; set('s3n', s.n); set('s3a', tx(s.a)); set('s3b', tx(s.b)); set('s3text', tx(s.text)); set('s3quote', tx(s.quote));
-    $('#flow').innerHTML = s.flow.map(function (f) { return '<li><b>' + esc(tx(f[0])) + '</b><span>' + esc(tx(f[1])) + '</span></li>'; }).join('');
+    $('#pillars').innerHTML = s.pillars.map(function (p, i) { return '<article class="pillar"><span>' + ('0' + (i + 1)).slice(-2) + '</span><h3>' + esc(tx(p[0])) + '</h3><p>' + esc(tx(p[1])) + '</p></article>'; }).join('');
+    set('stdLbl', tx(s.stdLbl)); set('s3who', tx(s.who));
+    $('#std').innerHTML = s.std.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('');
   }
   function rJourney() {
     var s = V.s4; set('s4n', s.n); set('s4a', tx(s.a)); set('s4b', tx(s.b)); set('w1', tx(s.w1)); set('w2', tx(s.w2));
-    $('#tl').innerHTML = D.timeline.map(function (t) { var where = t.now && D.person.employerPublic ? D.person.employerName : tx(t.where); return '<li' + (t.now ? ' class="now"' : '') + '><span class="y">' + esc(t.y) + '</span><div><b>' + esc(tx(t.what)) + '</b><span>' + esc(where) + '</span></div></li>'; }).join('');
+    $('#tl').innerHTML = V.outline.map(function (t) { return '<li' + (t[3] ? ' class="now"' : '') + '><span class="y">' + esc(t[0]) + '</span><div><b>' + esc(tx(t[1])) + '</b><span>' + esc(tx(t[2])) + '</span></div></li>'; }).join('');
     $('#wins').innerHTML = V.wins.map(function (w) { return '<li>' + esc(tx(w)) + '</li>'; }).join('');
   }
   function rLaboru() {
@@ -93,16 +99,19 @@
     $('#phones').innerHTML = ['lb-ratrace', 'lb-title', 'lb-pet'].map(function (f) { var i = D.gallery.map(function (g) { return g.f; }).indexOf(f); return '<button type="button" class="phone" data-g="' + i + '" aria-label="' + esc(tx(D.gallery[i].cap)) + '"><img src="assets/img/g/' + f + '-s.webp" loading="lazy" decoding="async" alt=""></button>'; }).join('');
   }
   function rContact() {
-    var s = V.s6, p = D.person; set('s6a', tx(s.a)); set('s6b', tx(s.b)); set('s6text', tx(s.text)); set('s6deep', tx(s.deep)); set('deepIntro', tx(V.deepIntro));
-    $('#chan').innerHTML = '<div class="mail"><span>' + esc(p.email) + '</span><button type="button" class="btn sm" id="copyMail">' + esc(T('btn.copy')) + '</button></div>' +
-      '<a class="btn ghost" href="' + p.linkedin + '"' + EXT + '>LinkedIn ↗</a><a class="btn ghost" href="' + D.links.laboruInstagram + '"' + EXT + '>Instagram LABORU ↗</a>' +
-      (p.whatsapp ? '<a class="btn ghost" href="https://wa.me/' + p.whatsapp.replace(/\D/g, '') + '"' + EXT + '>WhatsApp ↗</a>' : '');
+    var s = V.s6, p = D.person; set('s6a', tx(s.a)); set('s6b', tx(s.b)); set('s6text', tx(s.text)); set('s6side', tx(s.side)); set('s6deep', tx(s.deep)); set('deepIntro', tx(V.deepIntro)); set('cBase', tx(p.base));
+    var row = function (lbl, val, href, extra) { return '<li><span class="c-lbl">' + esc(lbl) + '</span>' + (href ? '<a class="c-val" href="' + href + '"' + (/^https?:/.test(href) ? EXT : '') + '>' + esc(val) + ' <span aria-hidden="true">↗</span></a>' : '<span class="c-val">' + esc(val) + '</span>') + (extra || '') + '</li>'; };
+    $('#chan').innerHTML = row('Email', p.email, 'mailto:' + p.email, '<button type="button" class="btn sm" id="copyMail">' + esc(T('btn.copy')) + '</button>') +
+      row('LinkedIn', 'Auzan Asarudin', p.linkedin) + row('Instagram', '@laboru_id', D.links.laboruInstagram) +
+      (p.whatsapp ? row('WhatsApp', '+' + p.whatsapp.replace(/\D/g, ''), 'https://wa.me/' + p.whatsapp.replace(/\D/g, '')) : '');
+    if (window.LaboSprite) { $('#cLabo').innerHTML = LaboSprite.svg('happy', 64); $('#nbLabo').innerHTML = LaboSprite.svg('wow', 110); }
+    var n = V.nudge; set('nbA', tx(n.a)); set('nbText', tx(n.text)); set('nbBubble', tx(n.bubble)); $('#nbCta').innerHTML = esc(tx(n.cta)) + AR;
     var sel = $('#f-topic'), cur = sel.selectedIndex;
     sel.innerHTML = D.t.form.topics.map(function (t, i) { return '<option value="' + i + '">' + esc(tx(t)) + '</option>'; }).join('');
     if (cur >= 0) sel.selectedIndex = cur;
     $('#f-msg').placeholder = T('form.ph');
     $('#footLinks').innerHTML = '<a href="' + p.linkedin + '"' + EXT + '>LinkedIn</a><a href="' + D.links.laboru + '"' + EXT + '>LABORU</a><a href="' + D.links.zonion + '"' + EXT + '>Z-ONION</a>' +
-      D.cases.map(function (c) { return '<a href="' + c.demo + '">' + esc(c.name) + '</a>'; }).join('') + '<a href="#top">' + esc(T('foot.top')) + '</a><button type="button" id="showLabo" hidden>' + esc(T('foot.showLabo')) + '</button>';
+      D.cases.map(function (c) { return '<a href="' + c.demo + '">' + esc(c.name) + '</a>'; }).join('') + '<a href="#top">' + esc(T('foot.top')) + '</a>';
   }
 
   /* ---------------- deep (reading + offers) ---------------- */
@@ -131,8 +140,11 @@
     $('#research').innerHTML = '<div class="about"><div class="story"><p><b>' + esc(tx(r.title)) + '.</b> ' + esc(tx(r.text)) + '</p><p><span class="tagst progress">' + esc(T('lbl.progress')) + '</span></p></div><div class="tw"><table class="t"><tbody>' + r.points.map(function (p) { return '<tr><td class="n">' + esc(tx(p[0])) + '</td><td>' + esc(tx(p[1])) + '</td></tr>'; }).join('') + '</tbody></table></div></div>';
     $('#story').innerHTML = D.story.map(function (p) { return '<p>' + esc(tx(p)) + '</p>'; }).join('');
     $('#beliefs').innerHTML = D.beliefs.map(function (b) { return '<li>' + esc(tx(b)) + '</li>'; }).join('');
-    $('#cred').innerHTML = D.credentials.map(function (c) { return '<div class="box"><h4>' + esc(tx(c.h)) + '</h4><ul>' + c.items.map(function (i) { return '<li>' + esc(tx(i)) + '</li>'; }).join('') + '</ul></div>'; }).join('');
-    $('#timeline').innerHTML = '<thead><tr><th>' + esc(T('lbl.year')) + '</th><th>' + esc(T('lbl.what')) + '</th><th></th></tr></thead><tbody>' + D.timeline.map(function (t) { var where = t.now && D.person.employerPublic ? D.person.employerName : tx(t.where); return '<tr><td class="n">' + esc(t.y) + '</td><td><b>' + esc(tx(t.what)) + '</b><small>' + esc(where) + '</small></td><td>' + esc(tx(t.text)) + '</td></tr>'; }).join('') + '</tbody>';
+    var who = function (k, fallback) { return k === 'hcmi' && !D.person.employerPublic ? '<span class="olink">' + esc(tx(fallback)) + '</span>' : orgLink(k); };
+    $('#timeline').innerHTML = D.timeline.map(function (t) { return '<li' + (t.now ? ' class="now"' : '') + '><span class="y">' + esc(t.y) + '</span><div><b>' + esc(tx(t.what)) + '</b><p class="at">' + who(t.o, t.where) + ' <small>' + esc(tx(t.where)) + '</small></p><p>' + esc(tx(t.text)) + '</p></div></li>'; }).join('');
+    $('#edu').innerHTML = D.education.map(function (e) { return '<article class="box"><p class="eyebrow">' + esc(e.y) + '</p><h4 class="eh">' + esc(tx(e.h)) + '</h4><p class="at">' + orgLink(e.o) + '</p><p class="sub">' + esc(tx(e.sub)) + '</p><ul class="ticks">' + e.items.map(function (i) { return '<li>' + esc(tx(i)) + '</li>'; }).join('') + '</ul></article>'; }).join('');
+    $('#certs').innerHTML = '<tbody>' + D.certs.map(function (c) { return '<tr><td><b>' + esc(tx(c.h)) + '</b><small>' + esc(tx(c.by)) + '</small></td><td class="r n">' + esc(c.y) + '</td></tr>'; }).join('') + '</tbody>';
+    $('#orgs').innerHTML = D.orgs.map(function (o) { var h = esc(tx(o.h)), url = o.url || (o.o && org(o.o).url); return '<article class="box"><b>' + (url ? '<a href="' + url + '"' + EXT + '>' + h + ' ↗</a>' : h) + '</b><p>' + esc(tx(o.text)) + '</p></article>'; }).join('');
     $('#faqList').innerHTML = D.faq.map(function (q) { return '<details class="q"><summary>' + esc(tx(q[0])) + '</summary><p>' + esc(tx(q[1])) + '</p></details>'; }).join('');
     rProducts(); rServices();
   }
@@ -163,7 +175,7 @@
   }
   function showLb() {
     var g = D.gallery[lbList[lbIdx]], c = g.c && caseById(g.c);
-    $('#lbImg').src = 'assets/img/g/' + g.f + '.webp'; $('#lbImg').alt = tx(g.cap); set('lbCap', tx(g.cap));
+    $('#lbImg').src = 'assets/img/g/' + g.f + '.webp'; $('#lbImg').width = g.s[0] * 2; $('#lbImg').height = g.s[1] * 2; $('#lbImg').alt = tx(g.cap); set('lbCap', tx(g.cap));
     $('#lbActs').innerHTML = c ? '<a class="btn pri sm" href="' + c.demo + '">' + esc(tx(V.open)) + AR + '</a><button type="button" class="btn sm" data-go-deep="case-' + c.id + '" data-lb="close">' + esc(tx(V.readCase)) + '</button>' : '<a class="btn pri sm" href="' + D.links.laboru + '"' + EXT + '>LABORU ↗</a>';
     $('#lbClose').setAttribute('aria-label', tx(V.close));
   }
@@ -174,7 +186,7 @@
   function setMode(m, anchor) {
     if (m !== 'deep' && m !== 'overview') return;
     var apply = function () {
-      mode = m; root.setAttribute('data-mode', m); rChrome(); setHash(); reveal();
+      mode = m; root.setAttribute('data-mode', m); gAll = false; rChrome(); rGallery(); setHash(); reveal();
       var el = anchor && document.getElementById(anchor);
       if (el && el.offsetParent !== null) el.scrollIntoView({ block: 'start' }); else if (m === 'deep' && !anchor) { var d = $('#kapabilitas'); if (d) d.scrollIntoView({ block: 'start' }); } else window.scrollTo(0, 0);
       document.dispatchEvent(new CustomEvent('site:mode', { detail: m }));
@@ -187,10 +199,11 @@
   var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -8% 0px' }) : null;
   function reveal() {
     if (!io) return;
-    document.querySelectorAll('.sh, .tile, .awards li, .flow li, .quote, .tl li, .wins li, .phone, .bignum, .stack, h2.one, .huge').forEach(function (el) { if (!el.classList.contains('rv')) { el.classList.add('rv'); var r = el.getBoundingClientRect(); if (r.top < innerHeight) el.classList.add('in'); else io.observe(el); } });
+    document.querySelectorAll('.sh, .tile, .awards li, .pillar, .quote, .tl li, .hist li, .wins li, .phone, .bignum, .stack, h2.one, .huge').forEach(function (el) { if (!el.classList.contains('rv')) { el.classList.add('rv'); var r = el.getBoundingClientRect(); if (r.top < innerHeight) el.classList.add('in'); else io.observe(el); } });
   }
 
   /* ---------------- contact ---------------- */
+  var meN = 0, meT = 0;
   function briefText() { var t = $('#f-topic'); return (lang === 'id' ? 'Nama: ' : 'Name: ') + $('#f-name').value.trim() + '\n' + (lang === 'id' ? 'Perusahaan: ' : 'Company: ') + ($('#f-org').value.trim() || '-') + '\n' + (lang === 'id' ? 'Topik: ' : 'Topic: ') + t.options[t.selectedIndex].text + '\n\n' + $('#f-msg').value.trim() + '\n'; }
   function say(m) { set('formMsg', m); }
   function copy(text, done) { if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(false); }); else done(false); }
@@ -208,6 +221,8 @@
     b = t.closest('[data-reel]'); if (b) return showReel(+b.getAttribute('data-reel'));
     b = t.closest('[data-brief]'); if (b) prefill(b.getAttribute('data-brief'), b.getAttribute('data-note'));
     if (t.id === 'lb' ) closeLb();
+    if (t.id === 'askLabo') return document.dispatchEvent(new CustomEvent('labo:open'));
+    if (t.id === 'me') { meN = (Date.now() - meT < 1500) ? meN + 1 : 1; meT = Date.now(); if (meN >= 3) location.href = 'me/'; return; }
     if (t.id === 'copyMail') return copy(D.person.email, function (ok) { t.textContent = ok ? T('btn.copied') : D.person.email; setTimeout(function () { t.textContent = T('btn.copy'); }, 1600); });
     if (t.id === 'copyBrief') { if (!$('#f-name').value.trim() || !$('#f-msg').value.trim()) return say(T('form.need')); return copy(briefText(), function (ok) { say(ok ? T('btn.copied') : D.person.email); }); }
   });
